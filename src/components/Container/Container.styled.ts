@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import background from 'images/container/img@2x.png';
+import background from 'images/container/background.png';
 import { IWrapperStyled, IPointStyled } from 'types/IContainer';
 
 export const Wrapper = styled.div<IWrapperStyled>`
