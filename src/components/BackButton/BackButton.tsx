@@ -2,7 +2,7 @@ import Button from 'components/Button';
 import IconSwitcher from 'components/IconSwitcher';
 import { useNavigate } from 'react-router-dom';
 
-const BackButton: React.FC<{}> = () => {
+const BackButton: React.FC<{ margin?: string }> = ({ margin }) => {
   const navigate = useNavigate();
 
   return (
@@ -12,6 +12,7 @@ const BackButton: React.FC<{}> = () => {
       borderRadius="50px"
       width="200px"
       height="50px"
+      margin={margin}
       shadow
       onClick={() => navigate(-1)}
     >

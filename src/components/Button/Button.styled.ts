@@ -8,6 +8,7 @@ export const ButtonWrapper = styled.button<IButtonWrapperStyled>`
 
   width: ${({ width }) => (width ? width : '')};
   height: ${({ height }) => (height ? height : '')};
+  margin: ${({ margin }) => (margin ? margin : '')};
 
   font-family: inherit;
   font-weight: 900;

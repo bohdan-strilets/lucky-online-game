@@ -3,6 +3,7 @@ export interface IButtonState {
   type: 'button' | 'submit' | 'reset' | undefined;
   width?: string;
   height?: string;
+  margin?: string;
   background?: 'green' | 'blue';
   shadow?: boolean;
   borderRadius?: string;
@@ -11,5 +12,5 @@ export interface IButtonState {
 
 export type IButtonWrapperStyled = Pick<
   IButtonState,
-  'width' | 'height' | 'background' | 'shadow' | 'borderRadius'
+  'width' | 'height' | 'margin' | 'background' | 'shadow' | 'borderRadius'
 >;

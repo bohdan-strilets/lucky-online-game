@@ -4,6 +4,9 @@ import styled from '@emotion/styled';
 import Layout from 'components/Layout';
 
 import HomePage from 'pages/HomePage';
+import SignupPage from 'pages/SignupPage';
+import TermsConditionsPage from 'pages/TermsConditionsPage';
+import PrivacyPolicyPage from 'pages/PrivacyPolicyPage';
 
 import background from 'images/app/bg.png';
 
@@ -30,6 +33,30 @@ const App: React.FC = () => {
           element={
             <Layout>
               <HomePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/sign-up"
+          element={
+            <Layout>
+              <SignupPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/terms-and-conditions"
+          element={
+            <Layout>
+              <TermsConditionsPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/privacy-policy"
+          element={
+            <Layout>
+              <PrivacyPolicyPage />
             </Layout>
           }
         />

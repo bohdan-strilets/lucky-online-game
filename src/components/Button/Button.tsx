@@ -6,6 +6,7 @@ const Button: React.FC<IButtonState> = ({
   type,
   width,
   height,
+  margin,
   background,
   shadow,
   borderRadius,
@@ -16,6 +17,7 @@ const Button: React.FC<IButtonState> = ({
       type={type}
       width={width}
       height={height}
+      margin={margin}
       background={background}
       shadow={shadow}
       borderRadius={borderRadius}
