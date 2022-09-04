@@ -3,23 +3,21 @@ import EntryField from 'components/EntryField';
 import Button from 'components/Button';
 import Container from 'components/Container';
 import AuthNav from '../AuthNav';
+import Checkbox from 'components/Checkbox';
 
-import { ISignupData } from 'types/ISignupForm';
-import signupSchema from 'helpers/validationSchemas/signupSchema';
+import { ISigninData } from 'types/ISignForm';
+import signinSchema from 'helpers/validationSchemas/signinSchema';
+import { Tuple, StyledLink } from './SigninForm.styled';
 
-import { Tuple, Text, PolicyLink } from './SignupForm.styled';
-
-const SignupForm: React.FC<{}> = () => {
+const SigninForm: React.FC<{}> = () => {
   const initialValues = {
-    name: '',
     email: '',
     password: '',
-    passwordAgain: '',
+    rememberMe: false,
   };
 
-  const onSubmit = (values: ISignupData) => {
+  const onSubmit = (values: ISigninData) => {
     const user = {
-      name: values.name,
       email: values.email,
       password: values.password,
     };
@@ -34,28 +32,16 @@ const SignupForm: React.FC<{}> = () => {
       width="856px"
       padding="50px"
     >
+      <AuthNav />
+
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
-        validationSchema={signupSchema}
+        validationSchema={signinSchema}
       >
         {({ values, handleSubmit, handleChange }) => (
           <Form onSubmit={handleSubmit}>
-            <AuthNav />
-
             <Tuple>
-              <EntryField
-                label="name"
-                type="text"
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-                placeholder="Enter your name"
-                required={true}
-                height="50px"
-                width="363px"
-              />
-
               <EntryField
                 label="email"
                 type="email"
@@ -67,25 +53,12 @@ const SignupForm: React.FC<{}> = () => {
                 height="50px"
                 width="363px"
               />
-            </Tuple>
 
-            <Tuple>
               <EntryField
                 label="password"
                 type="password"
                 name="password"
                 value={values.password}
-                onChange={handleChange}
-                required={true}
-                height="50px"
-                width="363px"
-              />
-
-              <EntryField
-                label="password again"
-                type="password"
-                name="passwordAgain"
-                value={values.passwordAgain}
                 onChange={handleChange}
                 required={true}
                 height="50px"
@@ -103,17 +76,22 @@ const SignupForm: React.FC<{}> = () => {
             >
               Sign up
             </Button>
+
+            <Tuple>
+              <Checkbox
+                name="rememberMe"
+                label="To remember me"
+                checked={values.rememberMe}
+              />
+              <StyledLink to="/restore-password">
+                Lost your password?
+              </StyledLink>
+            </Tuple>
           </Form>
         )}
       </Formik>
-
-      <Text>
-        By registering on the site, you agree to the{' '}
-        <PolicyLink to="/terms-and-conditions">Terms and Conditions</PolicyLink>{' '}
-        and <PolicyLink to="/privacy-policy">Privacy Policy</PolicyLink>
-      </Text>
     </Container>
   );
 };
 
-export default SignupForm;
+export default SigninForm;

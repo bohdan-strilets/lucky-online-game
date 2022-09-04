@@ -7,6 +7,7 @@ import HomePage from 'pages/HomePage';
 import SignupPage from 'pages/SignupPage';
 import TermsConditionsPage from 'pages/TermsConditionsPage';
 import PrivacyPolicyPage from 'pages/PrivacyPolicyPage';
+import SigninPage from 'pages/SigninPage';
 
 import background from 'images/app/bg.png';
 
@@ -57,6 +58,14 @@ const App: React.FC = () => {
           element={
             <Layout>
               <PrivacyPolicyPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/sign-in"
+          element={
+            <Layout>
+              <SigninPage />
             </Layout>
           }
         />
