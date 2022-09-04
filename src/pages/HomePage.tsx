@@ -1,5 +1,7 @@
+import Greetings from 'components/Greetings';
+
 const HomePage: React.FC<{}> = () => {
-  return null;
+  return <Greetings />;
 };
 
 export default HomePage;
