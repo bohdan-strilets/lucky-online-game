@@ -1,9 +1,9 @@
 import Button from 'components/Button';
-import { IDeleteModalState } from 'types/IDeleteModal';
+import { IDialogWindowState } from 'types/IDialogWindow';
 
-import { Text, List, Item } from './DeleteModal.styled';
+import { Text, List, Item } from './DialogWindow.styled';
 
-const DeleteModal: React.FC<IDeleteModalState> = ({
+const DialogWindow: React.FC<IDialogWindowState> = ({
   onCencel,
   onDelete,
   text,
@@ -44,4 +44,4 @@ const DeleteModal: React.FC<IDeleteModalState> = ({
   );
 };
 
-export default DeleteModal;
+export default DialogWindow;

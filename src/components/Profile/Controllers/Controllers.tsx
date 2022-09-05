@@ -4,16 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import IconSwitcher from 'components/IconSwitcher';
 import Modal from 'components/Modal';
-import DeleteModal from 'components/Modal/DeleteModal';
-// import EditModal from 'components/Modal/EditModal';
+import DialogWindow from 'components/Modal/DialogWindow';
+import EditProfile from 'components/Modal/EditProfile';
 
 import { List, Item } from './Controllers.styled';
 
 const Controllers: React.FC<{}> = () => {
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDialogModal, setShowDialogModal] = useState(false);
+  const [showEditProfileModal, setShowEditProfileModal] = useState(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const deleteAccount = () => {};
 
@@ -27,7 +27,7 @@ const Controllers: React.FC<{}> = () => {
             borderRadius="10px"
             height="50px"
             width="50px"
-            onClick={() => setShowEditModal(true)}
+            onClick={() => setShowEditProfileModal(true)}
           >
             <IconSwitcher name="adjust" size="18px" fill="var(--white-color)" />
           </Button>
@@ -39,34 +39,34 @@ const Controllers: React.FC<{}> = () => {
             borderRadius="10px"
             height="50px"
             width="50px"
-            onClick={() => setShowDeleteModal(true)}
+            onClick={() => setShowDialogModal(true)}
           >
             <IconSwitcher name="delete" size="18px" fill="var(--white-color)" />
           </Button>
         </Item>
       </List>
 
-      {showDeleteModal && (
+      {showDialogModal && (
         <Modal
-          onClose={() => setShowDeleteModal(false)}
+          onClose={() => setShowDialogModal(false)}
           title="Delete account?"
         >
-          <DeleteModal
-            onCencel={() => setShowDeleteModal(false)}
+          <DialogWindow
+            onCencel={() => setShowDialogModal(false)}
             onDelete={deleteAccount}
             text='Do you really want to delete your account and all data associated with it. All game progress will be lost, including statistics. Instead, you can use the delete "game session" function.'
           />
         </Modal>
       )}
 
-      {/* {showEditModal && (
+      {showEditProfileModal && (
         <Modal
-          onClose={() => setShowEditModal(false)}
+          onClose={() => setShowEditProfileModal(false)}
           title="Edit personal data"
         >
-          <EditModal onClose={() => setShowEditModal(false)} />
+          <EditProfile onClose={() => setShowEditProfileModal(false)} />
         </Modal>
-      )} */}
+      )}
     </>
   );
 };
