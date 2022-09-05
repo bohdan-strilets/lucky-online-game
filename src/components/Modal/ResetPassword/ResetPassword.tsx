@@ -3,6 +3,8 @@ import EntryField from 'components/EntryField';
 import Button from 'components/Button';
 
 import { resetPasswordSchema } from 'helpers/validationSchemas/resetPasswordSchema';
+import { IEditEmailData } from 'types/IProfile';
+
 import { Text } from './ResetPassword.styled';
 
 const ResetPassword: React.FC<{}> = () => {
@@ -10,7 +12,7 @@ const ResetPassword: React.FC<{}> = () => {
     email: '',
   };
 
-  const onSubmit = (values: { email: string }) => {
+  const onSubmit = (values: IEditEmailData) => {
     console.log(values);
   };
 

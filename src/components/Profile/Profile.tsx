@@ -8,7 +8,7 @@ import Modal from 'components/Modal';
 import IconSwitcher from 'components/IconSwitcher';
 // import EditAvatarModal from 'components/Modal/EditAvatarModal';
 import EditEmail from 'components/Modal/EditEmail';
-// import EditPasswordModal from 'components/Modal/EditPasswordModal';
+import EditPassword from 'components/Modal/EditPassword';
 // import EditComplexityModal from 'components/Modal/EditComplexityModal';
 // import DeleteModal from 'components/Modal/DeleteModal';
 
@@ -166,16 +166,16 @@ const Profile: React.FC<{}> = () => {
         </Modal>
       )}
 
-      {/* {showEditPasswordModal && (
+      {showEditPasswordModal && (
         <Modal
           title="Change password"
           onClose={() => setShowEditPasswordModal(false)}
         >
-          <EditPasswordModal onClose={() => setShowEditPasswordModal(false)} />
+          <EditPassword onClose={() => setShowEditPasswordModal(false)} />
         </Modal>
       )}
 
-      {showEditComplexityModal && (
+      {/* {showEditComplexityModal && (
         <Modal
           title="Change complexity"
           onClose={() => setShowEditComplexityModal(false)}

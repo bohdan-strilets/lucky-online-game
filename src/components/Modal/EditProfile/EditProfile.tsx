@@ -1,4 +1,4 @@
-import { IEditProfileData } from 'types/IEditProfile';
+import { IEditProfileData } from 'types/IProfile';
 import editProfileSchema from 'helpers/validationSchemas/editProfileSchema';
 
 import { Formik, Form } from 'formik';

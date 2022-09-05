@@ -3,7 +3,7 @@ import EntryField from 'components/EntryField';
 import Button from 'components/Button';
 import Container from 'components/Container';
 
-import { IResetPasswordData } from 'types/IResetPasswordForm';
+import { IResetPasswordData } from 'types/IProfile';
 import { restorePasswordSchema } from 'helpers/validationSchemas/resetPasswordSchema';
 import { Title, Tuple } from './ResetPasswordForm.styled';
 

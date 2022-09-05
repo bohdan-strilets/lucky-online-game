@@ -4,7 +4,7 @@ import Button from 'components/Button';
 import Container from 'components/Container';
 import AuthNav from '../AuthNav';
 
-import { ISignupData } from 'types/ISignupForm';
+import { ISignupData } from 'types/IProfile';
 import signupSchema from 'helpers/validationSchemas/signupSchema';
 
 import { Tuple, Text, PolicyLink } from './SignupForm.styled';

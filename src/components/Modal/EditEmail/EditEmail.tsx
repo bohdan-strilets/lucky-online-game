@@ -3,6 +3,8 @@ import EntryField from 'components/EntryField';
 import Button from 'components/Button';
 
 import editEmailSchema from 'helpers/validationSchemas/editEmailSchema';
+import { IEditEmailData } from 'types/IProfile';
+
 import { Text } from './EditEmail.styled';
 
 const EditEmail: React.FC<{ onClose(): void }> = ({ onClose }) => {
@@ -10,7 +12,7 @@ const EditEmail: React.FC<{ onClose(): void }> = ({ onClose }) => {
     email: '',
   };
 
-  const onSubmit = (values: { email: string }) => {
+  const onSubmit = (values: IEditEmailData) => {
     console.log(values);
     onClose();
   };
