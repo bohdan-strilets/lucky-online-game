@@ -82,6 +82,7 @@ const SigninForm: React.FC<{}> = () => {
                 name="rememberMe"
                 label="To remember me"
                 checked={values.rememberMe}
+                value={values.rememberMe}
               />
               <StyledLink to="/restore-password">
                 Lost your password?

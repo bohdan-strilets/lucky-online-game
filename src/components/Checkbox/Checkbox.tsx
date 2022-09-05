@@ -14,7 +14,7 @@ const Checkbox: React.FC<ICheckboxState> = ({
       <Input
         type="checkbox"
         name={name}
-        defaultChecked={checked}
+        checked={checked}
         value={value}
         required={required}
       />

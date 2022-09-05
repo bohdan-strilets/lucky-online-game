@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
+import { Field } from 'formik';
 
 export const Wrapper = styled.label`
   display: flex;
   align-items: center;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   position: absolute;
   width: 1px;
   height: 1px;

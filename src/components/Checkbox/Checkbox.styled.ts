@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Field } from 'formik';
 import { ICustomCheckboxStyled } from 'types/ICheckbox';
 
 export const Wrapper = styled.label`
@@ -6,7 +7,7 @@ export const Wrapper = styled.label`
   align-items: center;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   position: absolute;
   width: 1px;
   height: 1px;

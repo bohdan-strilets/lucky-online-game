@@ -15,7 +15,7 @@ const RadioButton: React.FC<IRadioButtonState> = ({
 }) => {
   return (
     <Wrapper>
-      <Input type="radio" name={name} value={value} defaultChecked={checked} />
+      <Input type="radio" name={name} value={value} checked={checked} />
       <CustomRadio>{checked && <SelectRadio />}</CustomRadio>
       <Label>{label}</Label>
     </Wrapper>
