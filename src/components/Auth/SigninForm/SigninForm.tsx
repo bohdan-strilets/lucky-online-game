@@ -93,7 +93,7 @@ const SigninForm: React.FC<{}> = () => {
               borderRadius="50px"
               shadow
             >
-              Sign up
+              Sign in
             </Button>
 
             <Tuple>

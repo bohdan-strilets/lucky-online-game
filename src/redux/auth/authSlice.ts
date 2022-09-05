@@ -53,6 +53,14 @@ export const authSlice = createSlice({
           state.token = action.payload.tokens.accessToken;
           state.isLoggedIn = true;
         } catch (error) {}
+      })
+
+      .addCase(authOperations.signout.fulfilled, state => {
+        try {
+          state.user = initialState.user;
+          state.token = initialState.token;
+          state.isLoggedIn = false;
+        } catch (error) {}
       });
   },
 });

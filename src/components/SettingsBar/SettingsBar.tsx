@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import authOperations from 'redux/auth/authOperations';
 
 import Container from 'components/Container';
 import Button from 'components/Button';
@@ -8,8 +10,12 @@ import { Avatar, Item } from './SettingsBar.styled';
 
 const SettingsBar: React.FC<{}> = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const logout = () => {};
+  const logout = () => {
+    dispatch(authOperations.signout());
+    navigate('/');
+  };
 
   const createNewGame = () => {};
 

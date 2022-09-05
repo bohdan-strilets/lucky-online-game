@@ -36,9 +36,22 @@ const signin = createAsyncThunk<IAuthRes, ISigninData>(
   },
 );
 
+const signout = createAsyncThunk('auth/signout', async () => {
+  try {
+    const { data } = await api.get('/api/v1/auth/signout');
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
+
 const authOperations = {
   signup,
   signin,
+  signout,
 };
 
 export default authOperations;
