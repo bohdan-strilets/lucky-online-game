@@ -8,6 +8,7 @@ import SignupPage from 'pages/SignupPage';
 import TermsConditionsPage from 'pages/TermsConditionsPage';
 import PrivacyPolicyPage from 'pages/PrivacyPolicyPage';
 import SigninPage from 'pages/SigninPage';
+import ResetPasswordPage from 'pages/ResetPasswordPage';
 
 import background from 'images/app/bg.png';
 
@@ -66,6 +67,14 @@ const App: React.FC = () => {
           element={
             <Layout>
               <SigninPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            <Layout>
+              <ResetPasswordPage />
             </Layout>
           }
         />

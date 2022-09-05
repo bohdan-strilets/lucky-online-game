@@ -2,7 +2,7 @@ import { Formik, Form } from 'formik';
 import EntryField from 'components/EntryField';
 import Button from 'components/Button';
 
-import resetPasswordSchema from 'helpers/validationSchemas/resetPasswordSchema';
+import { resetPasswordSchema } from 'helpers/validationSchemas/resetPasswordSchema';
 import { Text } from './ResetPassword.styled';
 
 const ResetPassword: React.FC<{}> = () => {
@@ -49,7 +49,7 @@ const ResetPassword: React.FC<{}> = () => {
               borderRadius="50px"
               shadow
             >
-              Sign up
+              send
             </Button>
           </Form>
         )}

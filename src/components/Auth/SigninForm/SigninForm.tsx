@@ -9,7 +9,7 @@ import Checkbox from 'components/Checkbox';
 import Modal from 'components/Modal';
 import ResetPassword from 'components/Modal/ResetPassword';
 
-import { ISigninData } from 'types/ISignForm';
+import { ISigninData } from 'types/ISigninForm';
 import signinSchema from 'helpers/validationSchemas/signinSchema';
 import { Tuple, StyledLink } from './SigninForm.styled';
 
