@@ -4,10 +4,10 @@ import { useState } from 'react';
 
 import Container from 'components/Container';
 import Controllers from './Controllers';
-// import Modal from 'components/Modal';
+import Modal from 'components/Modal';
 import IconSwitcher from 'components/IconSwitcher';
 // import EditAvatarModal from 'components/Modal/EditAvatarModal';
-// import EditEmailModal from 'components/Modal/EditEmailModal';
+import EditEmail from 'components/Modal/EditEmail';
 // import EditPasswordModal from 'components/Modal/EditPasswordModal';
 // import EditComplexityModal from 'components/Modal/EditComplexityModal';
 // import DeleteModal from 'components/Modal/DeleteModal';
@@ -155,18 +155,18 @@ const Profile: React.FC<{}> = () => {
         >
           <EditAvatarModal />
         </Modal>
-      )}
+      )} */}
 
       {showEditEmailModal && (
         <Modal
           title="Change email"
           onClose={() => setShowEditEmailModal(false)}
         >
-          <EditEmailModal onClose={() => setShowEditEmailModal(false)} />
+          <EditEmail onClose={() => setShowEditEmailModal(false)} />
         </Modal>
       )}
 
-      {showEditPasswordModal && (
+      {/* {showEditPasswordModal && (
         <Modal
           title="Change password"
           onClose={() => setShowEditPasswordModal(false)}
