@@ -9,8 +9,8 @@ import IconSwitcher from 'components/IconSwitcher';
 // import EditAvatarModal from 'components/Modal/EditAvatarModal';
 import EditEmail from 'components/Modal/EditEmail';
 import EditPassword from 'components/Modal/EditPassword';
-// import EditComplexityModal from 'components/Modal/EditComplexityModal';
-// import DeleteModal from 'components/Modal/DeleteModal';
+import EditComplexity from 'components/Modal/EditComplexity';
+import DialogWindow from 'components/Modal/DialogWindow';
 
 import {
   Wrapper,
@@ -124,18 +124,17 @@ const Profile: React.FC<{}> = () => {
                   fill="var(--green-color)"
                 />
               </EditBtn>
-              {/* {user.inGame && (
-                <EditBtn
-                  type="button"
-                  onClick={() => setshowDeleteSessionModal(true)}
-                >
-                  <IconSwitcher
-                    name="delete"
-                    size="16px"
-                    fill="var(--green-color)"
-                  />
-                </EditBtn>
-              )} */}
+
+              <EditBtn
+                type="button"
+                onClick={() => setshowDeleteSessionModal(true)}
+              >
+                <IconSwitcher
+                  name="delete"
+                  size="16px"
+                  fill="var(--green-color)"
+                />
+              </EditBtn>
             </div>
           </Item>
           <Item>
@@ -175,14 +174,14 @@ const Profile: React.FC<{}> = () => {
         </Modal>
       )}
 
-      {/* {showEditComplexityModal && (
+      {showEditComplexityModal && (
         <Modal
           title="Change complexity"
           onClose={() => setShowEditComplexityModal(false)}
         >
-          <EditComplexityModal
+          <EditComplexity
             onClose={() => setShowEditComplexityModal(false)}
-            complexity={user.complexity}
+            complexity="low"
           />
         </Modal>
       )}
@@ -192,13 +191,13 @@ const Profile: React.FC<{}> = () => {
           title="Delete current game session?"
           onClose={() => setshowDeleteSessionModal(false)}
         >
-          <DeleteModal
+          <DialogWindow
             onCencel={() => setshowDeleteSessionModal(false)}
             onDelete={deleteGameSession}
             text="After deleting a game session, data such as betting history, statistics and game level will be lost. Are you sure you want to continue?"
           />
         </Modal>
-      )} */}
+      )}
     </Container>
   );
 };

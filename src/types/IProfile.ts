@@ -33,3 +33,7 @@ export interface IResetPasswordData {
   password: string;
   passwordAgain: string;
 }
+
+export interface IEditComplexityData {
+  complexity: string;
+}
