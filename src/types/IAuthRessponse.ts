@@ -19,7 +19,7 @@ export interface IUser {
   updatedAt: string;
 }
 
-export interface ISignupRes {
+export interface IAuthRes {
   status: string;
   code: number;
   tokens: ITokens;

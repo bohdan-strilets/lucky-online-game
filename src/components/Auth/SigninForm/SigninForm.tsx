@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import authOperations from 'redux/auth/authOperations';
 
+import { toast } from 'react-toastify';
 import { Formik, Form } from 'formik';
 import EntryField from 'components/EntryField';
 import Button from 'components/Button';
@@ -10,11 +14,16 @@ import Modal from 'components/Modal';
 import ResetPassword from 'components/Modal/ResetPassword';
 
 import { ISigninData } from 'types/IProfile';
+import { IAuthRes } from 'types/IAuthRessponse';
 import signinSchema from 'helpers/validationSchemas/signinSchema';
+
 import { Tuple, StyledLink } from './SigninForm.styled';
 
 const SigninForm: React.FC<{}> = () => {
   const [showModalResetPassword, setShowModalResetPassword] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const initialValues = {
     email: '',
@@ -22,13 +31,17 @@ const SigninForm: React.FC<{}> = () => {
     rememberMe: false,
   };
 
-  const onSubmit = (values: ISigninData) => {
+  const onSubmit = async (values: ISigninData) => {
     const user = {
       email: values.email,
       password: values.password,
     };
 
-    console.log(user);
+    const res = await dispatch(authOperations.signin(user));
+
+    (res.payload as IAuthRes).status === 'ok'
+      ? navigate('/profile')
+      : toast.warning('Sorry something went wrong... Please try again.');
   };
 
   return (

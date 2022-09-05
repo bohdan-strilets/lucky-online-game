@@ -10,14 +10,14 @@ import Container from 'components/Container';
 import AuthNav from '../AuthNav';
 
 import { ISignupData } from 'types/IProfile';
-import { ISignupRes } from 'types/IAuthRessponse';
+import { IAuthRes } from 'types/IAuthRessponse';
 import signupSchema from 'helpers/validationSchemas/signupSchema';
 
 import { Tuple, Text, PolicyLink } from './SignupForm.styled';
 
 const SignupForm: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
-  const navigae = useNavigate();
+  const navigate = useNavigate();
 
   const initialValues = {
     name: '',
@@ -35,8 +35,8 @@ const SignupForm: React.FC<{}> = () => {
 
     const res = await dispatch(authOperations.signup(user));
 
-    (res.payload as ISignupRes).status === 'ok'
-      ? navigae('/welcome')
+    (res.payload as IAuthRes).status === 'ok'
+      ? navigate('/welcome')
       : toast.warning('Sorry something went wrong... Please try again.');
   };
 

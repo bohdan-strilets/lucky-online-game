@@ -38,15 +38,22 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(authOperations.signup.fulfilled, (state, action) => {
-      try {
-        state.user = action.payload.user;
-        state.token = action.payload.tokens.accessToken;
-        state.isLoggedIn = true;
-      } catch (error) {
-        console.log(error);
-      }
-    });
+    builder
+      .addCase(authOperations.signup.fulfilled, (state, action) => {
+        try {
+          state.user = action.payload.user;
+          state.token = action.payload.tokens.accessToken;
+          state.isLoggedIn = true;
+        } catch (error) {}
+      })
+
+      .addCase(authOperations.signin.fulfilled, (state, action) => {
+        try {
+          state.user = action.payload.user;
+          state.token = action.payload.tokens.accessToken;
+          state.isLoggedIn = true;
+        } catch (error) {}
+      });
   },
 });
 

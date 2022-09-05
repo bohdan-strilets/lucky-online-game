@@ -8,7 +8,7 @@ export interface ISignupData {
 export interface ISigninData {
   email: string;
   password: string;
-  rememberMe: boolean;
+  rememberMe?: boolean;
 }
 
 export interface IEditProfileData {

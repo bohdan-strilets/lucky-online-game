@@ -2,17 +2,33 @@ import api from 'api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ISignupRes } from 'types/IAuthRessponse';
-import { ISignupData } from 'types/IProfile';
+import { IAuthRes } from 'types/IAuthRessponse';
+import { ISignupData, ISigninData } from 'types/IProfile';
 
-const signup = createAsyncThunk<ISignupRes, ISignupData>(
+const signup = createAsyncThunk<IAuthRes, ISignupData>(
   'auth/signup',
   async user => {
     try {
       const { data } = await api.post('/api/v1/auth/signup', user);
       return data;
     } catch (error: any) {
-      const message = error.message;
+      const message = error.response.data.message;
+
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
+const signin = createAsyncThunk<IAuthRes, ISigninData>(
+  'auth/signin',
+  async user => {
+    try {
+      const { data } = await api.post('/api/v1/auth/signin', user);
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
       message
         ? toast.warning(message)
         : toast.warning('Sorry something went wrong... Please try again.');
@@ -22,6 +38,7 @@ const signup = createAsyncThunk<ISignupRes, ISignupData>(
 
 const authOperations = {
   signup,
+  signin,
 };
 
 export default authOperations;
