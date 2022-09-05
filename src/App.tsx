@@ -9,6 +9,7 @@ import TermsConditionsPage from 'pages/TermsConditionsPage';
 import PrivacyPolicyPage from 'pages/PrivacyPolicyPage';
 import SigninPage from 'pages/SigninPage';
 import ResetPasswordPage from 'pages/ResetPasswordPage';
+import WelcomePage from 'pages/WelcomePage';
 
 import background from 'images/app/bg.png';
 
@@ -75,6 +76,14 @@ const App: React.FC = () => {
           element={
             <Layout>
               <ResetPasswordPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/welcome"
+          element={
+            <Layout>
+              <WelcomePage />
             </Layout>
           }
         />
