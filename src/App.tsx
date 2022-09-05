@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import Layout from 'components/Layout';
+import Modal from 'components/Modal';
 
 import HomePage from 'pages/HomePage';
 import SignupPage from 'pages/SignupPage';
@@ -28,6 +29,9 @@ const Wrapper = styled.div`
 const App: React.FC = () => {
   return (
     <Wrapper>
+      <Modal title="text" onClose={() => null}>
+        <h2>sadsdadsad</h2>
+      </Modal>
       <Routes>
         <Route
           path="/"
