@@ -10,6 +10,7 @@ import PrivacyPolicyPage from 'pages/PrivacyPolicyPage';
 import SigninPage from 'pages/SigninPage';
 import ResetPasswordPage from 'pages/ResetPasswordPage';
 import WelcomePage from 'pages/WelcomePage';
+import ProfilePage from 'pages/ProfilePage';
 
 import background from 'images/app/bg.png';
 
@@ -84,6 +85,14 @@ const App: React.FC = () => {
           element={
             <Layout>
               <WelcomePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Layout showSidebars>
+              <ProfilePage />
             </Layout>
           }
         />
