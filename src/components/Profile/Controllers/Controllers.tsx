@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import IconSwitcher from 'components/IconSwitcher';
 import Modal from 'components/Modal';
-// import DeleteModal from 'components/Modal/DeleteModal';
+import DeleteModal from 'components/Modal/DeleteModal';
 // import EditModal from 'components/Modal/EditModal';
 
 import { List, Item } from './Controllers.styled';
@@ -46,7 +46,7 @@ const Controllers: React.FC<{}> = () => {
         </Item>
       </List>
 
-      {/* {showDeleteModal && (
+      {showDeleteModal && (
         <Modal
           onClose={() => setShowDeleteModal(false)}
           title="Delete account?"
@@ -59,7 +59,7 @@ const Controllers: React.FC<{}> = () => {
         </Modal>
       )}
 
-      {showEditModal && (
+      {/* {showEditModal && (
         <Modal
           onClose={() => setShowEditModal(false)}
           title="Edit personal data"
