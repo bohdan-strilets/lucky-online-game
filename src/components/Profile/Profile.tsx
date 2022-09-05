@@ -6,7 +6,7 @@ import Container from 'components/Container';
 import Controllers from './Controllers';
 import Modal from 'components/Modal';
 import IconSwitcher from 'components/IconSwitcher';
-// import EditAvatarModal from 'components/Modal/EditAvatarModal';
+import EditAvatar from 'components/Modal/EditAvatar';
 import EditEmail from 'components/Modal/EditEmail';
 import EditPassword from 'components/Modal/EditPassword';
 import EditComplexity from 'components/Modal/EditComplexity';
@@ -147,14 +147,14 @@ const Profile: React.FC<{}> = () => {
         </ul>
       </Wrapper>
 
-      {/* {showEditAvatarModal && (
+      {showEditAvatarModal && (
         <Modal
           title="Choose a new avatar"
           onClose={() => setShowEditAvatarModal(false)}
         >
-          <EditAvatarModal />
+          <EditAvatar />
         </Modal>
-      )} */}
+      )}
 
       {showEditEmailModal && (
         <Modal

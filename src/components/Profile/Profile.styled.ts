@@ -36,13 +36,15 @@ export const Avatar = styled.img`
 
   border-radius: 50%;
   border: 3px solid var(--white-color);
+  opacity: 1;
 
   cursor: pointer;
-  transition: border-color var(--hover-effect);
+  transition: border-color var(--hover-effect), opacity var(--hover-effect);
 
   :hover,
   :focus {
     border-color: var(--brown-color);
+    opacity: 0.7;
   }
 `;
 

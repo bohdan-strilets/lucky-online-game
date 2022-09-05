@@ -1,3 +1,8 @@
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { useNavigate } from 'react-router-dom';
+import authOperations from 'redux/auth/authOperations';
+
+import { toast } from 'react-toastify';
 import { Formik, Form } from 'formik';
 import EntryField from 'components/EntryField';
 import Button from 'components/Button';
@@ -5,11 +10,15 @@ import Container from 'components/Container';
 import AuthNav from '../AuthNav';
 
 import { ISignupData } from 'types/IProfile';
+import { ISignupRes } from 'types/IAuthRessponse';
 import signupSchema from 'helpers/validationSchemas/signupSchema';
 
 import { Tuple, Text, PolicyLink } from './SignupForm.styled';
 
 const SignupForm: React.FC<{}> = () => {
+  const dispatch = useAppDispatch();
+  const navigae = useNavigate();
+
   const initialValues = {
     name: '',
     email: '',
@@ -17,14 +26,18 @@ const SignupForm: React.FC<{}> = () => {
     passwordAgain: '',
   };
 
-  const onSubmit = (values: ISignupData) => {
+  const onSubmit = async (values: ISignupData) => {
     const user = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
 
-    console.log(user);
+    const res = await dispatch(authOperations.signup(user));
+
+    (res.payload as ISignupRes).status === 'ok'
+      ? navigae('/welcome')
+      : toast.warning('Sorry something went wrong... Please try again.');
   };
 
   return (
