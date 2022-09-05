@@ -1,15 +1,21 @@
+import { useState } from 'react';
+
 import { Formik, Form } from 'formik';
 import EntryField from 'components/EntryField';
 import Button from 'components/Button';
 import Container from 'components/Container';
 import AuthNav from '../AuthNav';
 import Checkbox from 'components/Checkbox';
+import Modal from 'components/Modal';
+import ResetPassword from 'components/Modal/ResetPassword';
 
 import { ISigninData } from 'types/ISignForm';
 import signinSchema from 'helpers/validationSchemas/signinSchema';
 import { Tuple, StyledLink } from './SigninForm.styled';
 
 const SigninForm: React.FC<{}> = () => {
+  const [showModalResetPassword, setShowModalResetPassword] = useState(false);
+
   const initialValues = {
     email: '',
     password: '',
@@ -84,13 +90,25 @@ const SigninForm: React.FC<{}> = () => {
                 checked={values.rememberMe}
                 value={values.rememberMe}
               />
-              <StyledLink to="/restore-password">
+              <StyledLink
+                type="button"
+                onClick={() => setShowModalResetPassword(true)}
+              >
                 Lost your password?
               </StyledLink>
             </Tuple>
           </Form>
         )}
       </Formik>
+
+      {showModalResetPassword && (
+        <Modal
+          title="Reset the password"
+          onClose={() => setShowModalResetPassword(false)}
+        >
+          <ResetPassword />
+        </Modal>
+      )}
     </Container>
   );
 };

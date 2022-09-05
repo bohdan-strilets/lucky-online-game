@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
 
 export const Tuple = styled.div`
   display: flex;
@@ -10,9 +9,15 @@ export const Tuple = styled.div`
   margin-top: 30px;
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.button`
+  font-family: inherit;
   font-size: 19px;
+
+  border: none;
+  background-color: transparent;
   color: var(--green-color);
+
+  cursor: pointer;
   transition: opacity var(--hover-effect);
 
   :hover,
