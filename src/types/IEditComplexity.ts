@@ -1,4 +1,4 @@
 export interface IEditComplexityState {
   onClose: () => void;
-  complexity: string;
+  complexity: 'low' | 'medium' | 'high';
 }

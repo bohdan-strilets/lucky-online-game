@@ -14,7 +14,7 @@ export interface ISigninData {
 export interface IEditProfileData {
   name: string;
   nickname: string;
-  gender: string;
+  gender: 'man' | 'woman' | 'other';
   dateBirth: string;
 }
 
@@ -35,5 +35,5 @@ export interface IResetPasswordData {
 }
 
 export interface IEditComplexityData {
-  complexity: string;
+  complexity: 'low' | 'medium' | 'high';
 }

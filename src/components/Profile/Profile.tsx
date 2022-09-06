@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAppSelector } from 'hooks/useAppSelector';
+
 import { getUser } from 'redux/user/userSelectors';
 import { API_URL } from 'api';
 import dateFormatting from 'helpers/dateFormatting';
@@ -60,108 +61,112 @@ const Profile: React.FC<{}> = () => {
     >
       <Controllers />
 
-      <Wrapper>
-        <Header>
-          <p>ID: {_id}</p>
+      {name && (
+        <Wrapper>
+          <Header>
+            <p>ID: {_id}</p>
 
-          <div>
-            <p>Account creation date: {dateFormatting(createdAt as string)}</p>
-            <p>Last update date: {dateFormatting(updatedAt as string)}</p>
-          </div>
-        </Header>
-
-        <Avatar
-          src={`${API_URL}/${avatarURL}`}
-          alt={`${name} user avatar`}
-          onClick={() => setShowEditAvatarModal(true)}
-        />
-
-        <Name>
-          {name} <Nickname>{nickname}</Nickname>
-        </Name>
-
-        <ul>
-          <Item>
-            <Text>Email:</Text>
             <div>
-              <Value>{email}</Value>
-              <EditBtn
-                type="button"
-                onClick={() => setShowEditEmailModal(true)}
-              >
-                <IconSwitcher
-                  name="pen"
-                  size="16px"
-                  fill="var(--green-color)"
-                />
-              </EditBtn>
+              <p>
+                Account creation date: {dateFormatting(createdAt as string)}
+              </p>
+              <p>Last update date: {dateFormatting(updatedAt as string)}</p>
             </div>
-          </Item>
-          <Item>
-            <Text>Password:</Text>
-            <div>
-              <Value>******</Value>
-              <EditBtn
-                type="button"
-                onClick={() => setShowEditPasswordModal(true)}
-              >
-                <IconSwitcher
-                  name="pen"
-                  size="16px"
-                  fill="var(--green-color)"
-                />
-              </EditBtn>
-            </div>
-          </Item>
-          <Item>
-            <Text>Gender:</Text>
-            <Value>{gender}</Value>
-          </Item>
-          <Item>
-            <Text>Date of birth:</Text>
-            <Value>{dateBirth}</Value>
-          </Item>
-          <Item>
-            <Text>Complexity:</Text>
-            <div>
-              <Value>
-                {complexity
-                  ? complexity
-                  : 'The game session has not yet been created.'}
-              </Value>
-              <EditBtn
-                type="button"
-                onClick={() => setShowEditComplexityModal(true)}
-              >
-                <IconSwitcher
-                  name="pen"
-                  size="16px"
-                  fill="var(--green-color)"
-                />
-              </EditBtn>
-              {inGame && (
+          </Header>
+
+          <Avatar
+            src={`${API_URL}/${avatarURL}`}
+            alt={`${name} user avatar`}
+            onClick={() => setShowEditAvatarModal(true)}
+          />
+
+          <Name>
+            {name} <Nickname>{nickname}</Nickname>
+          </Name>
+
+          <ul>
+            <Item>
+              <Text>Email:</Text>
+              <div>
+                <Value>{email}</Value>
                 <EditBtn
                   type="button"
-                  onClick={() => setshowDeleteSessionModal(true)}
+                  onClick={() => setShowEditEmailModal(true)}
                 >
                   <IconSwitcher
-                    name="delete"
+                    name="pen"
                     size="16px"
                     fill="var(--green-color)"
                   />
                 </EditBtn>
-              )}
-            </div>
-          </Item>
-          <Item>
-            <Text>Game session:</Text>
-            <Value>
-              {inGame && 'continue game'}
-              {!inGame && 'Start a new game'}
-            </Value>
-          </Item>
-        </ul>
-      </Wrapper>
+              </div>
+            </Item>
+            <Item>
+              <Text>Password:</Text>
+              <div>
+                <Value>******</Value>
+                <EditBtn
+                  type="button"
+                  onClick={() => setShowEditPasswordModal(true)}
+                >
+                  <IconSwitcher
+                    name="pen"
+                    size="16px"
+                    fill="var(--green-color)"
+                  />
+                </EditBtn>
+              </div>
+            </Item>
+            <Item>
+              <Text>Gender:</Text>
+              <Value>{gender}</Value>
+            </Item>
+            <Item>
+              <Text>Date of birth:</Text>
+              <Value>{dateBirth}</Value>
+            </Item>
+            <Item>
+              <Text>Complexity:</Text>
+              <div>
+                <Value>
+                  {complexity
+                    ? complexity
+                    : 'The game session has not yet been created.'}
+                </Value>
+                <EditBtn
+                  type="button"
+                  onClick={() => setShowEditComplexityModal(true)}
+                >
+                  <IconSwitcher
+                    name="pen"
+                    size="16px"
+                    fill="var(--green-color)"
+                  />
+                </EditBtn>
+                {inGame && (
+                  <EditBtn
+                    type="button"
+                    onClick={() => setshowDeleteSessionModal(true)}
+                  >
+                    <IconSwitcher
+                      name="delete"
+                      size="16px"
+                      fill="var(--green-color)"
+                    />
+                  </EditBtn>
+                )}
+              </div>
+            </Item>
+            <Item>
+              <Text>Game session:</Text>
+              <Value>
+                {inGame && 'continue game'}
+                {!inGame && 'Start a new game'}
+              </Value>
+            </Item>
+          </ul>
+        </Wrapper>
+      )}
 
       {showEditAvatarModal && (
         <Modal

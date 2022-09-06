@@ -2,11 +2,16 @@ import api from 'api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { IAuthRes, ICurrentRes } from 'types/IAuthRessponse';
-import { ISignupData, ISigninData } from 'types/IProfile';
+import {
+  IAuthRes,
+  ICurrentRes,
+  IChangeAvatarRes,
+  IChangeAccountRes,
+} from 'types/IUserRessponse';
+import { ISignupData, ISigninData, IEditProfileData } from 'types/IProfile';
 
 const signup = createAsyncThunk<IAuthRes, ISignupData>(
-  'auth/signup',
+  'user/signup',
   async user => {
     try {
       const { data } = await api.post('/api/v1/auth/signup', user);
@@ -21,7 +26,7 @@ const signup = createAsyncThunk<IAuthRes, ISignupData>(
 );
 
 const signin = createAsyncThunk<IAuthRes, ISigninData>(
-  'auth/signin',
+  'user/signin',
   async user => {
     try {
       const { data } = await api.post('/api/v1/auth/signin', user);
@@ -35,7 +40,7 @@ const signin = createAsyncThunk<IAuthRes, ISigninData>(
   },
 );
 
-const signout = createAsyncThunk('auth/signout', async () => {
+const signout = createAsyncThunk('user/signout', async () => {
   try {
     const { data } = await api.get('/api/v1/auth/signout');
     return data;
@@ -62,11 +67,43 @@ const getCurrentUser = createAsyncThunk<ICurrentRes>(
   },
 );
 
+const changeAvatar = createAsyncThunk<IChangeAvatarRes, any>(
+  'user/change-avatar',
+  async avatar => {
+    try {
+      const { data } = await api.patch('/api/v1/user/change-avatar', avatar);
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
+const changeAccount = createAsyncThunk<IChangeAccountRes, IEditProfileData>(
+  'user/change-account',
+  async newData => {
+    try {
+      const { data } = await api.put('/api/v1/user/change-profile', newData);
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
 const operations = {
   signup,
   signin,
   signout,
   getCurrentUser,
+  changeAvatar,
+  changeAccount,
 };
 
 export default operations;

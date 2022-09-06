@@ -14,7 +14,7 @@ const EditComplexity: React.FC<IEditComplexityState> = ({
   complexity,
 }) => {
   const initialValues = {
-    complexity: '',
+    complexity,
   };
 
   const onSubmit = (values: IEditComplexityData) => {

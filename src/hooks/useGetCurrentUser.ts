@@ -1,15 +1,18 @@
 import { useEffect } from 'react';
 import { useAppSelector } from './useAppSelector';
-import { getIsRefreshing } from 'redux/user/userSelectors';
+import { getIsRefreshing, getToken } from 'redux/user/userSelectors';
 import { useAppDispatch } from './useAppDispatch';
-import operations from 'redux/user/userOperations';
+import userOperations from 'redux/user/userOperations';
 
 const useGetCurrentUser = () => {
   const dispatch = useAppDispatch();
   const isRefreshing = useAppSelector(getIsRefreshing);
+  const token = useAppSelector(getToken);
 
   useEffect(() => {
-    dispatch(operations.getCurrentUser());
+    if (token) {
+      dispatch(userOperations.getCurrentUser());
+    }
   }, [dispatch]);
 
   return { isRefreshing };

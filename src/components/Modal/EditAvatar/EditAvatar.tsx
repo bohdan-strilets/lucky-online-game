@@ -1,7 +1,12 @@
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import operations from 'redux/user/userOperations';
+
 import Button from 'components/Button';
 import { Text, Label, Input } from './EditAvatar.styled';
 
 const EditAvatar: React.FC<{}> = () => {
+  const dispatch = useAppDispatch();
+
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.currentTarget.elements[0] as HTMLInputElement;
@@ -14,7 +19,7 @@ const EditAvatar: React.FC<{}> = () => {
       return;
     }
 
-    // dispatch(operations.editAvatar(data));
+    dispatch(operations.changeAvatar(data));
   };
 
   return (

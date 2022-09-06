@@ -31,3 +31,15 @@ export interface ICurrentRes {
   code: number;
   user: IUser;
 }
+
+export interface IChangeAvatarRes {
+  status: string;
+  code: number;
+  avatarURL: string;
+}
+
+export interface IChangeAccountRes {
+  status: string;
+  code: number;
+  user: IUser;
+}

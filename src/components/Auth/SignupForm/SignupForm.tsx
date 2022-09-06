@@ -10,7 +10,7 @@ import Container from 'components/Container';
 import AuthNav from '../AuthNav';
 
 import { ISignupData } from 'types/IProfile';
-import { IAuthRes } from 'types/IAuthRessponse';
+import { IAuthRes } from 'types/IUserRessponse';
 import signupSchema from 'helpers/validationSchemas/signupSchema';
 
 import { Tuple, Text, PolicyLink } from './SignupForm.styled';

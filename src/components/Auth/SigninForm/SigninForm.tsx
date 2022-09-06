@@ -14,7 +14,7 @@ import Modal from 'components/Modal';
 import ResetPassword from 'components/Modal/ResetPassword';
 
 import { ISigninData } from 'types/IProfile';
-import { IAuthRes } from 'types/IAuthRessponse';
+import { IAuthRes } from 'types/IUserRessponse';
 import signinSchema from 'helpers/validationSchemas/signinSchema';
 
 import { Tuple, StyledLink } from './SigninForm.styled';

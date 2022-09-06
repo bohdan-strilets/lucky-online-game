@@ -4,7 +4,7 @@ import operations from './userOperations';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
-import { IAuthState } from 'types/IAuthState';
+import { IAuthState } from 'types/IUserState';
 
 const initialState: IAuthState = {
   user: {
@@ -80,6 +80,18 @@ export const userSlice = createSlice({
           state.user = action.payload.user;
           state.isLoggedIn = true;
           state.isRefreshing = false;
+        } catch (error) {}
+      })
+
+      .addCase(operations.changeAvatar.fulfilled, (state, action) => {
+        try {
+          state.user.avatarURL = action.payload.avatarURL;
+        } catch (error) {}
+      })
+
+      .addCase(operations.changeAccount.fulfilled, (state, action) => {
+        try {
+          state.user = action.payload.user;
         } catch (error) {}
       });
   },

@@ -21,22 +21,33 @@ api.interceptors.request.use(config => {
   return config;
 });
 
-// api.interceptors.response.use(
-//   config => {
-//     return config;
-//   },
-//   async error => {
-//     const originalRequest = error.config;
+api.interceptors.response.use(
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
 
-//     if (error.response.status !== 200) {
-//       try {
-//         console.log('refresh now');
-//         return api.request(originalRequest);
-//       } catch (error) {
-//         console.log('NOT AUTHORIZED');
-//       }
-//     }
-//   },
-// );
+    if (error.response.status === 401 && !error.config._isRetry) {
+      originalRequest._isRetry = true;
+      try {
+        const { data } = await api.get('/api/v1/user/refresh-user');
+
+        const dataToLS = {
+          token: data.tokens.accessToken,
+          _persist: { version: -1, rehydrated: true },
+        };
+
+        localStorage.setItem('persist:user', JSON.stringify(dataToLS));
+
+        return api.request(originalRequest);
+      } catch (error) {
+        console.log('NOT AUTHORIZED');
+      }
+    }
+
+    throw error;
+  },
+);
 
 export default api;

@@ -1,24 +1,31 @@
-import { IEditProfileData } from 'types/IProfile';
-import editProfileSchema from 'helpers/validationSchemas/editProfileSchema';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { useAppSelector } from 'hooks/useAppSelector';
+import operations from 'redux/user/userOperations';
+import { getUser } from 'redux/user/userSelectors';
 
 import { Formik, Form } from 'formik';
 import EntryField from 'components/EntryField';
 import Button from 'components/Button';
 import RadioButton from 'components/RadioButton';
 
+import { IEditProfileData } from 'types/IProfile';
+import editProfileSchema from 'helpers/validationSchemas/editProfileSchema';
+
 import { RadioGroup, RadioText } from './EditProfile.styled';
 
 const EditProfile: React.FC<{ onClose(): void }> = ({ onClose }) => {
+  const dispatch = useAppDispatch();
+  const { name, nickname, gender, dateBirth } = useAppSelector(getUser);
+
   const initialValues = {
-    name: 'Bohdan',
-    nickname: 'mp4',
-    gender: 'man',
-    dateBirth: '1995-06-02',
-  };
+    name,
+    nickname,
+    gender,
+    dateBirth,
+  } as IEditProfileData;
 
   const onSubmit = (values: IEditProfileData) => {
-    console.log(values);
-
+    dispatch(operations.changeAccount(values));
     onClose();
   };
 
