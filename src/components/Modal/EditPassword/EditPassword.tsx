@@ -7,7 +7,7 @@ import Button from 'components/Button';
 
 import editPasswordSchema from 'helpers/validationSchemas/editPasswordSchema';
 import { IEditPasswordData } from 'types/IProfile';
-import { IChangePassword } from 'types/IUserRessponse';
+import { IChangePasswordRes } from 'types/IUserRessponse';
 
 const EditPassword: React.FC<{ onClose(): void }> = ({ onClose }) => {
   const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ const EditPassword: React.FC<{ onClose(): void }> = ({ onClose }) => {
     };
 
     const res = await dispatch(operations.changePassword(passwords));
-    if ((res.payload as IChangePassword).status === 'ok') {
+    if ((res.payload as IChangePasswordRes).status === 'ok') {
       onClose();
     }
   };

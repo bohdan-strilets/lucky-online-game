@@ -9,7 +9,8 @@ import {
   IChangeAccountRes,
   IDeleteAccountRes,
   IChangeEmailRes,
-  IChangePassword,
+  IChangePasswordRes,
+  IChangeComplexityRes,
 } from 'types/IUserRessponse';
 import {
   ISignupData,
@@ -17,6 +18,7 @@ import {
   IEditProfileData,
   IEditEmailData,
   IEditPasswordData,
+  IEditComplexityData,
 } from 'types/IProfile';
 
 const signup = createAsyncThunk<IAuthRes, ISignupData>(
@@ -136,7 +138,7 @@ const changeEmail = createAsyncThunk<IChangeEmailRes, IEditEmailData>(
   },
 );
 
-const changePassword = createAsyncThunk<IChangePassword, IEditPasswordData>(
+const changePassword = createAsyncThunk<IChangePasswordRes, IEditPasswordData>(
   'user/change-password',
   async password => {
     try {
@@ -154,6 +156,24 @@ const changePassword = createAsyncThunk<IChangePassword, IEditPasswordData>(
   },
 );
 
+const changeComplexity = createAsyncThunk<
+  IChangeComplexityRes,
+  IEditComplexityData
+>('user/change-complexity', async complexity => {
+  try {
+    const { data } = await api.patch(
+      '/api/v1/user/change-complexity',
+      complexity,
+    );
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
+
 const operations = {
   signup,
   signin,
@@ -164,6 +184,7 @@ const operations = {
   deleteAccount,
   changeEmail,
   changePassword,
+  changeComplexity,
 };
 
 export default operations;

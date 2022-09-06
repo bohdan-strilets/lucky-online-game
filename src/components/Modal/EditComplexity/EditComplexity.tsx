@@ -1,3 +1,8 @@
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import operations from 'redux/user/userOperations';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { getUser } from 'redux/user/userSelectors';
+
 import { Formik, Form } from 'formik';
 import Button from 'components/Button';
 import RadioButton from 'components/RadioButton';
@@ -6,6 +11,7 @@ import { toast } from 'react-toastify';
 import { IEditComplexityData } from 'types/IProfile';
 import editComplexitySchema from 'helpers/validationSchemas/editComplexitySchema';
 import { IEditComplexityState } from 'types/IEditComplexity';
+import { IChangeComplexityRes } from 'types/IUserRessponse';
 
 import { Text, Wrapper } from './EditComplexity.styled';
 
@@ -13,19 +19,25 @@ const EditComplexity: React.FC<IEditComplexityState> = ({
   onClose,
   complexity,
 }) => {
+  const dispatch = useAppDispatch();
+  const { inGame } = useAppSelector(getUser);
+
   const initialValues = {
     complexity,
   };
 
-  const onSubmit = (values: IEditComplexityData) => {
-    // if (user.inGame) {
-    //   dispatch(operations.editComplexity(values));
-    //   onClose();
-    // } else {
-    //   toast.warning(
-    //     'You cannot change the difficulty level without creating a new session.',
-    //   );
-    // }
+  const onSubmit = async (values: IEditComplexityData) => {
+    if (inGame) {
+      const res = await dispatch(operations.changeComplexity(values));
+
+      if ((res.payload as IChangeComplexityRes).status === 'ok') {
+        onClose();
+      }
+    } else {
+      toast.warning(
+        'You cannot change the difficulty level without creating a new session.',
+      );
+    }
   };
 
   return (

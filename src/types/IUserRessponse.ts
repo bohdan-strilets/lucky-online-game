@@ -57,8 +57,14 @@ export interface IChangeEmailRes {
   message: string;
 }
 
-export interface IChangePassword {
+export interface IChangePasswordRes {
   status: string;
   code: number;
   message: string;
+}
+
+export interface IChangeComplexityRes {
+  status: string;
+  code: number;
+  complexity: 'low' | 'medium' | 'high';
 }

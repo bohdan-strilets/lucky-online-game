@@ -109,7 +109,11 @@ export const userSlice = createSlice({
         } catch (error) {}
       })
 
-      .addCase(operations.changePassword.fulfilled, () => {});
+      .addCase(operations.changePassword.fulfilled, () => {})
+
+      .addCase(operations.changeComplexity.fulfilled, (state, action) => {
+        state.user.complexity = action.payload.complexity;
+      });
   },
 });
 
