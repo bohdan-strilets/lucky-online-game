@@ -1,6 +1,8 @@
 import { useState } from 'react';
-
-// import dateFormatting from 'helpers/dateFormatting';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { getUser } from 'redux/user/userSelectors';
+import { API_URL } from 'api';
+import dateFormatting from 'helpers/dateFormatting';
 
 import Container from 'components/Container';
 import Controllers from './Controllers';
@@ -31,6 +33,20 @@ const Profile: React.FC<{}> = () => {
   const [showEditComplexityModal, setShowEditComplexityModal] = useState(false);
   const [showDeleteSessionModal, setshowDeleteSessionModal] = useState(false);
 
+  const {
+    _id,
+    name,
+    nickname,
+    email,
+    dateBirth,
+    gender,
+    inGame,
+    complexity,
+    avatarURL,
+    createdAt,
+    updatedAt,
+  } = useAppSelector(getUser);
+
   const deleteGameSession = () => {
     setshowDeleteSessionModal(false);
   };
@@ -46,29 +62,29 @@ const Profile: React.FC<{}> = () => {
 
       <Wrapper>
         <Header>
-          <p>ID: 213123123123123123</p>
+          <p>ID: {_id}</p>
 
           <div>
-            <p>Account creation date: 2022-09-05</p>
-            <p>Last update date: 2022-09-05</p>
+            <p>Account creation date: {dateFormatting(createdAt as string)}</p>
+            <p>Last update date: {dateFormatting(updatedAt as string)}</p>
           </div>
         </Header>
 
         <Avatar
-          src="https://cdn.pixabay.com/photo/2022/08/13/09/05/lion-7383228_960_720.jpg"
-          alt="User avatar"
+          src={`${API_URL}/${avatarURL}`}
+          alt={`${name} user avatar`}
           onClick={() => setShowEditAvatarModal(true)}
         />
 
         <Name>
-          Bohdan Strilets <Nickname>mp4</Nickname>
+          {name} <Nickname>{nickname}</Nickname>
         </Name>
 
         <ul>
           <Item>
             <Text>Email:</Text>
             <div>
-              <Value>bohdan.strilets@gmail.com</Value>
+              <Value>{email}</Value>
               <EditBtn
                 type="button"
                 onClick={() => setShowEditEmailModal(true)}
@@ -99,20 +115,19 @@ const Profile: React.FC<{}> = () => {
           </Item>
           <Item>
             <Text>Gender:</Text>
-            <Value>man</Value>
+            <Value>{gender}</Value>
           </Item>
           <Item>
             <Text>Date of birth:</Text>
-            <Value>1995-06-02</Value>
+            <Value>{dateBirth}</Value>
           </Item>
           <Item>
             <Text>Complexity:</Text>
             <div>
               <Value>
-                {/* {user.complexity
-                  ? user.complexity
-                  : 'The game session has not yet been created.'} */}
-                low
+                {complexity
+                  ? complexity
+                  : 'The game session has not yet been created.'}
               </Value>
               <EditBtn
                 type="button"
@@ -124,24 +139,25 @@ const Profile: React.FC<{}> = () => {
                   fill="var(--green-color)"
                 />
               </EditBtn>
-
-              <EditBtn
-                type="button"
-                onClick={() => setshowDeleteSessionModal(true)}
-              >
-                <IconSwitcher
-                  name="delete"
-                  size="16px"
-                  fill="var(--green-color)"
-                />
-              </EditBtn>
+              {inGame && (
+                <EditBtn
+                  type="button"
+                  onClick={() => setshowDeleteSessionModal(true)}
+                >
+                  <IconSwitcher
+                    name="delete"
+                    size="16px"
+                    fill="var(--green-color)"
+                  />
+                </EditBtn>
+              )}
             </div>
           </Item>
           <Item>
             <Text>Game session:</Text>
             <Value>
-              {/* {user.inGame && 'continue game'}
-              {!user.inGame && 'Start a new game'} */}
+              {inGame && 'continue game'}
+              {!inGame && 'Start a new game'}
             </Value>
           </Item>
         </ul>
