@@ -2,7 +2,7 @@ import api from 'api';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { IAuthRes } from 'types/IAuthRessponse';
+import { IAuthRes, ICurrentRes } from 'types/IAuthRessponse';
 import { ISignupData, ISigninData } from 'types/IProfile';
 
 const signup = createAsyncThunk<IAuthRes, ISignupData>(
@@ -13,7 +13,6 @@ const signup = createAsyncThunk<IAuthRes, ISignupData>(
       return data;
     } catch (error: any) {
       const message = error.response.data.message;
-
       message
         ? toast.warning(message)
         : toast.warning('Sorry something went wrong... Please try again.');
@@ -48,10 +47,26 @@ const signout = createAsyncThunk('auth/signout', async () => {
   }
 });
 
-const authOperations = {
+const getCurrentUser = createAsyncThunk<ICurrentRes>(
+  'user/get-current-user',
+  async () => {
+    try {
+      const { data } = await api.get('/api/v1/user/get-current');
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
+const operations = {
   signup,
   signin,
   signout,
+  getCurrentUser,
 };
 
-export default authOperations;
+export default operations;

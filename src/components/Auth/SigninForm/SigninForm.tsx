@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/useAppDispatch';
-import authOperations from 'redux/auth/authOperations';
+import operations from 'redux/user/userOperations';
 
 import { toast } from 'react-toastify';
 import { Formik, Form } from 'formik';
@@ -37,7 +37,7 @@ const SigninForm: React.FC<{}> = () => {
       password: values.password,
     };
 
-    const res = await dispatch(authOperations.signin(user));
+    const res = await dispatch(operations.signin(user));
 
     (res.payload as IAuthRes).status === 'ok'
       ? navigate('/profile')

@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import useGetCurrentUser from 'hooks/useGetCurrentUser';
 import styled from '@emotion/styled';
 
 import Layout from 'components/Layout';
@@ -29,74 +30,78 @@ const Wrapper = styled.div`
 `;
 
 const App: React.FC = () => {
+  const { isRefreshing } = useGetCurrentUser();
+
   return (
     <Wrapper>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <HomePage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/sign-up"
-          element={
-            <Layout>
-              <SignupPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/terms-and-conditions"
-          element={
-            <Layout>
-              <TermsConditionsPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/privacy-policy"
-          element={
-            <Layout>
-              <PrivacyPolicyPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/sign-in"
-          element={
-            <Layout>
-              <SigninPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/reset-password"
-          element={
-            <Layout>
-              <ResetPasswordPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/welcome"
-          element={
-            <Layout>
-              <WelcomePage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Layout showSidebars>
-              <ProfilePage />
-            </Layout>
-          }
-        />
-      </Routes>
+      {!isRefreshing && (
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <HomePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/sign-up"
+            element={
+              <Layout>
+                <SignupPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/terms-and-conditions"
+            element={
+              <Layout>
+                <TermsConditionsPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/privacy-policy"
+            element={
+              <Layout>
+                <PrivacyPolicyPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/sign-in"
+            element={
+              <Layout>
+                <SigninPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <Layout>
+                <ResetPasswordPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/welcome"
+            element={
+              <Layout>
+                <WelcomePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Layout showSidebars>
+                <ProfilePage />
+              </Layout>
+            }
+          />
+        </Routes>
+      )}
     </Wrapper>
   );
 };

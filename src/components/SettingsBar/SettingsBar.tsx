@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/useAppDispatch';
-import authOperations from 'redux/auth/authOperations';
+import operations from 'redux/user/userOperations';
 
 import Container from 'components/Container';
 import Button from 'components/Button';
@@ -13,7 +13,7 @@ const SettingsBar: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
 
   const logout = () => {
-    dispatch(authOperations.signout());
+    dispatch(operations.signout());
     navigate('/');
   };
 

@@ -1,6 +1,6 @@
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { useNavigate } from 'react-router-dom';
-import authOperations from 'redux/auth/authOperations';
+import operations from 'redux/user/userOperations';
 
 import { toast } from 'react-toastify';
 import { Formik, Form } from 'formik';
@@ -33,7 +33,7 @@ const SignupForm: React.FC<{}> = () => {
       password: values.password,
     };
 
-    const res = await dispatch(authOperations.signup(user));
+    const res = await dispatch(operations.signup(user));
 
     (res.payload as IAuthRes).status === 'ok'
       ? navigate('/welcome')

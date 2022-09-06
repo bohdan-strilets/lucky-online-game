@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(config => {
-  const token = JSON.parse(localStorage.getItem('persist:auth') as string);
+  const token = JSON.parse(localStorage.getItem('persist:user') as string);
 
   if (token) {
     const parsedToken = token.token.replaceAll('"', '');

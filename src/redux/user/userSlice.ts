@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import authOperations from './authOperations';
+import operations from './userOperations';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
@@ -27,19 +27,19 @@ const initialState: IAuthState = {
   isRefreshing: false,
 };
 
-const authPersistConfig = {
-  key: 'auth',
+const userPersistConfig = {
+  key: 'user',
   storage,
   whitelist: ['token'],
 };
 
-export const authSlice = createSlice({
-  name: 'auth',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(authOperations.signup.fulfilled, (state, action) => {
+      .addCase(operations.signup.fulfilled, (state, action) => {
         try {
           state.user = action.payload.user;
           state.token = action.payload.tokens.accessToken;
@@ -47,7 +47,7 @@ export const authSlice = createSlice({
         } catch (error) {}
       })
 
-      .addCase(authOperations.signin.fulfilled, (state, action) => {
+      .addCase(operations.signin.fulfilled, (state, action) => {
         try {
           state.user = action.payload.user;
           state.token = action.payload.tokens.accessToken;
@@ -55,17 +55,37 @@ export const authSlice = createSlice({
         } catch (error) {}
       })
 
-      .addCase(authOperations.signout.fulfilled, state => {
+      .addCase(operations.signout.fulfilled, state => {
         try {
           state.user = initialState.user;
           state.token = initialState.token;
           state.isLoggedIn = false;
         } catch (error) {}
+      })
+
+      .addCase(operations.getCurrentUser.pending, state => {
+        try {
+          state.isRefreshing = true;
+        } catch (error) {}
+      })
+
+      .addCase(operations.getCurrentUser.rejected, state => {
+        try {
+          state.isRefreshing = true;
+        } catch (error) {}
+      })
+
+      .addCase(operations.getCurrentUser.fulfilled, (state, action) => {
+        try {
+          state.user = action.payload.user;
+          state.isLoggedIn = true;
+          state.isRefreshing = false;
+        } catch (error) {}
       });
   },
 });
 
-export const persisteAuthReducer = persistReducer(
-  authPersistConfig,
-  authSlice.reducer,
+export const persisteUserReducer = persistReducer(
+  userPersistConfig,
+  userSlice.reducer,
 );

@@ -25,3 +25,9 @@ export interface IAuthRes {
   tokens: ITokens;
   user: IUser;
 }
+
+export interface ICurrentRes {
+  status: string;
+  code: number;
+  user: IUser;
+}
