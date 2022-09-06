@@ -1,25 +1,33 @@
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import operations from 'redux/user/userOperations';
+
 import { Formik, Form } from 'formik';
 import EntryField from 'components/EntryField';
 import Button from 'components/Button';
 
 import editPasswordSchema from 'helpers/validationSchemas/editPasswordSchema';
 import { IEditPasswordData } from 'types/IProfile';
+import { IChangePassword } from 'types/IUserRessponse';
 
 const EditPassword: React.FC<{ onClose(): void }> = ({ onClose }) => {
+  const dispatch = useAppDispatch();
+
   const initialValues = {
     password: '',
     newPassword: '',
     passwordAgain: '',
   };
 
-  const onSubmit = (values: IEditPasswordData) => {
+  const onSubmit = async (values: IEditPasswordData) => {
     const passwords = {
       password: values.password,
       newPassword: values.newPassword,
     };
 
-    console.log(passwords);
-    onClose();
+    const res = await dispatch(operations.changePassword(passwords));
+    if ((res.payload as IChangePassword).status === 'ok') {
+      onClose();
+    }
   };
 
   return (

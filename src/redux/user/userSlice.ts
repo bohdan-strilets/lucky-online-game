@@ -107,7 +107,9 @@ export const userSlice = createSlice({
         try {
           state.user.email = action.payload.email;
         } catch (error) {}
-      });
+      })
+
+      .addCase(operations.changePassword.fulfilled, () => {});
   },
 });
 

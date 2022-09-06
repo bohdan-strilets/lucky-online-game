@@ -25,7 +25,7 @@ export interface IEditEmailData {
 export interface IEditPasswordData {
   password: string;
   newPassword: string;
-  passwordAgain: string;
+  passwordAgain?: string;
 }
 
 export interface IResetPasswordData {

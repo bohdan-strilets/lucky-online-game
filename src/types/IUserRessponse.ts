@@ -56,3 +56,9 @@ export interface IChangeEmailRes {
   email: string;
   message: string;
 }
+
+export interface IChangePassword {
+  status: string;
+  code: number;
+  message: string;
+}
