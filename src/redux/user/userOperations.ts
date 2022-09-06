@@ -8,8 +8,14 @@ import {
   IChangeAvatarRes,
   IChangeAccountRes,
   IDeleteAccountRes,
+  IChangeEmailRes,
 } from 'types/IUserRessponse';
-import { ISignupData, ISigninData, IEditProfileData } from 'types/IProfile';
+import {
+  ISignupData,
+  ISigninData,
+  IEditProfileData,
+  IEditEmailData,
+} from 'types/IProfile';
 
 const signup = createAsyncThunk<IAuthRes, ISignupData>(
   'user/signup',
@@ -113,6 +119,21 @@ const deleteAccount = createAsyncThunk<IDeleteAccountRes>(
   },
 );
 
+const changeEmail = createAsyncThunk<IChangeEmailRes, IEditEmailData>(
+  'user/change-email',
+  async email => {
+    try {
+      const { data } = await api.patch('/api/v1/user/change-email', email);
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
 const operations = {
   signup,
   signin,
@@ -121,6 +142,7 @@ const operations = {
   changeAvatar,
   changeAccount,
   deleteAccount,
+  changeEmail,
 };
 
 export default operations;

@@ -101,6 +101,12 @@ export const userSlice = createSlice({
           state.token = initialState.token;
           state.isLoggedIn = false;
         } catch (error) {}
+      })
+
+      .addCase(operations.changeEmail.fulfilled, (state, action) => {
+        try {
+          state.user.email = action.payload.email;
+        } catch (error) {}
       });
   },
 });

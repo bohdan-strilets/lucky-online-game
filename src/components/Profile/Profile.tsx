@@ -173,7 +173,7 @@ const Profile: React.FC<{}> = () => {
           title="Choose a new avatar"
           onClose={() => setShowEditAvatarModal(false)}
         >
-          <EditAvatar />
+          <EditAvatar onClose={() => setShowEditAvatarModal(false)} />
         </Modal>
       )}
 

@@ -28,18 +28,17 @@ api.interceptors.response.use(
   async error => {
     const originalRequest = error.config;
 
-    if (error.response.status === 401 && !error.config._isRetry) {
+    if (error.response.status === 500 && !error.config._isRetry) {
       originalRequest._isRetry = true;
       try {
         const { data } = await api.get('/api/v1/user/refresh-user');
 
         const dataToLS = {
           token: data.tokens.accessToken,
-          _persist: { version: -1, rehydrated: true },
+          _persist: '{"version":-1,"rehydrated":true}',
         };
 
         localStorage.setItem('persist:user', JSON.stringify(dataToLS));
-
         return api.request(originalRequest);
       } catch (error) {
         console.log('NOT AUTHORIZED');

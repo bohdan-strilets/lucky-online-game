@@ -49,3 +49,10 @@ export interface IDeleteAccountRes {
   code: number;
   message: string;
 }
+
+export interface IChangeEmailRes {
+  status: string;
+  code: number;
+  email: string;
+  message: string;
+}
