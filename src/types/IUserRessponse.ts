@@ -43,3 +43,9 @@ export interface IChangeAccountRes {
   code: number;
   user: IUser;
 }
+
+export interface IDeleteAccountRes {
+  status: string;
+  code: number;
+  message: string;
+}

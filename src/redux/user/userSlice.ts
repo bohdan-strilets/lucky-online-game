@@ -93,6 +93,14 @@ export const userSlice = createSlice({
         try {
           state.user = action.payload.user;
         } catch (error) {}
+      })
+
+      .addCase(operations.deleteAccount.fulfilled, state => {
+        try {
+          state.user = initialState.user;
+          state.token = initialState.token;
+          state.isLoggedIn = false;
+        } catch (error) {}
       });
   },
 });

@@ -7,6 +7,7 @@ import {
   ICurrentRes,
   IChangeAvatarRes,
   IChangeAccountRes,
+  IDeleteAccountRes,
 } from 'types/IUserRessponse';
 import { ISignupData, ISigninData, IEditProfileData } from 'types/IProfile';
 
@@ -97,6 +98,21 @@ const changeAccount = createAsyncThunk<IChangeAccountRes, IEditProfileData>(
   },
 );
 
+const deleteAccount = createAsyncThunk<IDeleteAccountRes>(
+  'user/delete-account',
+  async () => {
+    try {
+      const { data } = await api.delete('/api/v1/user/delete-account');
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
 const operations = {
   signup,
   signin,
@@ -104,6 +120,7 @@ const operations = {
   getCurrentUser,
   changeAvatar,
   changeAccount,
+  deleteAccount,
 };
 
 export default operations;

@@ -9,6 +9,7 @@ import Button from 'components/Button';
 import RadioButton from 'components/RadioButton';
 
 import { IEditProfileData } from 'types/IProfile';
+import { IChangeAccountRes } from 'types/IUserRessponse';
 import editProfileSchema from 'helpers/validationSchemas/editProfileSchema';
 
 import { RadioGroup, RadioText } from './EditProfile.styled';
@@ -24,9 +25,12 @@ const EditProfile: React.FC<{ onClose(): void }> = ({ onClose }) => {
     dateBirth,
   } as IEditProfileData;
 
-  const onSubmit = (values: IEditProfileData) => {
-    dispatch(operations.changeAccount(values));
-    onClose();
+  const onSubmit = async (values: IEditProfileData) => {
+    const res = await dispatch(operations.changeAccount(values));
+
+    if ((res.payload as IChangeAccountRes).status === 'ok') {
+      onClose();
+    }
   };
 
   return (

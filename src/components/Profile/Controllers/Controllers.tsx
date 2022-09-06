@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import operations from 'redux/user/userOperations';
 
 import Button from 'components/Button';
 import IconSwitcher from 'components/IconSwitcher';
@@ -7,15 +9,23 @@ import Modal from 'components/Modal';
 import DialogWindow from 'components/Modal/DialogWindow';
 import EditProfile from 'components/Modal/EditProfile';
 
+import { IDeleteAccountRes } from 'types/IUserRessponse';
 import { List, Item } from './Controllers.styled';
 
 const Controllers: React.FC<{}> = () => {
   const [showDialogModal, setShowDialogModal] = useState(false);
   const [showEditProfileModal, setShowEditProfileModal] = useState(false);
 
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const deleteAccount = () => {};
+  const deleteAccount = async () => {
+    const res = await dispatch(operations.deleteAccount());
+
+    if ((res.payload as IDeleteAccountRes).status === 'ok') {
+      navigate('/');
+    }
+  };
 
   return (
     <>
