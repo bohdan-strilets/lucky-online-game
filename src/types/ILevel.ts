@@ -1,4 +1,4 @@
-export type TLevel = {
+export interface ILevel {
   _id: string;
   owner: string;
   level: number;
@@ -13,28 +13,28 @@ export type TLevel = {
     | 'investor';
   createdAt: string;
   updatedAt: string;
-};
+}
 
 export interface ILevelRes {
   status: string;
   code: number;
-  level: TLevel;
+  level: ILevel;
 }
 
 export interface IChangeLevelRes {
   status: string;
   code: number;
-  level: Pick<TLevel, 'level'>;
+  level: Pick<ILevel, 'level'>;
 }
 
 export interface IChangeExperienceRes {
   status: string;
   code: number;
-  experience: Pick<TLevel, 'experience'>;
+  experience: Pick<ILevel, 'experience'>;
 }
 
 export interface IChangeRankRes {
   status: string;
   code: number;
-  rank: Pick<TLevel, 'rank'>;
+  rank: Pick<ILevel, 'rank'>;
 }

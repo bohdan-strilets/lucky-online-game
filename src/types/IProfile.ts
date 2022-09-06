@@ -35,5 +35,9 @@ export interface IResetPasswordData {
 }
 
 export interface IEditComplexityData {
-  complexity: 'low' | 'medium' | 'high';
+  complexity?: 'low' | 'medium' | 'high' | null;
+}
+
+export interface IEditBankData {
+  bank: number;
 }

@@ -1,3 +1,6 @@
+import { ILevel } from './ILevel';
+import { IStatistics } from './IStatistics';
+
 export interface ITokens {
   accessToken: string;
   refreshToken: string;
@@ -67,4 +70,24 @@ export interface IChangeComplexityRes {
   status: string;
   code: number;
   complexity: 'low' | 'medium' | 'high';
+}
+
+export interface ICreateSessionRes {
+  status: string;
+  code: number;
+  user: Pick<IUser, 'name' | 'email' | 'complexity' | 'inGame'>;
+  userLevel: ILevel;
+  userStatistics: IStatistics;
+}
+
+export interface IChangeBankRes {
+  status: string;
+  code: number;
+  bank: number;
+}
+
+export interface IDeleteSessionRes {
+  status: string;
+  code: number;
+  message: string;
 }

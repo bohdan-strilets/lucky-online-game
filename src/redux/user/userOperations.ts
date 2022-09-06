@@ -11,6 +11,9 @@ import {
   IChangeEmailRes,
   IChangePasswordRes,
   IChangeComplexityRes,
+  ICreateSessionRes,
+  IChangeBankRes,
+  IDeleteSessionRes,
 } from 'types/IUserRessponse';
 import {
   ISignupData,
@@ -19,6 +22,7 @@ import {
   IEditEmailData,
   IEditPasswordData,
   IEditComplexityData,
+  IEditBankData,
 } from 'types/IProfile';
 
 const signup = createAsyncThunk<IAuthRes, ISignupData>(
@@ -174,6 +178,51 @@ const changeComplexity = createAsyncThunk<
   }
 });
 
+const createSession = createAsyncThunk<ICreateSessionRes, IEditComplexityData>(
+  'user/create-session',
+  async gameData => {
+    try {
+      const { data } = await api.patch('/api/v1/user/new-session', gameData);
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
+const changeBank = createAsyncThunk<IChangeBankRes, IEditBankData>(
+  'user/change-bank',
+  async amount => {
+    try {
+      const { data } = await api.patch('/api/v1/user/change-bank', amount);
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
+const deleteSession = createAsyncThunk<IDeleteSessionRes>(
+  'user/delete-session',
+  async () => {
+    try {
+      const { data } = await api.delete('/api/v1/user/delete-session');
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
 const operations = {
   signup,
   signin,
@@ -185,6 +234,9 @@ const operations = {
   changeEmail,
   changePassword,
   changeComplexity,
+  createSession,
+  changeBank,
+  deleteSession,
 };
 
 export default operations;

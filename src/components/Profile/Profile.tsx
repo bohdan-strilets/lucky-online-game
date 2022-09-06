@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useAppSelector } from 'hooks/useAppSelector';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import operations from 'redux/user/userOperations';
 
 import { getUser } from 'redux/user/userSelectors';
 import { API_URL } from 'api';
@@ -15,6 +17,7 @@ import EditPassword from 'components/Modal/EditPassword';
 import EditComplexity from 'components/Modal/EditComplexity';
 import DialogWindow from 'components/Modal/DialogWindow';
 
+import { IDeleteSessionRes } from 'types/IUserRessponse';
 import {
   Wrapper,
   Header,
@@ -47,9 +50,14 @@ const Profile: React.FC<{}> = () => {
     createdAt,
     updatedAt,
   } = useAppSelector(getUser);
+  const dispatch = useAppDispatch();
 
-  const deleteGameSession = () => {
-    setshowDeleteSessionModal(false);
+  const deleteGameSession = async () => {
+    const res = await dispatch(operations.deleteSession());
+
+    if ((res.payload as IDeleteSessionRes).status === 'ok') {
+      setshowDeleteSessionModal(false);
+    }
   };
 
   return (
@@ -202,7 +210,7 @@ const Profile: React.FC<{}> = () => {
         >
           <EditComplexity
             onClose={() => setShowEditComplexityModal(false)}
-            complexity="low"
+            complexity={complexity}
           />
         </Modal>
       )}

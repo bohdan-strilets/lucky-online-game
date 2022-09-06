@@ -113,6 +113,24 @@ export const userSlice = createSlice({
 
       .addCase(operations.changeComplexity.fulfilled, (state, action) => {
         state.user.complexity = action.payload.complexity;
+      })
+
+      .addCase(operations.createSession.fulfilled, (state, action) => {
+        try {
+          state.user.inGame = true;
+          state.user.complexity = action.payload.user.complexity;
+        } catch (error) {}
+      })
+
+      .addCase(operations.changeBank.fulfilled, (state, action) => {
+        state.user.bank = action.payload.bank;
+      })
+
+      .addCase(operations.deleteSession.fulfilled, (state, action) => {
+        try {
+          state.user.inGame = false;
+          state.user.complexity = null;
+        } catch (error) {}
       });
   },
 });
