@@ -1,0 +1,157 @@
+[
+  {
+    "level": 0,
+    "experience": 0,
+    "rank": "homeless"
+  },
+  {
+    "level": 1,
+    "experience": 100,
+    "rank": "homeless"
+  },
+  {
+    "level": 2,
+    "experience": 300,
+    "rank": "homeless"
+  },
+  {
+    "level": 3,
+    "experience": 500,
+    "rank": "homeless"
+  },
+  {
+    "level": 4,
+    "experience": 1000,
+    "rank": "homeless"
+  },
+  {
+    "level": 5,
+    "experience": 1500,
+    "rank": "jester"
+  },
+  {
+    "level": 6,
+    "experience": 2000,
+    "rank": "jester"
+  },
+  {
+    "level": 7,
+    "experience": 2800,
+    "rank": "jester"
+  },
+  {
+    "level": 8,
+    "experience": 3400,
+    "rank": "jester"
+  },
+  {
+    "level": 9,
+    "experience": 4400,
+    "rank": "jester"
+  },
+  {
+    "level": 10,
+    "experience": 5400,
+    "rank": "beginning"
+  },
+  {
+    "level": 11,
+    "experience": 6400,
+    "rank": "beginning"
+  },
+  {
+    "level": 12,
+    "experience": 7500,
+    "rank": "beginning"
+  },
+  {
+    "level": 13,
+    "experience": 8600,
+    "rank": "beginning"
+  },
+  {
+    "level": 14,
+    "experience": 9700,
+    "rank": "beginning"
+  },
+  {
+    "level": 15,
+    "experience": 11000,
+    "rank": "entrepreneur"
+  },
+  {
+    "level": 16,
+    "experience": 12500,
+    "rank": "entrepreneur"
+  },
+  {
+    "level": 17,
+    "experience": 14000,
+    "rank": "entrepreneur"
+  },
+  {
+    "level": 18,
+    "experience": 15500,
+    "rank": "entrepreneur"
+  },
+  {
+    "level": 19,
+    "experience": 17000,
+    "rank": "entrepreneur"
+  },
+  {
+    "level": 20,
+    "experience": 19000,
+    "rank": "businessman"
+  },
+  {
+    "level": 21,
+    "experience": 21000,
+    "rank": "businessman"
+  },
+  {
+    "level": 22,
+    "experience": 23000,
+    "rank": "businessman"
+  },
+  {
+    "level": 23,
+    "experience": 25000,
+    "rank": "businessman"
+  },
+  {
+    "level": 24,
+    "experience": 27500,
+    "rank": "businessman"
+  },
+  {
+    "level": 25,
+    "experience": 30000,
+    "rank": "deputy"
+  },
+  {
+    "level": 26,
+    "experience": 32500,
+    "rank": "deputy"
+  },
+  {
+    "level": 27,
+    "experience": 35500,
+    "rank": "deputy"
+  },
+  {
+    "level": 28,
+    "experience": 38500,
+    "rank": "deputy"
+  },
+  {
+    "level": 29,
+    "experience": 41500,
+    "rank": "deputy"
+  },
+  {
+    "level": 30,
+    "experience": 45000,
+    "rank": "investor"
+  }
+]
