@@ -1,5 +1,13 @@
 import styled from '@emotion/styled';
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+`;
+
 export const Avatar = styled.img`
   width: 40px;
   height: 40px;
@@ -10,11 +18,4 @@ export const Avatar = styled.img`
 
 export const Item = styled.li`
   margin-bottom: 10px;
-
-  :last-child {
-    position: relative;
-    top: 480px;
-
-    margin-bottom: 0;
-  }
 `;
