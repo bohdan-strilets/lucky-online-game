@@ -14,6 +14,7 @@ import {
   ICreateSessionRes,
   IChangeBankRes,
   IDeleteSessionRes,
+  IResetPasswordRes,
 } from 'types/IUserRessponse';
 import {
   ISignupData,
@@ -23,6 +24,7 @@ import {
   IEditPasswordData,
   IEditComplexityData,
   IEditBankData,
+  IResetPasswordData,
 } from 'types/IProfile';
 
 const signup = createAsyncThunk<IAuthRes, ISignupData>(
@@ -223,6 +225,39 @@ const deleteSession = createAsyncThunk<IDeleteSessionRes>(
   },
 );
 
+const sendPasswordResetEmail = createAsyncThunk<
+  IResetPasswordRes,
+  IEditEmailData
+>('user/send-password-reset-email', async email => {
+  try {
+    const { data } = await api.post('/api/v1/user/send-password-email', email);
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
+
+const resetPassword = createAsyncThunk<IResetPasswordRes, IResetPasswordData>(
+  'user/reset-password',
+  async resetPassword => {
+    try {
+      const { data } = await api.post(
+        '/api/v1/user/reset-password',
+        resetPassword,
+      );
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
 const operations = {
   signup,
   signin,
@@ -237,6 +272,8 @@ const operations = {
   createSession,
   changeBank,
   deleteSession,
+  sendPasswordResetEmail,
+  resetPassword,
 };
 
 export default operations;

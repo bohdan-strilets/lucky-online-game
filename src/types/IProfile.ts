@@ -31,7 +31,7 @@ export interface IEditPasswordData {
 export interface IResetPasswordData {
   email: string;
   password: string;
-  passwordAgain: string;
+  passwordAgain?: string;
 }
 
 export interface IEditComplexityData {

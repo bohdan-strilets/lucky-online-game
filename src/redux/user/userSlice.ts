@@ -131,7 +131,11 @@ export const userSlice = createSlice({
           state.user.inGame = false;
           state.user.complexity = null;
         } catch (error) {}
-      });
+      })
+
+      .addCase(operations.sendPasswordResetEmail.fulfilled, () => {})
+
+      .addCase(operations.resetPassword.fulfilled, () => {});
   },
 });
 

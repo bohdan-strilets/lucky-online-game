@@ -91,3 +91,9 @@ export interface IDeleteSessionRes {
   code: number;
   message: string;
 }
+
+export interface IResetPasswordRes {
+  status: string;
+  code: number;
+  message: string;
+}
