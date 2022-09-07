@@ -6,15 +6,15 @@ const useCoefficient = () => {
   };
 
   const coefficient = {
-    LOW: 5.7,
-    MEDIUM: 3.2,
-    HIGH: 1.7,
+    [types.LOW]: 5.7,
+    [types.MEDIUM]: 3.2,
+    [types.HIGH]: 1.7,
   };
 
   const initialFunds = {
-    LOW: 8400,
-    MEDIUM: 5500,
-    HIGH: 3200,
+    [types.LOW]: 8400,
+    [types.MEDIUM]: 5500,
+    [types.HIGH]: 3200,
   };
 
   const increment = (a: number, b: number) => a * b;
