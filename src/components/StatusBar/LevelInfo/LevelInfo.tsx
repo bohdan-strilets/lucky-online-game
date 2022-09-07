@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import useExperience from 'hooks/useExperience';
 
 import { ILevelInfoState } from 'types/IStatusBar';
 import { Wrapper, Line, Progress, Data, Text } from './LevelInfo.styled';
@@ -9,10 +10,14 @@ const LevelInfo: React.FC<ILevelInfoState> = ({
   experienceToImprove,
 }) => {
   const [percengate, setPercengate] = useState(0);
+  const { getPercentage } = useExperience();
 
   useEffect(() => {
-    setPercengate(75);
-  }, []);
+    if (level && experience) {
+      const value = getPercentage(level, experience);
+      setPercengate(value);
+    }
+  }, [experience, getPercentage, level]);
 
   return (
     <Wrapper>

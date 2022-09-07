@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persisteUserReducer } from './user/userSlice';
+import { levelApi } from './level/levelApi';
 
 import {
   persistStore,
@@ -14,6 +15,7 @@ import {
 export const store = configureStore({
   reducer: {
     user: persisteUserReducer,
+    [levelApi.reducerPath]: levelApi.reducer,
   },
 
   middleware: getDefaultMiddleware =>
@@ -21,7 +23,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(levelApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
