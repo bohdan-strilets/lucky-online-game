@@ -20,7 +20,12 @@ const StatusBar: React.FC<{}> = () => {
     <Container type="transparent" width="280px" height="100vh" padding="20px">
       <Logo />
 
-      <UserInfo name={name as string} nickname={nickname as string} />
+      <UserInfo
+        name={name}
+        nickname={nickname}
+        rank={data?.level.rank}
+        level={data?.level.level}
+      />
 
       {data && (
         <LevelInfo

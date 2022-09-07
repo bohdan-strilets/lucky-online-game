@@ -1,30 +1,22 @@
 import { IUserInfoState } from 'types/IStatusBar';
-import IconSwitcher from 'components/IconSwitcher';
-import {
-  Wrapper,
-  Name,
-  Nickname,
-  Status,
-  StarsWrapper,
-} from './UserInfo.styled';
+import Rank from '../Rank';
 
-const UserInfo: React.FC<IUserInfoState> = ({ name, nickname }) => {
+import { Wrapper, Name, Nickname, Status } from './UserInfo.styled';
+
+const UserInfo: React.FC<IUserInfoState> = ({
+  name,
+  nickname,
+  rank,
+  level,
+}) => {
   return (
     <Wrapper>
       <Name>{name}</Name>
       <Nickname>{nickname}</Nickname>
 
-      <Status>investor</Status>
-      <StarsWrapper>
-        <IconSwitcher name="starfill" fill="var(--green-color)" size="25px" />
-        <IconSwitcher name="starfill" fill="var(--green-color)" size="25px" />
-        <IconSwitcher name="starfill" fill="var(--green-color)" size="25px" />
-        <IconSwitcher name="starfill" fill="var(--green-color)" size="25px" />
-        <IconSwitcher name="starfill" fill="var(--green-color)" size="25px" />
-        <IconSwitcher name="starfill" fill="var(--green-color)" size="25px" />
-        <IconSwitcher name="starfill" fill="var(--white-color)" size="25px" />
-        <IconSwitcher name="starfill" fill="var(--white-color)" size="25px" />
-      </StarsWrapper>
+      <Status>{rank}</Status>
+
+      {level && <Rank level={level} />}
     </Wrapper>
   );
 };

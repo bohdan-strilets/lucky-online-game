@@ -5,6 +5,8 @@ export interface ILevelInfoState {
 }
 
 export interface IUserInfoState {
-  name: string;
-  nickname: string;
+  name: string | undefined | null;
+  nickname: string | undefined | null;
+  rank: string | undefined;
+  level: number | undefined;
 }
