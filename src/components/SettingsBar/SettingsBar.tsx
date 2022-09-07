@@ -8,12 +8,13 @@ import Container from 'components/Container';
 import Button from 'components/Button';
 import IconSwitcher from 'components/IconSwitcher';
 
+import { API_URL } from 'api';
 import { Avatar, Item } from './SettingsBar.styled';
 
 const SettingsBar: React.FC<{}> = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { inGame } = useAppSelector(getUser);
+  const { inGame, avatarURL, name } = useAppSelector(getUser);
 
   const logout = () => {
     dispatch(operations.signout());
@@ -37,10 +38,9 @@ const SettingsBar: React.FC<{}> = () => {
       alignItems="center"
     >
       <div>
-        <Avatar
-          src="https://cdn.pixabay.com/photo/2022/08/13/09/05/lion-7383228_960_720.jpg"
-          alt="User avatar"
-        />
+        {avatarURL && (
+          <Avatar src={`${API_URL}/${avatarURL}`} alt={`${name} user avatar`} />
+        )}
 
         <ul>
           <Item>
