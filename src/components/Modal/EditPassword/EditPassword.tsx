@@ -2,8 +2,8 @@ import { useAppDispatch } from 'hooks/useAppDispatch';
 import operations from 'redux/user/userOperations';
 
 import { Formik, Form } from 'formik';
-import EntryField from 'components/EntryField';
-import Button from 'components/Button';
+import EntryField from 'components/InterfaceElements/EntryField';
+import Button from 'components/InterfaceElements/Button';
 
 import editPasswordSchema from 'helpers/validationSchemas/editPasswordSchema';
 import { IEditPasswordData } from 'types/IProfile';

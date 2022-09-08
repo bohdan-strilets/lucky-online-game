@@ -1,4 +1,4 @@
-import IconSwitcher from 'components/IconSwitcher';
+import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import { ICheckboxState } from 'types/ICheckbox';
 import { Wrapper, Input, CustomCheckbox, Label } from './Checkbox.styled';
 

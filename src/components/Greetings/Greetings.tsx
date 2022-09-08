@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gameRules from 'data/gameRules.json';
 
-import Container from 'components/Container';
-import Button from 'components/Button';
-import IconSwitcher from 'components/IconSwitcher';
+import Container from 'components/InterfaceElements/Container';
+import Button from 'components/InterfaceElements/Button';
+import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 
 import { Title, Text, List, Item, ShowRulesButton } from './Greetings.styled';
 

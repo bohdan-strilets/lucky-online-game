@@ -1,7 +1,7 @@
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import operations from 'redux/user/userOperations';
 
-import Button from 'components/Button';
+import Button from 'components/InterfaceElements/Button';
 import { IChangeAvatarRes } from 'types/IUserRessponse';
 
 import { Text, Label, Input } from './EditAvatar.styled';

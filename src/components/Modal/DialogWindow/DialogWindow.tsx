@@ -1,4 +1,4 @@
-import Button from 'components/Button';
+import Button from 'components/InterfaceElements/Button';
 import { IDialogWindowState } from 'types/IDialogWindow';
 
 import { Text, List, Item } from './DialogWindow.styled';

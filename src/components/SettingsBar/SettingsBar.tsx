@@ -5,9 +5,9 @@ import { useAppSelector } from 'hooks/useAppSelector';
 import { getUser } from 'redux/user/userSelectors';
 import { useState } from 'react';
 
-import Container from 'components/Container';
-import Button from 'components/Button';
-import IconSwitcher from 'components/IconSwitcher';
+import Container from 'components/InterfaceElements/Container';
+import Button from 'components/InterfaceElements/Button';
+import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import { toast } from 'react-toastify';
 
 import { API_URL } from 'api';

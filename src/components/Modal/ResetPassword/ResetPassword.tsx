@@ -3,8 +3,8 @@ import operations from 'redux/user/userOperations';
 import { useNavigate } from 'react-router-dom';
 
 import { Formik, Form } from 'formik';
-import EntryField from 'components/EntryField';
-import Button from 'components/Button';
+import EntryField from 'components/InterfaceElements/EntryField';
+import Button from 'components/InterfaceElements/Button';
 import { toast } from 'react-toastify';
 
 import { resetPasswordSchema } from 'helpers/validationSchemas/resetPasswordSchema';

@@ -4,9 +4,9 @@ import operations from 'redux/user/userOperations';
 
 import { toast } from 'react-toastify';
 import { Formik, Form } from 'formik';
-import EntryField from 'components/EntryField';
-import Button from 'components/Button';
-import Container from 'components/Container';
+import EntryField from 'components/InterfaceElements/EntryField';
+import Button from 'components/InterfaceElements/Button';
+import Container from 'components/InterfaceElements/Container';
 import AuthNav from '../AuthNav';
 
 import { ISignupData } from 'types/IProfile';

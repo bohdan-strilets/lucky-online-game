@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { IModalState } from 'types/IModal';
 
-import IconSwitcher from 'components/IconSwitcher';
+import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 
 import {
   Backdrop,

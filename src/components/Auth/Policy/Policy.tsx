@@ -1,6 +1,6 @@
-import Title from 'components/Title';
-import Container from 'components/Container';
-import BackButton from 'components/BackButton';
+import Title from 'components/InterfaceElements/Title';
+import Container from 'components/InterfaceElements/Container';
+import BackButton from 'components/InterfaceElements/BackButton';
 
 import { IPolicyState } from 'types/IPolicy';
 import { Text } from './Policy.styled';

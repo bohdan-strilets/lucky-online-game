@@ -4,9 +4,9 @@ import operations from 'redux/user/userOperations';
 import { getUser } from 'redux/user/userSelectors';
 
 import { Formik, Form } from 'formik';
-import EntryField from 'components/EntryField';
-import Button from 'components/Button';
-import RadioButton from 'components/RadioButton';
+import EntryField from 'components/InterfaceElements/EntryField';
+import Button from 'components/InterfaceElements/Button';
+import RadioButton from 'components/InterfaceElements/RadioButton';
 
 import { IEditProfileData } from 'types/IProfile';
 import { IChangeAccountRes } from 'types/IUserRessponse';

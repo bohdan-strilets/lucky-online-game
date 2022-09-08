@@ -5,11 +5,11 @@ import operations from 'redux/user/userOperations';
 
 import { toast } from 'react-toastify';
 import { Formik, Form } from 'formik';
-import EntryField from 'components/EntryField';
-import Button from 'components/Button';
-import Container from 'components/Container';
+import EntryField from 'components/InterfaceElements/EntryField';
+import Button from 'components/InterfaceElements/Button';
+import Container from 'components/InterfaceElements/Container';
 import AuthNav from '../AuthNav';
-import Checkbox from 'components/Checkbox';
+import Checkbox from 'components/InterfaceElements/Checkbox';
 import Modal from 'components/Modal';
 import ResetPassword from 'components/Modal/ResetPassword';
 

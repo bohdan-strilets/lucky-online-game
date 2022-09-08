@@ -3,8 +3,8 @@ import { getUser } from 'redux/user/userSelectors';
 import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 import useExperience from 'hooks/useExperience';
 
-import Container from 'components/Container';
-import Logo from 'components/Logo';
+import Container from 'components/InterfaceElements/Container';
+import Logo from 'components/InterfaceElements/Logo';
 import UserInfo from './UserInfo';
 import LevelInfo from './LevelInfo';
 import RateInfo from './RateInfo';

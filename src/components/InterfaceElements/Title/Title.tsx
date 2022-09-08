@@ -1,4 +1,4 @@
-import Container from 'components/Container';
+import Container from 'components/InterfaceElements/Container';
 import { Text } from './Title.styled';
 import { ITitleState } from 'types/ITitle';
 

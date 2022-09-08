@@ -3,8 +3,8 @@ import operations from 'redux/user/userOperations';
 import { useNavigate } from 'react-router-dom';
 import useCoefficient from 'hooks/useCoefficient';
 
-import Container from 'components/Container';
-import Button from 'components/Button';
+import Container from 'components/InterfaceElements/Container';
+import Button from 'components/InterfaceElements/Button';
 
 import { IChangeBankRes } from 'types/IUserRessponse';
 import { Title, Text, List } from './CreateNewGame.styled';

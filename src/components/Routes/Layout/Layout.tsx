@@ -1,4 +1,4 @@
-import Logo from 'components/Logo';
+import Logo from 'components/InterfaceElements/Logo';
 import StatusBar from 'components/StatusBar';
 import SettingsBar from 'components/SettingsBar';
 

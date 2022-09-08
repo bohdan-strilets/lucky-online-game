@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks/useAppSelector';
 import { getUser } from 'redux/user/userSelectors';
 
-import Container from 'components/Container';
-import Button from 'components/Button';
+import Container from 'components/InterfaceElements/Container';
+import Button from 'components/InterfaceElements/Button';
 
 import { Title, Text } from './Welcome.styled';
 

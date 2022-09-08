@@ -4,8 +4,8 @@ import { useAppSelector } from 'hooks/useAppSelector';
 import { getUser } from 'redux/user/userSelectors';
 
 import { Formik, Form } from 'formik';
-import Button from 'components/Button';
-import RadioButton from 'components/RadioButton';
+import Button from 'components/InterfaceElements/Button';
+import RadioButton from 'components/InterfaceElements/RadioButton';
 import { toast } from 'react-toastify';
 
 import { IEditComplexityData } from 'types/IProfile';

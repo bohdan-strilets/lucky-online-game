@@ -1,5 +1,5 @@
-import Button from 'components/Button';
-import IconSwitcher from 'components/IconSwitcher';
+import Button from 'components/InterfaceElements/Button';
+import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import { useNavigate } from 'react-router-dom';
 
 const BackButton: React.FC<{ margin?: string }> = ({ margin }) => {

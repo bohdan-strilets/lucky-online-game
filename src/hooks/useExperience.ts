@@ -1,12 +1,12 @@
-import { useChangeLevelMutation } from 'redux/level/levelApi';
-import { useChangeRankMutation } from 'redux/level/levelApi';
+// import { useChangeLevelMutation } from 'redux/level/levelApi';
+// import { useChangeRankMutation } from 'redux/level/levelApi';
 
 import experienceInfo from 'data/experience.json';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 const useExperience = () => {
-  const [changeLevel] = useChangeLevelMutation();
-  const [changeRank] = useChangeRankMutation();
+  // const [changeLevel] = useChangeLevelMutation();
+  // const [changeRank] = useChangeRankMutation();
 
   const findNextLevel = (currentLevel: number) => {
     const nextLevelInfo = experienceInfo.find(

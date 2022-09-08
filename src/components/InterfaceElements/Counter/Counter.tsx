@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import IconSwitcher from 'components/IconSwitcher';
+import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import { Wrapper, MainField, Button, Value, Option } from './Counter.styled';
 
 const Counter: React.FC<{}> = () => {

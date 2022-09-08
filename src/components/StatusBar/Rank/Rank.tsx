@@ -1,4 +1,4 @@
-import IconSwitcher from 'components/IconSwitcher';
+import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import { StarsWrapper } from './Rank.styled';
 
 const Rank: React.FC<{ level: number }> = ({ level }) => {

@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import operations from 'redux/user/userOperations';
 
-import Button from 'components/Button';
-import IconSwitcher from 'components/IconSwitcher';
+import Button from 'components/InterfaceElements/Button';
+import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import Modal from 'components/Modal';
 import DialogWindow from 'components/Modal/DialogWindow';
 import EditProfile from 'components/Modal/EditProfile';

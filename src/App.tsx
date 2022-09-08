@@ -2,9 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import useGetCurrentUser from 'hooks/useGetCurrentUser';
 import styled from '@emotion/styled';
 
-import Layout from 'components/Layout';
-import PrivateRoute from 'components/PrivateRoute';
-import PublicRoute from 'components/PublicRoute';
+import Layout from 'components/Routes/Layout';
+import PrivateRoute from 'components/Routes/PrivateRoute';
+import PublicRoute from 'components/Routes/PublicRoute';
 
 import HomePage from 'pages/HomePage';
 import SignupPage from 'pages/SignupPage';

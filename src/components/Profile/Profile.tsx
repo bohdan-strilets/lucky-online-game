@@ -8,10 +8,10 @@ import { getUser } from 'redux/user/userSelectors';
 import { API_URL } from 'api';
 import dateFormatting from 'helpers/dateFormatting';
 
-import Container from 'components/Container';
+import Container from 'components/InterfaceElements/Container';
 import Controllers from './Controllers';
 import Modal from 'components/Modal';
-import IconSwitcher from 'components/IconSwitcher';
+import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import EditAvatar from 'components/Modal/EditAvatar';
 import EditEmail from 'components/Modal/EditEmail';
 import EditPassword from 'components/Modal/EditPassword';
