@@ -3,6 +3,8 @@ import useGetCurrentUser from 'hooks/useGetCurrentUser';
 import styled from '@emotion/styled';
 
 import Layout from 'components/Layout';
+import PrivateRoute from 'components/PrivateRoute';
+import PublicRoute from 'components/PublicRoute';
 
 import HomePage from 'pages/HomePage';
 import SignupPage from 'pages/SignupPage';
@@ -40,73 +42,91 @@ const App: React.FC = () => {
           <Route
             path="/"
             element={
-              <Layout>
-                <HomePage />
-              </Layout>
+              <PublicRoute>
+                <Layout>
+                  <HomePage />
+                </Layout>
+              </PublicRoute>
             }
           />
           <Route
             path="/sign-up"
             element={
-              <Layout>
-                <SignupPage />
-              </Layout>
+              <PublicRoute restricted>
+                <Layout>
+                  <SignupPage />
+                </Layout>
+              </PublicRoute>
             }
           />
           <Route
             path="/terms-and-conditions"
             element={
-              <Layout>
-                <TermsConditionsPage />
-              </Layout>
+              <PublicRoute>
+                <Layout>
+                  <TermsConditionsPage />
+                </Layout>
+              </PublicRoute>
             }
           />
           <Route
             path="/privacy-policy"
             element={
-              <Layout>
-                <PrivacyPolicyPage />
-              </Layout>
+              <PublicRoute>
+                <Layout>
+                  <PrivacyPolicyPage />
+                </Layout>
+              </PublicRoute>
             }
           />
           <Route
             path="/sign-in"
             element={
-              <Layout>
-                <SigninPage />
-              </Layout>
+              <PublicRoute restricted>
+                <Layout>
+                  <SigninPage />
+                </Layout>
+              </PublicRoute>
             }
           />
           <Route
             path="/reset-password"
             element={
-              <Layout>
-                <ResetPasswordPage />
-              </Layout>
+              <PublicRoute restricted>
+                <Layout>
+                  <ResetPasswordPage />
+                </Layout>
+              </PublicRoute>
             }
           />
           <Route
             path="/welcome"
             element={
-              <Layout>
-                <WelcomePage />
-              </Layout>
+              <PrivateRoute>
+                <Layout>
+                  <WelcomePage />
+                </Layout>
+              </PrivateRoute>
             }
           />
           <Route
             path="/profile"
             element={
-              <Layout showSidebars>
-                <ProfilePage />
-              </Layout>
+              <PrivateRoute>
+                <Layout showSidebars>
+                  <ProfilePage />
+                </Layout>
+              </PrivateRoute>
             }
           />
           <Route
             path="/new-game"
             element={
-              <Layout>
-                <CreateNewGamePage />
-              </Layout>
+              <PrivateRoute>
+                <Layout>
+                  <CreateNewGamePage />
+                </Layout>
+              </PrivateRoute>
             }
           />
         </Routes>

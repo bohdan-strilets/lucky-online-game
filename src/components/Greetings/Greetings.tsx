@@ -1,3 +1,5 @@
+import { useAppSelector } from 'hooks/useAppSelector';
+import { getIsLoggedIn } from 'redux/user/userSelectors';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gameRules from 'data/gameRules.json';
@@ -12,6 +14,7 @@ const Greetings: React.FC<{}> = () => {
   const [showRulles, setShowRulles] = useState(false);
   const navigate = useNavigate();
 
+  const isLoggedIn = useAppSelector(getIsLoggedIn);
   const toogle = () => setShowRulles(prevstate => !prevstate);
 
   return (
@@ -31,34 +34,49 @@ const Greetings: React.FC<{}> = () => {
       </Text>
       <Text>Good luck newbie.</Text>
 
-      <List>
-        <li>
-          <Button
-            type="button"
-            background="green"
-            height="60px"
-            width="380px"
-            borderRadius="50px"
-            shadow
-            onClick={() => navigate('/sign-up')}
-          >
-            Sign up
-          </Button>
-        </li>
-        <li>
-          <Button
-            type="button"
-            background="blue"
-            height="60px"
-            width="380px"
-            borderRadius="50px"
-            shadow
-            onClick={() => navigate('/sign-in')}
-          >
-            Sign in
-          </Button>
-        </li>
-      </List>
+      {isLoggedIn ? (
+        <Button
+          type="button"
+          background="green"
+          height="60px"
+          width="100%"
+          borderRadius="50px"
+          shadow
+          margin="0 0 30px 0"
+          onClick={() => navigate('/profile')}
+        >
+          start
+        </Button>
+      ) : (
+        <List>
+          <li>
+            <Button
+              type="button"
+              background="green"
+              height="60px"
+              width="380px"
+              borderRadius="50px"
+              shadow
+              onClick={() => navigate('/sign-up')}
+            >
+              Sign up
+            </Button>
+          </li>
+          <li>
+            <Button
+              type="button"
+              background="blue"
+              height="60px"
+              width="380px"
+              borderRadius="50px"
+              shadow
+              onClick={() => navigate('/sign-in')}
+            >
+              Sign in
+            </Button>
+          </li>
+        </List>
+      )}
 
       <ShowRulesButton type="button" onClick={toogle}>
         {!showRulles && (
