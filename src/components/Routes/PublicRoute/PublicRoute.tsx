@@ -10,8 +10,6 @@ const PublicRoute: React.FC<IPublicRoute> = ({
 }) => {
   const isLoggedIn = useAppSelector(getIsLoggedIn);
   const shouldRedirect = isLoggedIn && restricted;
-  console.log('shouldRedirect', shouldRedirect);
-  console.log('isLoggedIn', isLoggedIn);
 
   return shouldRedirect ? <Navigate to={redirectTo} /> : children;
 };

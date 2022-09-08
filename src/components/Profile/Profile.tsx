@@ -7,6 +7,7 @@ import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 import { getUser } from 'redux/user/userSelectors';
 import { API_URL } from 'api';
 import dateFormatting from 'helpers/dateFormatting';
+import moment from 'moment';
 
 import Container from 'components/InterfaceElements/Container';
 import Controllers from './Controllers';
@@ -53,6 +54,7 @@ const Profile: React.FC<{}> = () => {
   } = useAppSelector(getUser);
   const dispatch = useAppDispatch();
   const { data } = useGetLevelInfoQuery();
+  const age = Number.parseInt(moment(dateBirth).fromNow(true));
 
   const deleteGameSession = async () => {
     const res = await dispatch(operations.deleteSession());
@@ -133,7 +135,7 @@ const Profile: React.FC<{}> = () => {
             </Item>
             <Item>
               <Text>Date of birth:</Text>
-              <Value>{dateBirth}</Value>
+              <Value>{`${dateBirth} | ${age}`}</Value>
             </Item>
             <Item>
               <Text>Complexity:</Text>

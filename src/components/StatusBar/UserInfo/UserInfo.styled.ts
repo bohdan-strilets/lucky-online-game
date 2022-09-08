@@ -12,7 +12,7 @@ export const Name = styled.p`
 
 export const Nickname = styled.p`
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 `;
 
 export const Status = styled.p`

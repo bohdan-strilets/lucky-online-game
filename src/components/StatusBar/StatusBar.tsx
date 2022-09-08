@@ -2,6 +2,7 @@ import { useAppSelector } from 'hooks/useAppSelector';
 import { getUser } from 'redux/user/userSelectors';
 import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 import useExperience from 'hooks/useExperience';
+import moment from 'moment';
 
 import Container from 'components/InterfaceElements/Container';
 import Logo from 'components/InterfaceElements/Logo';
@@ -9,7 +10,7 @@ import UserInfo from './UserInfo';
 import LevelInfo from './LevelInfo';
 import RateInfo from './RateInfo';
 
-import { BankWrapper, Amount } from './StatusBar.styled';
+import { TimeWrapper, Time, BankWrapper, Amount } from './StatusBar.styled';
 
 const StatusBar: React.FC<{}> = () => {
   const { name, nickname, bank } = useAppSelector(getUser);
@@ -19,6 +20,10 @@ const StatusBar: React.FC<{}> = () => {
   return (
     <Container type="transparent" width="280px" height="100vh" padding="20px">
       <Logo />
+
+      <TimeWrapper>
+        <Time>{moment().format('Do YYYY, H:mm')}</Time>
+      </TimeWrapper>
 
       <UserInfo
         name={name}
