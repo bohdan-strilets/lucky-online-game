@@ -32,14 +32,12 @@ const SettingsBar: React.FC<{}> = () => {
       navigate('/new-game');
     }
   };
-  console.log(fullScreen);
+
   const switchFullScreen = async () => {
     const elem = document.documentElement;
-
     try {
       await elem.requestFullscreen();
       setFullScreen(true);
-
       if (fullScreen) {
         await document.exitFullscreen();
         setFullScreen(false);

@@ -197,9 +197,9 @@ const createSession = createAsyncThunk<ICreateSessionRes, IEditComplexityData>(
 
 const changeBank = createAsyncThunk<IChangeBankRes, IEditBankData>(
   'user/change-bank',
-  async amount => {
+  async bank => {
     try {
-      const { data } = await api.patch('/api/v1/user/change-bank', amount);
+      const { data } = await api.patch('/api/v1/user/change-bank', bank);
       return data;
     } catch (error: any) {
       const message = error.response.data.message;

@@ -14,7 +14,7 @@ const UserInfo: React.FC<IUserInfoState> = ({
       <Name>{name}</Name>
       <Nickname>{nickname}</Nickname>
 
-      <Status>{rank}</Status>
+      {rank && <Status>{rank}</Status>}
 
       {level && <Rank level={level} />}
     </Wrapper>

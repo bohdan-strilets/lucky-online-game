@@ -13,8 +13,8 @@ import { BankWrapper, Amount } from './StatusBar.styled';
 
 const StatusBar: React.FC<{}> = () => {
   const { name, nickname, bank } = useAppSelector(getUser);
-  const { data } = useGetLevelInfoQuery();
   const { getExperienceToImprove } = useExperience();
+  const { data } = useGetLevelInfoQuery();
 
   return (
     <Container type="transparent" width="280px" height="100vh" padding="20px">
@@ -23,15 +23,17 @@ const StatusBar: React.FC<{}> = () => {
       <UserInfo
         name={name}
         nickname={nickname}
-        rank={data?.level.rank}
-        level={data?.level.level}
+        rank={data?.level ? data?.level.rank : 'homeless'}
+        level={data?.level ? data?.level.level : 1}
       />
 
       {data && (
         <LevelInfo
-          experience={data.level.experience}
-          level={data.level.level}
-          experienceToImprove={getExperienceToImprove(data.level.level)}
+          experience={data?.level ? data.level.experience : 0}
+          level={data?.level ? data.level.level : 0}
+          experienceToImprove={getExperienceToImprove(
+            data?.level ? data.level.level : 0,
+          )}
         />
       )}
 

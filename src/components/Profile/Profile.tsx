@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAppSelector } from 'hooks/useAppSelector';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import operations from 'redux/user/userOperations';
+import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 
 import { getUser } from 'redux/user/userSelectors';
 import { API_URL } from 'api';
@@ -51,6 +52,7 @@ const Profile: React.FC<{}> = () => {
     updatedAt,
   } = useAppSelector(getUser);
   const dispatch = useAppDispatch();
+  const { data } = useGetLevelInfoQuery();
 
   const deleteGameSession = async () => {
     const res = await dispatch(operations.deleteSession());
@@ -168,7 +170,10 @@ const Profile: React.FC<{}> = () => {
             <Item>
               <Text>Game session:</Text>
               <Value>
-                {inGame && 'continue game'}
+                {inGame &&
+                  `Game creation date: ${dateFormatting(
+                    data?.level.createdAt as string,
+                  )}`}
                 {!inGame && 'Start a new game'}
               </Value>
             </Item>

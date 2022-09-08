@@ -13,6 +13,7 @@ const CreateNewGame: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { initialFunds, types } = useCoefficient();
+  console.log(initialFunds[types.LOW]);
 
   const createNewGame = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = e.currentTarget.textContent as 'low' | 'medium' | 'high';
@@ -20,34 +21,31 @@ const CreateNewGame: React.FC<{}> = () => {
 
     if (value === types.LOW) {
       const res = await dispatch(
-        operations.changeBank({ bank: initialFunds.LOW }),
+        operations.changeBank({ bank: initialFunds[types.LOW] }),
       );
 
       if ((res.payload as IChangeBankRes).status === 'ok') {
         navigate('/game');
-        return res;
       }
     }
 
     if (value === types.MEDIUM) {
       const res = await dispatch(
-        operations.changeBank({ bank: initialFunds.MEDIUM }),
+        operations.changeBank({ bank: initialFunds[types.MEDIUM] }),
       );
 
       if ((res.payload as IChangeBankRes).status === 'ok') {
         navigate('/game');
-        return res;
       }
     }
 
     if (value === types.HIGH) {
       const res = await dispatch(
-        operations.changeBank({ bank: initialFunds.HIGH }),
+        operations.changeBank({ bank: initialFunds[types.HIGH] }),
       );
 
       if ((res.payload as IChangeBankRes).status === 'ok') {
         navigate('/game');
-        return res;
       }
     }
   };
