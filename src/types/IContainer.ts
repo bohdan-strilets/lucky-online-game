@@ -1,6 +1,8 @@
 export interface IContainerState {
   children: any;
   type: 'color' | 'transparent';
+  direction?: 'row' | 'column';
+  justifyContent?: string;
   width: string;
   height?: string;
   padding?: string;
@@ -14,7 +16,14 @@ export interface IContainerState {
 
 export type IWrapperStyled = Pick<
   IContainerState,
-  'width' | 'height' | 'margin' | 'padding' | 'alignItems' | 'type'
+  | 'width'
+  | 'direction'
+  | 'justifyContent'
+  | 'height'
+  | 'margin'
+  | 'padding'
+  | 'alignItems'
+  | 'type'
 >;
 
 export type IPointStyled = Pick<

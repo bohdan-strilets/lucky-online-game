@@ -15,6 +15,7 @@ import ResetPasswordPage from 'pages/ResetPasswordPage';
 import WelcomePage from 'pages/WelcomePage';
 import ProfilePage from 'pages/ProfilePage';
 import CreateNewGamePage from 'pages/CreateNewGamePage';
+import GamePage from 'pages/GamePage';
 
 import background from 'images/app/bg.png';
 
@@ -125,6 +126,16 @@ const App: React.FC = () => {
               <PrivateRoute>
                 <Layout>
                   <CreateNewGamePage />
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/game"
+            element={
+              <PrivateRoute>
+                <Layout showSidebars>
+                  <GamePage />
                 </Layout>
               </PrivateRoute>
             }

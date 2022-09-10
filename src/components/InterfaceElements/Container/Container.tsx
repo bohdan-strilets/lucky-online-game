@@ -4,6 +4,8 @@ import { Wrapper, Point } from './Container.styled';
 const Container: React.FC<IContainerState> = ({
   children,
   type,
+  direction,
+  justifyContent,
   width,
   height,
   padding,
@@ -17,6 +19,8 @@ const Container: React.FC<IContainerState> = ({
   return (
     <Wrapper
       type={type}
+      direction={direction}
+      justifyContent={justifyContent}
       width={width}
       height={height}
       padding={padding}

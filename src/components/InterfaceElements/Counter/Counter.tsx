@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
+
+import { ICounterState } from 'types/ICounter';
 import { Wrapper, MainField, Button, Value, Option } from './Counter.styled';
 
-const Counter: React.FC<{}> = () => {
+const Counter: React.FC<ICounterState> = ({ margin, getValue }) => {
   const [value, setValue] = useState(0);
 
   const increment = () => setValue(prevstate => prevstate + 1);
@@ -16,9 +18,10 @@ const Counter: React.FC<{}> = () => {
   };
 
   const resetValue = () => setValue(0);
+  (() => getValue(value))();
 
   return (
-    <Wrapper>
+    <Wrapper margin={margin}>
       <MainField>
         <Button type="button" onClick={decrement} width="30px">
           <IconSwitcher name="minus" size="16px" fill="var(--brown-color)" />
@@ -34,7 +37,7 @@ const Counter: React.FC<{}> = () => {
           type="button"
           onClick={resetValue}
           width="50px"
-          margin="0 5px 0 0"
+          margin="0 25px 0 0"
         >
           0
         </Button>
@@ -42,7 +45,7 @@ const Counter: React.FC<{}> = () => {
           type="button"
           onClick={addedValue}
           width="50px"
-          margin="0 5px 0 0"
+          margin="0 25px 0 0"
         >
           +10
         </Button>
@@ -50,7 +53,7 @@ const Counter: React.FC<{}> = () => {
           type="button"
           onClick={addedValue}
           width="50px"
-          margin="0 5px 0 0"
+          margin="0 25px 0 0"
         >
           +50
         </Button>
@@ -58,7 +61,7 @@ const Counter: React.FC<{}> = () => {
           type="button"
           onClick={addedValue}
           width="50px"
-          margin="0 5px 0 0"
+          margin="0 25px 0 0"
         >
           +100
         </Button>
@@ -66,7 +69,7 @@ const Counter: React.FC<{}> = () => {
           type="button"
           onClick={addedValue}
           width="50px"
-          margin="0 5px 0 0"
+          margin="0 25px 0 0"
         >
           +500
         </Button>

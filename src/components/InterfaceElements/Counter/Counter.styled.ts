@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
+import { IWrapperStyled } from 'types/ICounter';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<IWrapperStyled>`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
 
+  margin: ${({ margin }) => (margin ? margin : '')};
   padding: 10px;
+  width: 100%;
 
   background: var(--brown-transparent);
   border: 2px solid var(--brown-color);

@@ -22,7 +22,8 @@ const StatusBar: React.FC<{}> = () => {
       <Logo />
 
       <TimeWrapper>
-        <Time>{moment().format('Do YYYY, H:mm')}</Time>
+        {/* <Time>{moment().format('Do YYYY, H:mm')}</Time> */}
+        <Time>{moment().format('YYYY-MM-DD HH:mm')}</Time>
       </TimeWrapper>
 
       <UserInfo

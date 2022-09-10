@@ -6,7 +6,9 @@ export const Wrapper = styled.div<IWrapperStyled>`
   position: relative;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ direction }) => (direction ? direction : 'column')};
+  justify-content: ${({ justifyContent }) =>
+    justifyContent ? justifyContent : ''};
   align-items: ${({ alignItems }) => {
     if (alignItems === 'center') {
       return 'center';
