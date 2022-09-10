@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/lucky-online-game/static/css/main.a1c6c2ca.css",
-    "main.js": "/lucky-online-game/static/js/main.3084fb85.js",
+    "main.js": "/lucky-online-game/static/js/main.b7d6049e.js",
     "static/media/bg.png": "/lucky-online-game/static/media/bg.4347b46074ffec4f444b.png",
     "static/media/background.png": "/lucky-online-game/static/media/background.51937d06296df6a4c8cd.png",
     "static/media/logo-icon.png": "/lucky-online-game/static/media/logo-icon.b2142ed00b8d94625175.png",
     "static/media/icons.svg": "/lucky-online-game/static/media/icons.a324e9a77fa8ceff538d85837af2ea8c.svg",
     "index.html": "/lucky-online-game/index.html",
     "main.a1c6c2ca.css.map": "/lucky-online-game/static/css/main.a1c6c2ca.css.map",
-    "main.3084fb85.js.map": "/lucky-online-game/static/js/main.3084fb85.js.map"
+    "main.b7d6049e.js.map": "/lucky-online-game/static/js/main.b7d6049e.js.map"
   },
   "entrypoints": [
     "static/css/main.a1c6c2ca.css",
-    "static/js/main.3084fb85.js"
+    "static/js/main.b7d6049e.js"
   ]
 }
