@@ -19,7 +19,7 @@ export const Line = styled.div`
 `;
 
 export const Progress = styled.div<{ percengate: number }>`
-  width: ${({ percengate }) => (percengate ? `${percengate}%` : '100%')};
+  width: ${({ percengate }) => (percengate ? `${percengate}%` : '1%')};
   height: 4px;
 
   background-color: var(--green-color);

@@ -32,6 +32,14 @@ export interface ICreateBetRes {
   bet: IBets;
 }
 
+export interface ICreateBetData {
+  type: string | null;
+  color: string | null;
+  number: number | null;
+  betAmount: number | null;
+  coefficient: number | undefined;
+}
+
 export interface IChangeBetRes {
   status: string;
   code: number;

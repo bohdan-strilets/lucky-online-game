@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import 'styles/animation.css';
 
 export const OuterCircle = styled.div`
   position: relative;
@@ -35,4 +36,9 @@ export const Value = styled.span`
 
   color: var(--white-color);
   text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
+
+  animation-name: rotation;
+  animation-duration: 1500ms;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
 `;

@@ -1,4 +1,11 @@
 import { useState } from 'react';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { getUser } from 'redux/user/userSelectors';
+import useCoefficient from 'hooks/useCoefficient';
+import useMakeMove from 'hooks/useMakeMove';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import operations from 'redux/user/userOperations';
+import betsOperations from 'redux/bets/betsOperations';
 
 import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
@@ -6,13 +13,21 @@ import Counter from 'components/InterfaceElements/Counter';
 import GameWheel from './GameWheel';
 
 import numbers from 'data/numbers.json';
+import { ICreateBetRes } from 'types/IBetsApi';
 import { Form, Wrapper, Item, Input, Label } from './Game.styled';
 
 const Game: React.FC<{}> = () => {
+  const dispatch = useAppDispatch();
+
+  const { complexity, bank } = useAppSelector(getUser);
+  const { getCoefficient } = useCoefficient();
+  const { getWinner } = useMakeMove();
+
   const [type, setType] = useState<string | null>(null);
   const [color, setColor] = useState<string | null>(null);
   const [number, setNumber] = useState<number | null>(null);
   const [amount, setAmount] = useState<number | null>(0);
+  const [randomNumber, setRandomNumber] = useState(0);
 
   const rateHandler = (e: React.MouseEvent<HTMLInputElement>) => {
     const type = e.currentTarget.dataset.type;
@@ -26,18 +41,32 @@ const Game: React.FC<{}> = () => {
 
   const amountHandler = (value: number) => setAmount(value);
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const rate = {
       type,
       color,
       number,
-      amount,
+      betAmount: amount,
+      coefficient: getCoefficient(complexity && complexity),
     };
 
-    if (rate.amount !== null && rate.amount > 0) {
-      console.log(rate);
+    if (
+      rate.betAmount !== null &&
+      rate.betAmount > 0 &&
+      bank &&
+      bank >= rate.betAmount
+    ) {
+      dispatch(operations.changeBank({ bank: -rate.betAmount }));
+      const data = await dispatch(betsOperations.createBet(rate));
+
+      const result = await getWinner(
+        rate.type as string,
+        rate.number as number,
+        (data.payload as ICreateBetRes).bet._id,
+      );
+      setRandomNumber(result?.randomNumber as number);
     }
   };
 
@@ -279,7 +308,7 @@ const Game: React.FC<{}> = () => {
         </Button>
       </Form>
 
-      <GameWheel />
+      <GameWheel value={randomNumber} isWon={true} />
     </Container>
   );
 };

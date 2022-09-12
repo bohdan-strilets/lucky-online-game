@@ -22,7 +22,6 @@ const StatusBar: React.FC<{}> = () => {
       <Logo />
 
       <TimeWrapper>
-        {/* <Time>{moment().format('Do YYYY, H:mm')}</Time> */}
         <Time>{moment().format('YYYY-MM-DD HH:mm')}</Time>
       </TimeWrapper>
 
@@ -45,7 +44,7 @@ const StatusBar: React.FC<{}> = () => {
 
       <BankWrapper>
         <p>State of an account</p>
-        <Amount>{`${bank} $`}</Amount>
+        <Amount>{`${Number(bank).toFixed(2)} $`}</Amount>
       </BankWrapper>
 
       <RateInfo />

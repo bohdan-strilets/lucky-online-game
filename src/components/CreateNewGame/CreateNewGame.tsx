@@ -12,16 +12,15 @@ import { Title, Text, List } from './CreateNewGame.styled';
 const CreateNewGame: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { initialFunds, types } = useCoefficient();
-  console.log(initialFunds[types.LOW]);
+  const { coefficientInfo } = useCoefficient();
 
   const createNewGame = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = e.currentTarget.textContent as 'low' | 'medium' | 'high';
     dispatch(operations.createSession({ complexity: value }));
 
-    if (value === types.LOW) {
+    if (value === coefficientInfo.low.types) {
       const res = await dispatch(
-        operations.changeBank({ bank: initialFunds[types.LOW] }),
+        operations.changeBank({ bank: coefficientInfo.low.initialFunds }),
       );
 
       if ((res.payload as IChangeBankRes).status === 'ok') {
@@ -29,9 +28,9 @@ const CreateNewGame: React.FC<{}> = () => {
       }
     }
 
-    if (value === types.MEDIUM) {
+    if (value === coefficientInfo.medium.types) {
       const res = await dispatch(
-        operations.changeBank({ bank: initialFunds[types.MEDIUM] }),
+        operations.changeBank({ bank: coefficientInfo.medium.initialFunds }),
       );
 
       if ((res.payload as IChangeBankRes).status === 'ok') {
@@ -39,9 +38,9 @@ const CreateNewGame: React.FC<{}> = () => {
       }
     }
 
-    if (value === types.HIGH) {
+    if (value === coefficientInfo.high.types) {
       const res = await dispatch(
-        operations.changeBank({ bank: initialFunds[types.HIGH] }),
+        operations.changeBank({ bank: coefficientInfo.high.initialFunds }),
       );
 
       if ((res.payload as IChangeBankRes).status === 'ok') {

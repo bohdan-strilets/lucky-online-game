@@ -17,7 +17,7 @@ const LevelInfo: React.FC<ILevelInfoState> = ({
       const value = getPercentage(level, experience);
       setPercengate(value);
     }
-  }, [experience, getPercentage, level]);
+  }, [experience, getPercentage, level, percengate]);
 
   return (
     <Wrapper>
