@@ -1,4 +1,6 @@
 import { useAppSelector } from 'hooks/useAppSelector';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { getBet } from 'redux/bets/betsSelectors';
 import { getUser } from 'redux/user/userSelectors';
 import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 import useExperience from 'hooks/useExperience';
@@ -13,6 +15,8 @@ import RateInfo from './RateInfo';
 import { TimeWrapper, Time, BankWrapper, Amount } from './StatusBar.styled';
 
 const StatusBar: React.FC<{}> = () => {
+  const bet = useAppSelector(getBet);
+
   const { name, nickname, bank } = useAppSelector(getUser);
   const { getExperienceToImprove } = useExperience();
   const { data } = useGetLevelInfoQuery();
@@ -47,7 +51,15 @@ const StatusBar: React.FC<{}> = () => {
         <Amount>{`${Number(bank).toFixed(2)} $`}</Amount>
       </BankWrapper>
 
-      <RateInfo />
+      {bet && (
+        <RateInfo
+          type={bet.type}
+          number={bet.number}
+          color={bet.color}
+          betAmount={bet.betAmount}
+          coefficient={bet.coefficient}
+        />
+      )}
     </Container>
   );
 };

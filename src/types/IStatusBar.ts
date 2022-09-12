@@ -10,3 +10,11 @@ export interface IUserInfoState {
   rank: string | undefined;
   level: number | undefined;
 }
+
+export interface IRateInfoState {
+  type: string | null;
+  number: number | null;
+  color: string | null;
+  betAmount: number | null;
+  coefficient: number | null;
+}
