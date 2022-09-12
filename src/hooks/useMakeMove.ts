@@ -45,6 +45,7 @@ const useMakeMove = () => {
 
   const getWinner = async (type: string, number: number, id: string) => {
     let num = null;
+    let experience = null;
 
     switch (type) {
       case types.ZERO:
@@ -52,7 +53,7 @@ const useMakeMove = () => {
 
         if (number === randomNumber) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -78,7 +79,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -87,7 +93,7 @@ const useMakeMove = () => {
 
         if (number === randomNumber) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -113,7 +119,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -123,7 +134,7 @@ const useMakeMove = () => {
 
         if (num?.high) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -149,7 +160,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -159,7 +175,7 @@ const useMakeMove = () => {
 
         if (num?.low) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -185,7 +201,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -195,7 +216,7 @@ const useMakeMove = () => {
 
         if (num?.even) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -221,7 +242,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -231,7 +257,7 @@ const useMakeMove = () => {
 
         if (num?.odd) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -257,7 +283,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -267,7 +298,7 @@ const useMakeMove = () => {
 
         if (num?.color === 'black') {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -293,7 +324,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -303,7 +339,7 @@ const useMakeMove = () => {
 
         if (num?.color === 'red') {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -329,7 +365,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -339,7 +380,7 @@ const useMakeMove = () => {
 
         if (num?.['dozen-1']) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -365,7 +406,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -375,7 +421,7 @@ const useMakeMove = () => {
 
         if (num?.['dozen-2']) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -401,7 +447,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -411,7 +462,7 @@ const useMakeMove = () => {
 
         if (num?.['dozen-3']) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -437,7 +488,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -447,7 +503,7 @@ const useMakeMove = () => {
 
         if (num?.['column-1']) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -473,7 +529,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -483,7 +544,7 @@ const useMakeMove = () => {
 
         if (num?.['column-2']) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -509,7 +570,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 
@@ -519,7 +585,7 @@ const useMakeMove = () => {
 
         if (num?.['column-3']) {
           if (complexity) {
-            const experience =
+            experience =
               coefficientInfo[complexity].coefficient *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
@@ -545,7 +611,12 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon: true, randomNumber };
+          return {
+            isWon: true,
+            randomNumber,
+            money: (data.payload as IChangeBetRes).bet.winningAmount,
+            experience,
+          };
         }
         return { isWon: false, randomNumber };
 

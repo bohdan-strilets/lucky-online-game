@@ -11,6 +11,8 @@ import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
 import Counter from 'components/InterfaceElements/Counter';
 import GameWheel from './GameWheel';
+import Modal from 'components/Modal';
+import Success from 'components/Modal/Success';
 import { toast } from 'react-toastify';
 
 import numbers from 'data/numbers.json';
@@ -30,10 +32,14 @@ const Game: React.FC<{}> = () => {
   const [amount, setAmount] = useState<number | null>(0);
   const [randomNumber, setRandomNumber] = useState(0);
   const [isWon, setIsWon] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [experienceGained, setExperienceGained] = useState(0);
+  const [receivedMoney, setReceivedMoney] = useState(0);
 
   useEffect(() => {
     if (isWon) {
-      toast.success(`Congratulations you win!!!`);
+      setShowSuccessModal(true);
+      setIsWon(false);
     }
   }, [isWon]);
 
@@ -76,6 +82,8 @@ const Game: React.FC<{}> = () => {
       );
       setRandomNumber(result?.randomNumber as number);
       setIsWon(result?.isWon as boolean);
+      setExperienceGained(result?.experience as number);
+      setReceivedMoney(result?.money as number);
 
       return;
     }
@@ -324,6 +332,15 @@ const Game: React.FC<{}> = () => {
       </Form>
 
       <GameWheel value={randomNumber} isWon={isWon} />
+
+      {showSuccessModal && (
+        <Modal
+          title="Congratulations, you've won."
+          onClose={() => setShowSuccessModal(false)}
+        >
+          <Success experience={experienceGained} money={receivedMoney} />
+        </Modal>
+      )}
     </Container>
   );
 };
