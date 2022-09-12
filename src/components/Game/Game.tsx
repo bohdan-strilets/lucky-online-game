@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppSelector } from 'hooks/useAppSelector';
 import { getUser } from 'redux/user/userSelectors';
 import useCoefficient from 'hooks/useCoefficient';
@@ -11,6 +11,7 @@ import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
 import Counter from 'components/InterfaceElements/Counter';
 import GameWheel from './GameWheel';
+import { toast } from 'react-toastify';
 
 import numbers from 'data/numbers.json';
 import { ICreateBetRes } from 'types/IBetsApi';
@@ -29,6 +30,12 @@ const Game: React.FC<{}> = () => {
   const [amount, setAmount] = useState<number | null>(0);
   const [randomNumber, setRandomNumber] = useState(0);
   const [isWon, setIsWon] = useState(false);
+
+  useEffect(() => {
+    if (isWon) {
+      toast.success(`Congratulations you win!!!`);
+    }
+  }, [isWon]);
 
   const rateHandler = (e: React.MouseEvent<HTMLInputElement>) => {
     const type = e.currentTarget.dataset.type;
@@ -69,7 +76,13 @@ const Game: React.FC<{}> = () => {
       );
       setRandomNumber(result?.randomNumber as number);
       setIsWon(result?.isWon as boolean);
+
+      return;
     }
+
+    return toast.error(
+      'The amount of the bet must be greater than zero, and this amount must also be in your account.',
+    );
   };
 
   return (

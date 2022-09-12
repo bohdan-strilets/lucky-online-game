@@ -1,10 +1,10 @@
 import { useAppSelector } from 'hooks/useAppSelector';
-import { useAppDispatch } from 'hooks/useAppDispatch';
 import { getBet } from 'redux/bets/betsSelectors';
 import { getUser } from 'redux/user/userSelectors';
 import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 import useExperience from 'hooks/useExperience';
 import moment from 'moment';
+import bankFormatting from 'helpers/bankFormatting';
 
 import Container from 'components/InterfaceElements/Container';
 import Logo from 'components/InterfaceElements/Logo';
@@ -20,6 +20,7 @@ const StatusBar: React.FC<{}> = () => {
   const { name, nickname, bank } = useAppSelector(getUser);
   const { getExperienceToImprove } = useExperience();
   const { data } = useGetLevelInfoQuery();
+  const stateAccount = bankFormatting(Number(bank).toFixed(2));
 
   return (
     <Container type="transparent" width="280px" height="100vh" padding="20px">
@@ -48,7 +49,7 @@ const StatusBar: React.FC<{}> = () => {
 
       <BankWrapper>
         <p>State of an account</p>
-        <Amount>{`${Number(bank).toFixed(2)} $`}</Amount>
+        <Amount>{`${stateAccount} $`}</Amount>
       </BankWrapper>
 
       {bet && (
