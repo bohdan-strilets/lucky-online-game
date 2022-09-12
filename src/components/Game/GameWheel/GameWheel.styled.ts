@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { IInnerCircleStyled } from 'types/IGameWheel';
 import 'styles/animation.css';
 
 export const OuterCircle = styled.div`
@@ -16,7 +17,7 @@ export const OuterCircle = styled.div`
   border-radius: 50%;
 `;
 
-export const InnerCircle = styled.div`
+export const InnerCircle = styled.div<IInnerCircleStyled>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +25,8 @@ export const InnerCircle = styled.div`
   width: 330px;
   height: 330px;
 
-  background: var(--green-gradient);
+  background: ${({ isWon }) =>
+    isWon ? 'var(--green-color)' : 'var(--red-color)'};
   border: 15px solid var(--white-transparent);
   border-radius: 50%;
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5) inset;

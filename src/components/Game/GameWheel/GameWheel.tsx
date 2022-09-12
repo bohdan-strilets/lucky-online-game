@@ -4,7 +4,7 @@ import { OuterCircle, InnerCircle, Value } from './GameWheel.styled';
 const GameWheel: React.FC<IGameWheelState> = ({ value, isWon }) => {
   return (
     <OuterCircle>
-      <InnerCircle>
+      <InnerCircle isWon={isWon}>
         <Value>{value}</Value>
       </InnerCircle>
     </OuterCircle>

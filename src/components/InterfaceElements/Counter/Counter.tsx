@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 
@@ -18,7 +18,10 @@ const Counter: React.FC<ICounterState> = ({ margin, getValue }) => {
   };
 
   const resetValue = () => setValue(0);
-  (() => getValue(value))();
+
+  useEffect(() => {
+    (() => getValue(value))();
+  }, [getValue, value]);
 
   return (
     <Wrapper margin={margin}>

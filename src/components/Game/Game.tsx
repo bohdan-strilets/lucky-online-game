@@ -28,6 +28,7 @@ const Game: React.FC<{}> = () => {
   const [number, setNumber] = useState<number | null>(null);
   const [amount, setAmount] = useState<number | null>(0);
   const [randomNumber, setRandomNumber] = useState(0);
+  const [isWon, setIsWon] = useState(false);
 
   const rateHandler = (e: React.MouseEvent<HTMLInputElement>) => {
     const type = e.currentTarget.dataset.type;
@@ -67,6 +68,7 @@ const Game: React.FC<{}> = () => {
         (data.payload as ICreateBetRes).bet._id,
       );
       setRandomNumber(result?.randomNumber as number);
+      setIsWon(result?.isWon as boolean);
     }
   };
 
@@ -308,7 +310,7 @@ const Game: React.FC<{}> = () => {
         </Button>
       </Form>
 
-      <GameWheel value={randomNumber} isWon={true} />
+      <GameWheel value={randomNumber} isWon={isWon} />
     </Container>
   );
 };

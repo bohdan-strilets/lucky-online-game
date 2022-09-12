@@ -22,7 +22,6 @@ const useMakeMove = () => {
   const { updateLevel, updateRank } = useExperience();
   const { data: levelInfo } = useGetLevelInfoQuery();
 
-  const [isWon, setIsWon] = useState(false);
   const [randomNumber, setRandomNumber] = useState(() =>
     randomNumberGenerator(),
   );
@@ -45,46 +44,18 @@ const useMakeMove = () => {
   };
 
   const getWinner = async (type: string, number: number, id: string) => {
-    switch (type) {
-      // case types.ZERO:
-      //   setRandomNumber(randomNumberGenerator());
-      //   if (number === randomNumber) {
-      //     setIsWon(true);
-      //     return { isWon, randomNumber, number };
-      //   }
-      //   setIsWon(false);
-      //   return { isWon, randomNumber, number };
+    let num = null;
 
-      case types.NUMBER:
+    switch (type) {
+      case types.ZERO:
         setRandomNumber(randomNumberGenerator());
 
         if (number === randomNumber) {
-          setIsWon(true);
           if (complexity) {
-            changeExperience({
-              experience:
-                coefficientInfo[complexity].coefficient *
-                coefficientInfo[complexity].experience,
-            });
-          }
-          // changeBet({ betId: id, isWon });
-          return { isWon, randomNumber, number };
-        }
-        setIsWon(false);
-        return { isWon, randomNumber, number };
-
-      case types.HIGH:
-        setRandomNumber(randomNumberGenerator());
-        const num = numbers.find(item => item.number === randomNumber);
-
-        if (num?.high) {
-          setIsWon(true);
-          if (complexity) {
-            changeExperience({
-              experience:
-                coefficientInfo[complexity].coefficient *
-                coefficientInfo[complexity].experience,
-            });
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
           }
 
           const data = await dispatch(
@@ -96,7 +67,6 @@ const useMakeMove = () => {
               currentLevel: levelInfo?.level.level,
               currentExperience: levelInfo?.level.experience,
             });
-
             updateRank(levelInfo.level.level);
           }
 
@@ -108,13 +78,479 @@ const useMakeMove = () => {
             );
           }
 
-          return { isWon, randomNumber, number };
+          return { isWon: true, randomNumber };
         }
-        setIsWon(false);
-        return { isWon, randomNumber, number };
+        return { isWon: false, randomNumber };
+
+      case types.NUMBER:
+        setRandomNumber(randomNumberGenerator());
+
+        if (number === randomNumber) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.HIGH:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.high) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.LOW:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.low) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.EVEN:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.even) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.ODD:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.odd) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.BLACK:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.color === 'black') {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.RED:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.color === 'red') {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.DOZEN_1:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.['dozen-1']) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.DOZEN_2:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.['dozen-2']) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.DOZEN_3:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.['dozen-3']) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.COLUMN_1:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.['column-1']) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.COLUMN_2:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.['column-2']) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
+
+      case types.COLUMN_3:
+        setRandomNumber(randomNumberGenerator());
+        num = numbers.find(item => item.number === randomNumber);
+
+        if (num?.['column-3']) {
+          if (complexity) {
+            const experience =
+              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].experience;
+            changeExperience({ experience });
+          }
+
+          const data = await dispatch(
+            betsOperations.changeBet({ betId: id, isWon: true }),
+          );
+
+          if (levelInfo) {
+            updateLevel({
+              currentLevel: levelInfo?.level.level,
+              currentExperience: levelInfo?.level.experience,
+            });
+            updateRank(levelInfo.level.level);
+          }
+
+          if (data) {
+            dispatch(
+              operations.changeBank({
+                bank: (data.payload as IChangeBetRes).bet.winningAmount,
+              }),
+            );
+          }
+
+          return { isWon: true, randomNumber };
+        }
+        return { isWon: false, randomNumber };
 
       default:
-        break;
+        return console.log('No such type exists.');
     }
   };
 
