@@ -18,7 +18,7 @@ const CreateNewGame: React.FC<{}> = () => {
     const value = e.currentTarget.textContent as 'low' | 'medium' | 'high';
     dispatch(operations.createSession({ complexity: value }));
 
-    if (value === coefficientInfo.low.types) {
+    if (value === coefficientInfo.low.type) {
       const res = await dispatch(
         operations.changeBank({ bank: coefficientInfo.low.initialFunds }),
       );
@@ -28,7 +28,7 @@ const CreateNewGame: React.FC<{}> = () => {
       }
     }
 
-    if (value === coefficientInfo.medium.types) {
+    if (value === coefficientInfo.medium.type) {
       const res = await dispatch(
         operations.changeBank({ bank: coefficientInfo.medium.initialFunds }),
       );
@@ -38,7 +38,7 @@ const CreateNewGame: React.FC<{}> = () => {
       }
     }
 
-    if (value === coefficientInfo.high.types) {
+    if (value === coefficientInfo.high.type) {
       const res = await dispatch(
         operations.changeBank({ bank: coefficientInfo.high.initialFunds }),
       );
@@ -63,7 +63,6 @@ const CreateNewGame: React.FC<{}> = () => {
         get for the bet.
       </Text>
 
-      <Text>Low - 5.7, Medium - 3.2, High - 1.7</Text>
       <List>
         <li>
           <Button

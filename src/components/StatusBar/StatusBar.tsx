@@ -49,7 +49,7 @@ const StatusBar: React.FC<{}> = () => {
 
       <BankWrapper>
         <p>State of an account</p>
-        <Amount>{`${stateAccount} $`}</Amount>
+        <Amount>{`${stateAccount ? stateAccount : 0} $`}</Amount>
       </BankWrapper>
 
       {bet && (

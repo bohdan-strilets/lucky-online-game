@@ -63,7 +63,7 @@ const Game: React.FC<{}> = () => {
       color,
       number,
       betAmount: amount,
-      coefficient: getCoefficient(complexity && complexity),
+      coefficient: getCoefficient(complexity && complexity, type),
     };
 
     if (

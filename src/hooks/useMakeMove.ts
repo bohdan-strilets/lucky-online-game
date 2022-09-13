@@ -10,6 +10,7 @@ import { useAppDispatch } from './useAppDispatch';
 import operations from 'redux/user/userOperations';
 import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 import betsOperations from 'redux/bets/betsOperations';
+import types from 'helpers/betTypes';
 
 import { IChangeBetRes } from 'types/IBetsApi';
 
@@ -26,23 +27,6 @@ const useMakeMove = () => {
     randomNumberGenerator(),
   );
 
-  const types = {
-    ZERO: 'zero',
-    NUMBER: 'number',
-    HIGH: 'high',
-    LOW: 'low',
-    EVEN: 'even',
-    ODD: 'odd',
-    BLACK: 'black',
-    RED: 'red',
-    DOZEN_1: 'dozen-1',
-    DOZEN_2: 'dozen-2',
-    DOZEN_3: 'dozen-3',
-    COLUMN_1: 'column-1',
-    COLUMN_2: 'column-2',
-    COLUMN_3: 'column-3',
-  };
-
   const getWinner = async (type: string, number: number, id: string) => {
     let num = null;
     let experience = null;
@@ -54,7 +38,7 @@ const useMakeMove = () => {
         if (number === randomNumber) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.number *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -94,7 +78,7 @@ const useMakeMove = () => {
         if (number === randomNumber) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.number *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -135,7 +119,7 @@ const useMakeMove = () => {
         if (num?.high) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.oneFromTwo *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -176,7 +160,7 @@ const useMakeMove = () => {
         if (num?.low) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.oneFromTwo *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -217,7 +201,7 @@ const useMakeMove = () => {
         if (num?.even) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.oneFromTwo *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -258,7 +242,7 @@ const useMakeMove = () => {
         if (num?.odd) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.oneFromTwo *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -299,7 +283,7 @@ const useMakeMove = () => {
         if (num?.color === 'black') {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.oneFromTwo *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -340,7 +324,7 @@ const useMakeMove = () => {
         if (num?.color === 'red') {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.oneFromTwo *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -381,7 +365,7 @@ const useMakeMove = () => {
         if (num?.['dozen-1']) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.bottomRow *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -422,7 +406,7 @@ const useMakeMove = () => {
         if (num?.['dozen-2']) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.bottomRow *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -463,7 +447,7 @@ const useMakeMove = () => {
         if (num?.['dozen-3']) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.bottomRow *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -504,7 +488,7 @@ const useMakeMove = () => {
         if (num?.['column-1']) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.bottomRow *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -545,7 +529,7 @@ const useMakeMove = () => {
         if (num?.['column-2']) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.bottomRow *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -586,7 +570,7 @@ const useMakeMove = () => {
         if (num?.['column-3']) {
           if (complexity) {
             experience =
-              coefficientInfo[complexity].coefficient *
+              coefficientInfo[complexity].coefficient.bottomRow *
               coefficientInfo[complexity].experience;
             changeExperience({ experience });
           }
@@ -625,7 +609,7 @@ const useMakeMove = () => {
     }
   };
 
-  return { getWinner };
+  return { getWinner, types };
 };
 
 export default useMakeMove;
