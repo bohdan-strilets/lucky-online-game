@@ -1,4 +1,8 @@
 const bankFormatting = (bank: string) => {
+  if (bank.length < 7 || bank.length > 11) {
+    return bank;
+  }
+
   if (bank.length === 7) {
     const numbers = bank.split('');
     numbers.splice(1, 0, ' ');

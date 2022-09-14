@@ -40,7 +40,7 @@ const StatusBar: React.FC<{}> = () => {
       {data && (
         <LevelInfo
           experience={data?.level ? data.level.experience : 0}
-          level={data?.level ? data.level.level : 0}
+          level={data?.level ? data.level.level : 1}
           experienceToImprove={getExperienceToImprove(
             data?.level ? data.level.level : 0,
           )}

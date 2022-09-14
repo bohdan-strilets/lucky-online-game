@@ -14,7 +14,7 @@ const RateInfo: React.FC<IRateInfoState> = ({
       <ul>
         <Item>
           <Property>type:</Property>
-          <Value>{type}</Value>
+          <Value>{type ? type : '---'}</Value>
         </Item>
         <Item>
           <Property>number:</Property>
@@ -30,7 +30,7 @@ const RateInfo: React.FC<IRateInfoState> = ({
         </Item>
         <Item>
           <Property>coefficient:</Property>
-          <Value>{coefficient}</Value>
+          <Value>{coefficient ? coefficient : '---'}</Value>
         </Item>
       </ul>
     </Wrapper>

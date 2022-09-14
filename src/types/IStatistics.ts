@@ -8,3 +8,9 @@ export interface IStatistics {
   moneySpent: number;
   moneyEarned: number;
 }
+
+export interface IStatisticsRes {
+  status: string;
+  code: number;
+  statistics: IStatistics;
+}

@@ -16,6 +16,7 @@ import WelcomePage from 'pages/WelcomePage';
 import ProfilePage from 'pages/ProfilePage';
 import CreateNewGamePage from 'pages/CreateNewGamePage';
 import GamePage from 'pages/GamePage';
+import StatisticsPage from 'pages/StatisticsPage';
 
 import background from 'images/app/bg.png';
 
@@ -136,6 +137,16 @@ const App: React.FC = () => {
               <PrivateRoute>
                 <Layout showSidebars>
                   <GamePage />
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/statistics"
+            element={
+              <PrivateRoute>
+                <Layout showSidebars>
+                  <StatisticsPage />
                 </Layout>
               </PrivateRoute>
             }
