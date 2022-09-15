@@ -9,6 +9,7 @@ export interface IUserInfoState {
   nickname: string | undefined | null;
   rank: string | undefined;
   level: number | undefined;
+  inGame?: boolean;
 }
 
 export interface IRateInfoState {

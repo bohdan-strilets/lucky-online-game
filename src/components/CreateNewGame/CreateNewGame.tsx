@@ -16,36 +16,16 @@ const CreateNewGame: React.FC<{}> = () => {
 
   const createNewGame = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = e.currentTarget.textContent as 'low' | 'medium' | 'high';
-    dispatch(operations.createSession({ complexity: value }));
 
-    if (value === coefficientInfo.low.type) {
-      const res = await dispatch(
-        operations.changeBank({ bank: coefficientInfo.low.initialFunds }),
-      );
+    const res = await dispatch(
+      operations.createSession({
+        complexity: value,
+        bank: coefficientInfo?.[value].initialFunds,
+      }),
+    );
 
-      if ((res.payload as IChangeBankRes).status === 'ok') {
-        navigate('/game');
-      }
-    }
-
-    if (value === coefficientInfo.medium.type) {
-      const res = await dispatch(
-        operations.changeBank({ bank: coefficientInfo.medium.initialFunds }),
-      );
-
-      if ((res.payload as IChangeBankRes).status === 'ok') {
-        navigate('/game');
-      }
-    }
-
-    if (value === coefficientInfo.high.type) {
-      const res = await dispatch(
-        operations.changeBank({ bank: coefficientInfo.high.initialFunds }),
-      );
-
-      if ((res.payload as IChangeBankRes).status === 'ok') {
-        navigate('/game');
-      }
+    if ((res.payload as IChangeBankRes).status === 'ok') {
+      navigate('/game');
     }
   };
 

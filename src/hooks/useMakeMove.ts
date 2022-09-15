@@ -11,11 +11,14 @@ import operations from 'redux/user/userOperations';
 import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 import betsOperations from 'redux/bets/betsOperations';
 import types from 'helpers/betTypes';
+import useSound from 'use-sound';
 
+import soundVictory from 'sounds/sound_victory.mp3';
 import { IChangeBetRes } from 'types/IBetsApi';
 
 const useMakeMove = () => {
   const dispatch = useAppDispatch();
+  const [play] = useSound(soundVictory);
 
   const [changeExperience] = useChangeExperienceMutation();
   const { coefficientInfo } = useCoefficient();
@@ -63,6 +66,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -103,6 +107,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -144,6 +149,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -185,6 +191,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -226,6 +233,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -267,6 +275,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -308,6 +317,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -349,6 +359,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -390,6 +401,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -431,6 +443,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -472,6 +485,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -513,6 +527,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -554,6 +569,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,
@@ -595,6 +611,7 @@ const useMakeMove = () => {
             );
           }
 
+          play();
           return {
             isWon: true,
             randomNumber,

@@ -103,7 +103,7 @@ const changeAccount = createAsyncThunk<IChangeAccountRes, IEditProfileData>(
   'user/change-account',
   async newData => {
     try {
-      const { data } = await api.put('/api/v1/user/change-profile', newData);
+      const { data } = await api.patch('/api/v1/user/change-profile', newData);
       return data;
     } catch (error: any) {
       const message = error.response.data.message;

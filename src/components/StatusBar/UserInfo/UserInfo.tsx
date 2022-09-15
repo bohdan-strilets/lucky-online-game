@@ -8,15 +8,14 @@ const UserInfo: React.FC<IUserInfoState> = ({
   nickname,
   rank,
   level,
+  inGame,
 }) => {
   return (
     <Wrapper>
       <Name>{name}</Name>
       <Nickname>{nickname}</Nickname>
-
-      {rank && <Status>{rank}</Status>}
-
-      {level && <Rank level={level} />}
+      {inGame && rank && <Status>{rank}</Status>}
+      {inGame && level && <Rank level={level} />}
     </Wrapper>
   );
 };

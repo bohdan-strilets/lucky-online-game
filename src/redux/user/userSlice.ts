@@ -113,12 +113,14 @@ export const userSlice = createSlice({
 
       .addCase(operations.changeComplexity.fulfilled, (state, action) => {
         state.user.complexity = action.payload.complexity;
+        state.user.bank = action.payload.bank;
       })
 
       .addCase(operations.createSession.fulfilled, (state, action) => {
         try {
           state.user.inGame = true;
           state.user.complexity = action.payload.user.complexity;
+          state.user.bank = action.payload.user.bank;
         } catch (error) {}
       })
 

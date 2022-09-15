@@ -1,23 +1,36 @@
 import { useState, useEffect } from 'react';
+import useSound from 'use-sound';
 
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 
+import counterClick from 'sounds/counter_click.mp3';
 import { ICounterState } from 'types/ICounter';
 import { Wrapper, MainField, Button, Value, Option } from './Counter.styled';
 
 const Counter: React.FC<ICounterState> = ({ margin, getValue }) => {
   const [value, setValue] = useState(0);
+  const [play] = useSound(counterClick);
 
-  const increment = () => setValue(prevstate => prevstate + 1);
+  const increment = () => {
+    play();
+    setValue(prevstate => prevstate + 1);
+  };
 
-  const decrement = () => setValue(prevstate => prevstate - 1);
+  const decrement = () => {
+    play();
+    setValue(prevstate => prevstate - 1);
+  };
 
   const addedValue = (e: React.MouseEvent<HTMLButtonElement>) => {
+    play();
     const value = Number(e.currentTarget.textContent);
     setValue(prevState => prevState + value);
   };
 
-  const resetValue = () => setValue(0);
+  const resetValue = () => {
+    play();
+    setValue(0);
+  };
 
   useEffect(() => {
     (() => getValue(value))();

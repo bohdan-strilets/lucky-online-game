@@ -80,9 +80,13 @@ const Profile: React.FC<{}> = () => {
 
             <div>
               <p>
-                Account creation date: {dateFormatting(createdAt as string)}
+                Account creation date:{' '}
+                {createdAt && dateFormatting(createdAt as string)}
               </p>
-              <p>Last update date: {dateFormatting(updatedAt as string)}</p>
+              <p>
+                Last update date:{' '}
+                {updatedAt && dateFormatting(updatedAt as string)}
+              </p>
             </div>
           </Header>
 
@@ -145,27 +149,29 @@ const Profile: React.FC<{}> = () => {
                     ? complexity
                     : 'The game session has not yet been created.'}
                 </Value>
-                <EditBtn
-                  type="button"
-                  onClick={() => setShowEditComplexityModal(true)}
-                >
-                  <IconSwitcher
-                    name="pen"
-                    size="16px"
-                    fill="var(--green-color)"
-                  />
-                </EditBtn>
                 {inGame && (
-                  <EditBtn
-                    type="button"
-                    onClick={() => setshowDeleteSessionModal(true)}
-                  >
-                    <IconSwitcher
-                      name="delete"
-                      size="16px"
-                      fill="var(--green-color)"
-                    />
-                  </EditBtn>
+                  <>
+                    <EditBtn
+                      type="button"
+                      onClick={() => setShowEditComplexityModal(true)}
+                    >
+                      <IconSwitcher
+                        name="pen"
+                        size="16px"
+                        fill="var(--green-color)"
+                      />
+                    </EditBtn>
+                    <EditBtn
+                      type="button"
+                      onClick={() => setshowDeleteSessionModal(true)}
+                    >
+                      <IconSwitcher
+                        name="delete"
+                        size="16px"
+                        fill="var(--green-color)"
+                      />
+                    </EditBtn>
+                  </>
                 )}
               </div>
             </Item>
@@ -173,9 +179,9 @@ const Profile: React.FC<{}> = () => {
               <Text>Game session:</Text>
               <Value>
                 {inGame &&
-                  `Game creation date: ${dateFormatting(
-                    data?.level.createdAt as string,
-                  )}`}
+                  `Game creation date: ${
+                    data && dateFormatting(data?.level.createdAt as string)
+                  }`}
                 {!inGame && 'Start a new game'}
               </Value>
             </Item>

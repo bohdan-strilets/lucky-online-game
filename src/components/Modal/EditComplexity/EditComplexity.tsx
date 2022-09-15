@@ -1,12 +1,10 @@
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import operations from 'redux/user/userOperations';
-import { useAppSelector } from 'hooks/useAppSelector';
-import { getUser } from 'redux/user/userSelectors';
+import useCoefficient from 'hooks/useCoefficient';
 
 import { Formik, Form } from 'formik';
 import Button from 'components/InterfaceElements/Button';
 import RadioButton from 'components/InterfaceElements/RadioButton';
-import { toast } from 'react-toastify';
 
 import { IEditComplexityData } from 'types/IProfile';
 import editComplexitySchema from 'helpers/validationSchemas/editComplexitySchema';
@@ -20,23 +18,24 @@ const EditComplexity: React.FC<IEditComplexityState> = ({
   complexity,
 }) => {
   const dispatch = useAppDispatch();
-  const { inGame } = useAppSelector(getUser);
+  const { coefficientInfo } = useCoefficient();
 
   const initialValues = {
     complexity,
   };
 
   const onSubmit = async (values: IEditComplexityData) => {
-    if (inGame) {
-      const res = await dispatch(operations.changeComplexity(values));
+    if (values.complexity !== null && values.complexity !== undefined) {
+      const res = await dispatch(
+        operations.changeComplexity({
+          complexity: values.complexity,
+          bank: coefficientInfo[values.complexity].initialFunds,
+        }),
+      );
 
       if ((res.payload as IChangeComplexityRes).status === 'ok') {
         onClose();
       }
-    } else {
-      toast.warning(
-        'You cannot change the difficulty level without creating a new session.',
-      );
     }
   };
 
@@ -85,7 +84,7 @@ const EditComplexity: React.FC<IEditComplexityState> = ({
               borderRadius="50px"
               shadow
             >
-              Sign up
+              change
             </Button>
           </Form>
         )}

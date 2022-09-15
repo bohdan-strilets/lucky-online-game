@@ -36,5 +36,5 @@ export interface IChangeExperienceRes {
 export interface IChangeRankRes {
   status: string;
   code: number;
-  rank: Pick<ILevel, 'rank'>;
+  rank: string;
 }

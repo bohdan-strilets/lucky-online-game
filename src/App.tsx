@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import useGetCurrentUser from 'hooks/useGetCurrentUser';
 import styled from '@emotion/styled';
+import useSound from 'use-sound';
 
 import Layout from 'components/Routes/Layout';
 import PrivateRoute from 'components/Routes/PrivateRoute';
@@ -18,6 +19,7 @@ import CreateNewGamePage from 'pages/CreateNewGamePage';
 import GamePage from 'pages/GamePage';
 import StatisticsPage from 'pages/StatisticsPage';
 
+import bgSound from 'sounds/bg_sound.mp3';
 import background from 'images/app/bg.png';
 
 const Wrapper = styled.div`
@@ -36,6 +38,8 @@ const Wrapper = styled.div`
 
 const App: React.FC = () => {
   const { isRefreshing } = useGetCurrentUser();
+  const [play] = useSound(bgSound, { volume: 0.2 });
+  play();
 
   return (
     <Wrapper>

@@ -70,12 +70,13 @@ export interface IChangeComplexityRes {
   status: string;
   code: number;
   complexity: 'low' | 'medium' | 'high';
+  bank: number;
 }
 
 export interface ICreateSessionRes {
   status: string;
   code: number;
-  user: Pick<IUser, 'name' | 'email' | 'complexity' | 'inGame'>;
+  user: Pick<IUser, 'name' | 'email' | 'complexity' | 'inGame' | 'bank'>;
   userLevel: ILevel;
   userStatistics: IStatistics;
 }

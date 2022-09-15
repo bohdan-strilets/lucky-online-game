@@ -1,12 +1,17 @@
 import { useChangeLevelMutation } from 'redux/level/levelApi';
 import { useChangeRankMutation } from 'redux/level/levelApi';
 
+import useSound from 'use-sound';
+import levelUp from 'sounds/level_up.mp3';
+
 import experienceInfo from 'data/experience.json';
+import rankTypes from 'helpers/rankTypes';
 import { toast } from 'react-toastify';
 
 const useExperience = () => {
   const [changeLevel] = useChangeLevelMutation();
-  const [changeRank] = useChangeRankMutation();
+  const [changeRank, { data }] = useChangeRankMutation();
+  const [play] = useSound(levelUp);
 
   const findNextLevel = (currentLevel: number) => {
     const nextLevelInfo = experienceInfo.find(
@@ -34,6 +39,8 @@ const useExperience = () => {
       ?.experience as number;
 
     if (currentExperience >= exp) {
+      play();
+      toast.success('Your level has increased.');
       return changeLevel();
     }
 
@@ -41,41 +48,65 @@ const useExperience = () => {
   };
 
   const updateRank = (currentLevel: number) => {
-    const type = {
-      ZERO: 0,
-      FIVE: 5,
-      TEN: 10,
-      FIFTEEN: 15,
-      TWENTY: 20,
-      TWENTY_FIVE: 25,
-      THIRTY: 30,
-    };
-
-    if (currentLevel >= type.ZERO && currentLevel <= type.FIVE) {
-      return changeRank({ rank: 'jester' });
+    if (
+      currentLevel === rankTypes.jester.level &&
+      data &&
+      data.rank !== rankTypes.jester.type
+    ) {
+      play();
+      toast.success('Your rank JESTER.');
+      return changeRank({ rank: rankTypes.jester.type });
     }
 
-    if (currentLevel > type.FIVE && currentLevel <= type.TEN) {
-      return changeRank({ rank: 'beginning' });
+    if (
+      currentLevel === rankTypes.beginning.level &&
+      data &&
+      data.rank !== rankTypes.beginning.type
+    ) {
+      play();
+      toast.success('Your rank BEGINNING.');
+      return changeRank({ rank: rankTypes.beginning.type });
     }
 
-    if (currentLevel > type.TEN && currentLevel <= type.FIFTEEN) {
-      return changeRank({ rank: 'entrepreneur' });
+    if (
+      currentLevel === rankTypes.entrepreneur.level &&
+      data &&
+      data.rank !== rankTypes.entrepreneur.type
+    ) {
+      play();
+      toast.success('Your rank ENTREPRENEUR.');
+      return changeRank({ rank: rankTypes.entrepreneur.type });
     }
 
-    if (currentLevel > type.FIFTEEN && currentLevel <= type.TWENTY) {
-      return changeRank({ rank: 'businessman' });
+    if (
+      currentLevel === rankTypes.businessman.level &&
+      data &&
+      data.rank !== rankTypes.businessman.type
+    ) {
+      play();
+      toast.success('Your rank BUSINESSMAN.');
+      return changeRank({ rank: rankTypes.businessman.type });
     }
 
-    if (currentLevel > type.TWENTY && currentLevel <= type.TWENTY_FIVE) {
-      return changeRank({ rank: 'deputy' });
+    if (
+      currentLevel === rankTypes.deputy.level &&
+      data &&
+      data.rank !== rankTypes.deputy.type
+    ) {
+      play();
+      toast.success('Your rank DEPUTY.');
+      return changeRank({ rank: rankTypes.deputy.type });
     }
 
-    if (currentLevel > type.TWENTY_FIVE && currentLevel <= type.THIRTY) {
-      return changeRank({ rank: 'investor' });
+    if (
+      currentLevel === rankTypes.investor.level &&
+      data &&
+      data.rank !== rankTypes.investor.type
+    ) {
+      play();
+      toast.success('Your rank INVESTOR.');
+      return changeRank({ rank: rankTypes.investor.type });
     }
-
-    return toast.warning('You have reached perfection.');
   };
 
   const getPercentage = (currentLevel: number, currentExp: number) => {

@@ -17,7 +17,7 @@ import { TimeWrapper, Time, BankWrapper, Amount } from './StatusBar.styled';
 const StatusBar: React.FC<{}> = () => {
   const bet = useAppSelector(getBet);
 
-  const { name, nickname, bank } = useAppSelector(getUser);
+  const { name, nickname, bank, inGame } = useAppSelector(getUser);
   const { getExperienceToImprove } = useExperience();
   const { data } = useGetLevelInfoQuery();
   const stateAccount = bankFormatting(Number(bank).toFixed(2));
@@ -35,9 +35,10 @@ const StatusBar: React.FC<{}> = () => {
         nickname={nickname}
         rank={data?.level ? data?.level.rank : 'homeless'}
         level={data?.level ? data?.level.level : 1}
+        inGame={inGame}
       />
 
-      {data && (
+      {inGame && (
         <LevelInfo
           experience={data?.level ? data.level.experience : 0}
           level={data?.level ? data.level.level : 1}
@@ -47,12 +48,14 @@ const StatusBar: React.FC<{}> = () => {
         />
       )}
 
-      <BankWrapper>
-        <p>State of an account</p>
-        <Amount>{`${stateAccount ? stateAccount : 0} $`}</Amount>
-      </BankWrapper>
+      {inGame && (
+        <BankWrapper>
+          <p>State of an account</p>
+          <Amount>{`${stateAccount ? stateAccount : 0} $`}</Amount>
+        </BankWrapper>
+      )}
 
-      {bet && (
+      {inGame && bet && (
         <RateInfo
           type={bet.type}
           number={bet.number}
