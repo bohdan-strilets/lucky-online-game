@@ -1,11 +1,4 @@
-import { useState, useEffect } from 'react';
-import { useAppSelector } from 'hooks/useAppSelector';
-import { getUser } from 'redux/user/userSelectors';
-import useCoefficient from 'hooks/useCoefficient';
-import useMakeMove from 'hooks/useMakeMove';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import operations from 'redux/user/userOperations';
-import betsOperations from 'redux/bets/betsOperations';
+import useGame from 'hooks/useGame';
 
 import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
@@ -13,91 +6,23 @@ import Counter from 'components/InterfaceElements/Counter';
 import GameWheel from './GameWheel';
 import Modal from 'components/Modal';
 import Success from 'components/Modal/Success';
-import { toast } from 'react-toastify';
-
-import useSound from 'use-sound';
-import clickBidButton from 'sounds/click_bid_button.mp3';
 
 import numbers from 'data/numbers.json';
-import { ICreateBetRes } from 'types/IBetsApi';
 import { Form, Wrapper, Item, Input, Label } from './Game.styled';
 
 const Game: React.FC<{}> = () => {
-  const dispatch = useAppDispatch();
-
-  const { complexity, bank } = useAppSelector(getUser);
-  const { getCoefficient } = useCoefficient();
-  const { getWinner } = useMakeMove();
-
-  const [play] = useSound(clickBidButton, { volume: 0.3, playbackRate: 0.5 });
-  const onPlay = () => play();
-
-  const [type, setType] = useState<string | null>(null);
-  const [color, setColor] = useState<string | null>(null);
-  const [number, setNumber] = useState<number | null>(null);
-  const [amount, setAmount] = useState<number | null>(0);
-  const [randomNumber, setRandomNumber] = useState(0);
-  const [isWon, setIsWon] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [experienceGained, setExperienceGained] = useState(0);
-  const [receivedMoney, setReceivedMoney] = useState(0);
-
-  useEffect(() => {
-    if (isWon) {
-      setShowSuccessModal(true);
-      setIsWon(false);
-    }
-  }, [isWon]);
-
-  const rateHandler = (e: React.MouseEvent<HTMLInputElement>) => {
-    const type = e.currentTarget.dataset.type;
-    const color = e.currentTarget.dataset.color;
-    const number = e.currentTarget.dataset.number;
-
-    setType(type !== undefined ? type : null);
-    setColor(color !== undefined ? color : null);
-    setNumber(number !== undefined ? Number(number) : null);
-  };
-
-  const amountHandler = (value: number) => setAmount(value);
-
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const rate = {
-      type,
-      color,
-      number,
-      betAmount: amount,
-      coefficient: getCoefficient(complexity && complexity, type),
-    };
-
-    if (
-      rate.betAmount !== null &&
-      rate.betAmount > 0 &&
-      bank &&
-      bank >= rate.betAmount
-    ) {
-      dispatch(operations.changeBank({ bank: -rate.betAmount }));
-      const data = await dispatch(betsOperations.createBet(rate));
-
-      const result = await getWinner(
-        rate.type as string,
-        rate.number as number,
-        (data.payload as ICreateBetRes).bet._id,
-      );
-      setRandomNumber(result?.randomNumber as number);
-      setIsWon(result?.isWon as boolean);
-      setExperienceGained(result?.experience as number);
-      setReceivedMoney(result?.money as number);
-
-      return;
-    }
-
-    return toast.error(
-      'The amount of the bet must be greater than zero, and this amount must also be in your account.',
-    );
-  };
+  const {
+    amountHandler,
+    experienceGained,
+    onPlay,
+    randomNumber,
+    rateHandler,
+    receivedMoney,
+    showSuccessModal,
+    submitHandler,
+    isWon,
+    toggleSuccesModal,
+  } = useGame();
 
   return (
     <Container
@@ -362,10 +287,7 @@ const Game: React.FC<{}> = () => {
       <GameWheel value={randomNumber} isWon={isWon} />
 
       {showSuccessModal && (
-        <Modal
-          title="Congratulations, you've won."
-          onClose={() => setShowSuccessModal(false)}
-        >
+        <Modal title="Congratulations, you've won." onClose={toggleSuccesModal}>
           <Success experience={experienceGained} money={receivedMoney} />
         </Modal>
       )}
