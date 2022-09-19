@@ -12,6 +12,14 @@ const Statistics: React.FC<{}> = () => {
     refetch();
   }, [refetch]);
 
+  const netto = () => {
+    if (statistics !== undefined) {
+      return (
+        statistics?.statistics.moneyEarned - statistics?.statistics.moneySpent
+      );
+    }
+  };
+
   return (
     <Container
       type="transparent"
@@ -51,6 +59,10 @@ const Statistics: React.FC<{}> = () => {
                   Number(statistics.statistics.moneySpent).toFixed(2),
                 )} $`}
               </Text>
+            </Item>
+            <Item>
+              <Text>Net profit amounted to:</Text>
+              <Text>{`${bankFormatting(Number(netto()).toFixed(2))} $`}</Text>
             </Item>
           </ul>
         </Wrapper>
