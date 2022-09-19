@@ -54,7 +54,13 @@ const Profile: React.FC<{}> = () => {
   } = useAppSelector(getUser);
   const dispatch = useAppDispatch();
   const { data } = useGetLevelInfoQuery();
-  const age = Number.parseInt(moment(dateBirth).fromNow(true));
+  const age = () => {
+    if (dateBirth) {
+      return dateBirth?.length > 9
+        ? Number.parseInt(moment(dateBirth).fromNow(true))
+        : 0;
+    }
+  };
 
   const deleteGameSession = async () => {
     const res = await dispatch(operations.deleteSession());
@@ -139,7 +145,7 @@ const Profile: React.FC<{}> = () => {
             </Item>
             <Item>
               <Text>Date of birth:</Text>
-              <Value>{`${dateBirth} | ${age}`}</Value>
+              <Value>{`${dateBirth} | ${age()}`}</Value>
             </Item>
             <Item>
               <Text>Complexity:</Text>

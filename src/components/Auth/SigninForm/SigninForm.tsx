@@ -1,9 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import operations from 'redux/user/userOperations';
+import useLogin from 'hooks/useLogin';
 
-import { toast } from 'react-toastify';
 import { Formik, Form } from 'formik';
 import EntryField from 'components/InterfaceElements/EntryField';
 import Button from 'components/InterfaceElements/Button';
@@ -13,36 +9,16 @@ import Checkbox from 'components/InterfaceElements/Checkbox';
 import Modal from 'components/Modal';
 import ResetPassword from 'components/Modal/ResetPassword';
 
-import { ISigninData } from 'types/IProfile';
-import { IAuthRes } from 'types/IUserRessponse';
-import signinSchema from 'helpers/validationSchemas/signinSchema';
-
 import { Tuple, StyledLink } from './SigninForm.styled';
 
 const SigninForm: React.FC<{}> = () => {
-  const [showModalResetPassword, setShowModalResetPassword] = useState(false);
-
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const initialValues = {
-    email: '',
-    password: '',
-    rememberMe: false,
-  };
-
-  const onSubmit = async (values: ISigninData) => {
-    const user = {
-      email: values.email,
-      password: values.password,
-    };
-
-    const res = await dispatch(operations.signin(user));
-
-    (res.payload as IAuthRes).status === 'ok'
-      ? navigate('/profile')
-      : toast.warning('Sorry something went wrong... Please try again.');
-  };
+  const {
+    initialValues,
+    login,
+    showModalResetPassword,
+    signinSchema,
+    toogleModalResetPassword,
+  } = useLogin();
 
   return (
     <Container
@@ -55,7 +31,7 @@ const SigninForm: React.FC<{}> = () => {
 
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
+        onSubmit={login}
         validationSchema={signinSchema}
       >
         {({ values, handleSubmit, handleChange }) => (
@@ -103,10 +79,7 @@ const SigninForm: React.FC<{}> = () => {
                 checked={values.rememberMe}
                 value={values.rememberMe}
               />
-              <StyledLink
-                type="button"
-                onClick={() => setShowModalResetPassword(true)}
-              >
+              <StyledLink type="button" onClick={toogleModalResetPassword}>
                 Lost your password?
               </StyledLink>
             </Tuple>
@@ -115,10 +88,7 @@ const SigninForm: React.FC<{}> = () => {
       </Formik>
 
       {showModalResetPassword && (
-        <Modal
-          title="Reset the password"
-          onClose={() => setShowModalResetPassword(false)}
-        >
+        <Modal title="Reset the password" onClose={toogleModalResetPassword}>
           <ResetPassword />
         </Modal>
       )}
