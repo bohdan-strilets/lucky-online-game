@@ -1,51 +1,22 @@
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import operations from 'redux/user/userOperations';
-import { useAppSelector } from 'hooks/useAppSelector';
-import { getUser } from 'redux/user/userSelectors';
-import { useState } from 'react';
+import useSettingsBar from 'hooks/useSettingsBar';
 
 import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
-import { toast } from 'react-toastify';
 
 import { API_URL } from 'api';
 import { Wrapper, Avatar, Item } from './SettingsBar.styled';
 
 const SettingsBar: React.FC<{}> = () => {
-  const [fullScreen, setFullScreen] = useState(false);
-
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { inGame, avatarURL, name } = useAppSelector(getUser);
-
-  const logout = () => {
-    dispatch(operations.signout());
-    navigate('/');
-  };
-
-  const createNewGame = () => {
-    if (inGame) {
-      navigate('/game');
-    } else {
-      navigate('/new-game');
-    }
-  };
-
-  const switchFullScreen = async () => {
-    const elem = document.documentElement;
-    try {
-      await elem.requestFullscreen();
-      setFullScreen(true);
-      if (fullScreen) {
-        await document.exitFullscreen();
-        setFullScreen(false);
-      }
-    } catch (error) {
-      toast.warning('Something went wrong. Try reloading the page.');
-    }
-  };
+  const {
+    createNewGame,
+    logout,
+    switchFullScreen,
+    avatarURL,
+    name,
+    navigate,
+    fullScreen,
+  } = useSettingsBar();
 
   return (
     <Container

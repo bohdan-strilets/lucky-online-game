@@ -1,7 +1,4 @@
-import { useAppSelector } from 'hooks/useAppSelector';
-import { getIsLoggedIn } from 'redux/user/userSelectors';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import useGreetings from 'hooks/useGreetings';
 import gameRules from 'data/gameRules.json';
 
 import Container from 'components/InterfaceElements/Container';
@@ -11,11 +8,7 @@ import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import { Title, Text, List, Item, ShowRulesButton } from './Greetings.styled';
 
 const Greetings: React.FC<{}> = () => {
-  const [showRulles, setShowRulles] = useState(false);
-  const navigate = useNavigate();
-
-  const isLoggedIn = useAppSelector(getIsLoggedIn);
-  const toogle = () => setShowRulles(prevstate => !prevstate);
+  const { isLoggedIn, navigate, showRulles, toogle } = useGreetings();
 
   return (
     <Container

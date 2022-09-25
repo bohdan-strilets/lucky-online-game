@@ -1,30 +1,14 @@
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import operations from 'redux/user/userOperations';
+import useEditEmail from 'hooks/useEditEmail';
 
 import { Formik, Form } from 'formik';
 import EntryField from 'components/InterfaceElements/EntryField';
 import Button from 'components/InterfaceElements/Button';
 
 import editEmailSchema from 'helpers/validationSchemas/editEmailSchema';
-import { IEditEmailData } from 'types/IProfile';
-import { IChangeEmailRes } from 'types/IUserRessponse';
-
 import { Text } from './EditEmail.styled';
 
 const EditEmail: React.FC<{ onClose(): void }> = ({ onClose }) => {
-  const dispatch = useAppDispatch();
-
-  const initialValues = {
-    email: '',
-  };
-
-  const onSubmit = async (values: IEditEmailData) => {
-    const res = await dispatch(operations.changeEmail(values));
-
-    if ((res.payload as IChangeEmailRes).status === 'ok') {
-      onClose();
-    }
-  };
+  const { changeEmail, initialValues } = useEditEmail(onClose);
 
   return (
     <>
@@ -34,7 +18,7 @@ const EditEmail: React.FC<{ onClose(): void }> = ({ onClose }) => {
 
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
+        onSubmit={changeEmail}
         validationSchema={editEmailSchema}
       >
         {({ values, handleSubmit, handleChange }) => (

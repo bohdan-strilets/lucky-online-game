@@ -1,43 +1,21 @@
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import { useAppSelector } from 'hooks/useAppSelector';
-import operations from 'redux/user/userOperations';
-import { getUser } from 'redux/user/userSelectors';
+import useEditProfile from 'hooks/useEditProfile';
 
 import { Formik, Form } from 'formik';
 import EntryField from 'components/InterfaceElements/EntryField';
 import Button from 'components/InterfaceElements/Button';
 import RadioButton from 'components/InterfaceElements/RadioButton';
 
-import { IEditProfileData } from 'types/IProfile';
-import { IChangeAccountRes } from 'types/IUserRessponse';
 import editProfileSchema from 'helpers/validationSchemas/editProfileSchema';
-
 import { RadioGroup, RadioText } from './EditProfile.styled';
 
 const EditProfile: React.FC<{ onClose(): void }> = ({ onClose }) => {
-  const dispatch = useAppDispatch();
-  const { name, nickname, gender, dateBirth } = useAppSelector(getUser);
-
-  const initialValues = {
-    name,
-    nickname,
-    gender,
-    dateBirth,
-  } as IEditProfileData;
-
-  const onSubmit = async (values: IEditProfileData) => {
-    const res = await dispatch(operations.changeAccount(values));
-
-    if ((res.payload as IChangeAccountRes).status === 'ok') {
-      onClose();
-    }
-  };
+  const { changeProfile, initialValues } = useEditProfile(onClose);
 
   return (
     <div>
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
+        onSubmit={changeProfile}
         validationSchema={editProfileSchema}
       >
         {({ values, handleSubmit, handleChange }) => (

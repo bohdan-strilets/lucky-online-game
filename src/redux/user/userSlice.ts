@@ -91,7 +91,10 @@ export const userSlice = createSlice({
 
       .addCase(operations.changeAccount.fulfilled, (state, action) => {
         try {
-          state.user = action.payload.user;
+          state.user.name = action.payload.user.name;
+          state.user.nickname = action.payload.user.nickname;
+          state.user.dateBirth = action.payload.user.dateBirth;
+          state.user.gender = action.payload.user.gender;
         } catch (error) {}
       })
 

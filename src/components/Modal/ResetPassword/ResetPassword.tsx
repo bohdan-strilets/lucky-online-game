@@ -1,36 +1,14 @@
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import operations from 'redux/user/userOperations';
-import { useNavigate } from 'react-router-dom';
+import useResetPasswordMail from 'hooks/useResetPasswordMail';
 
 import { Formik, Form } from 'formik';
 import EntryField from 'components/InterfaceElements/EntryField';
 import Button from 'components/InterfaceElements/Button';
-import { toast } from 'react-toastify';
 
 import { resetPasswordSchema } from 'helpers/validationSchemas/resetPasswordSchema';
-import { IEditEmailData } from 'types/IProfile';
-import { IResetPasswordRes } from 'types/IUserRessponse';
-
 import { Text } from './ResetPassword.styled';
 
 const ResetPassword: React.FC<{}> = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const initialValues = {
-    email: '',
-  };
-
-  const onSubmit = async (values: IEditEmailData) => {
-    const res = await dispatch(operations.sendPasswordResetEmail(values));
-
-    if ((res.payload as IResetPasswordRes).status === 'ok') {
-      navigate('/');
-      toast.success(
-        'Email sent successfully. Please check your inbox for a link to reset your password.',
-      );
-    }
-  };
+  const { initialValues, onSubmit } = useResetPasswordMail();
 
   return (
     <>

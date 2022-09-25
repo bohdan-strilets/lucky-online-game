@@ -44,7 +44,13 @@ export interface IChangeAvatarRes {
 export interface IChangeAccountRes {
   status: string;
   code: number;
-  user: IUser;
+  user: {
+    name: string;
+    nickname: string;
+    dateBirth: string;
+    gender: 'man' | 'woman' | 'other';
+    updatedAt: string;
+  };
 }
 
 export interface IDeleteAccountRes {

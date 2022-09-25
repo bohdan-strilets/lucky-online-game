@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import useModal from 'hooks/useModal';
+
 import { createPortal } from 'react-dom';
 import { IModalState } from 'types/IModal';
 
@@ -15,23 +16,7 @@ import {
 const modalRoot = document.querySelector('#modal-root') as HTMLDivElement;
 
 const Modal: React.FC<IModalState> = ({ children, title, onClose }) => {
-  useEffect(() => {
-    const onPressEscape = (e: { code: string }) => {
-      if (e.code === 'Escape') {
-        onClose();
-      }
-    };
-
-    window.addEventListener('keydown', onPressEscape);
-
-    return () => window.removeEventListener('keydown', onPressEscape);
-  }, [onClose]);
-
-  const onBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
+  const { onBackdropClick } = useModal(onClose);
 
   return createPortal(
     <Backdrop onClick={onBackdropClick}>

@@ -1,13 +1,6 @@
-import { useState } from 'react';
-import { useAppSelector } from 'hooks/useAppSelector';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import operations from 'redux/user/userOperations';
-import { useGetLevelInfoQuery } from 'redux/level/levelApi';
-
-import { getUser } from 'redux/user/userSelectors';
+import useProfile from 'hooks/useProfile';
 import { API_URL } from 'api';
 import dateFormatting from 'helpers/dateFormatting';
-import moment from 'moment';
 
 import Container from 'components/InterfaceElements/Container';
 import Controllers from './Controllers';
@@ -19,7 +12,6 @@ import EditPassword from 'components/Modal/EditPassword';
 import EditComplexity from 'components/Modal/EditComplexity';
 import DialogWindow from 'components/Modal/DialogWindow';
 
-import { IDeleteSessionRes } from 'types/IUserRessponse';
 import {
   Wrapper,
   Header,
@@ -33,42 +25,22 @@ import {
 } from './Profile.styled';
 
 const Profile: React.FC<{}> = () => {
-  const [showEditAvatarModal, setShowEditAvatarModal] = useState(false);
-  const [showEditEmailModal, setShowEditEmailModal] = useState(false);
-  const [showEditPasswordModal, setShowEditPasswordModal] = useState(false);
-  const [showEditComplexityModal, setShowEditComplexityModal] = useState(false);
-  const [showDeleteSessionModal, setshowDeleteSessionModal] = useState(false);
-
   const {
-    _id,
-    name,
-    nickname,
-    email,
-    dateBirth,
-    gender,
-    inGame,
-    complexity,
-    avatarURL,
-    createdAt,
-    updatedAt,
-  } = useAppSelector(getUser);
-  const dispatch = useAppDispatch();
-  const { data } = useGetLevelInfoQuery();
-  const age = () => {
-    if (dateBirth) {
-      return dateBirth?.length > 9
-        ? Number.parseInt(moment(dateBirth).fromNow(true))
-        : 0;
-    }
-  };
-
-  const deleteGameSession = async () => {
-    const res = await dispatch(operations.deleteSession());
-
-    if ((res.payload as IDeleteSessionRes).status === 'ok') {
-      setshowDeleteSessionModal(false);
-    }
-  };
+    age,
+    data,
+    deleteGameSession,
+    setShowEditAvatarModal,
+    setShowEditComplexityModal,
+    setShowEditEmailModal,
+    setShowEditPasswordModal,
+    showDeleteSessionModal,
+    showEditAvatarModal,
+    showEditComplexityModal,
+    showEditEmailModal,
+    showEditPasswordModal,
+    setshowDeleteSessionModal,
+    user,
+  } = useProfile();
 
   return (
     <Container
@@ -79,38 +51,38 @@ const Profile: React.FC<{}> = () => {
     >
       <Controllers />
 
-      {name && (
+      {user.name && (
         <Wrapper>
           <Header>
-            <p>ID: {_id}</p>
+            <p>ID: {user._id}</p>
 
             <div>
               <p>
                 Account creation date:{' '}
-                {createdAt && dateFormatting(createdAt as string)}
+                {user.createdAt && dateFormatting(user.createdAt as string)}
               </p>
               <p>
                 Last update date:{' '}
-                {updatedAt && dateFormatting(updatedAt as string)}
+                {user.updatedAt && dateFormatting(user.updatedAt as string)}
               </p>
             </div>
           </Header>
 
           <Avatar
-            src={`${API_URL}/${avatarURL}`}
-            alt={`${name} user avatar`}
+            src={`${API_URL}/${user.avatarURL}`}
+            alt={`${user.name} user avatar`}
             onClick={() => setShowEditAvatarModal(true)}
           />
 
           <Name>
-            {name} <Nickname>{nickname}</Nickname>
+            {user.name} <Nickname>{user.nickname}</Nickname>
           </Name>
 
           <ul>
             <Item>
               <Text>Email:</Text>
               <div>
-                <Value>{email}</Value>
+                <Value>{user.email}</Value>
                 <EditBtn
                   type="button"
                   onClick={() => setShowEditEmailModal(true)}
@@ -141,21 +113,21 @@ const Profile: React.FC<{}> = () => {
             </Item>
             <Item>
               <Text>Gender:</Text>
-              <Value>{gender}</Value>
+              <Value>{user.gender}</Value>
             </Item>
             <Item>
               <Text>Date of birth:</Text>
-              <Value>{`${dateBirth} | ${age()}`}</Value>
+              <Value>{`${user.dateBirth} | ${age()}`}</Value>
             </Item>
             <Item>
               <Text>Complexity:</Text>
               <div>
                 <Value>
-                  {complexity
-                    ? complexity
+                  {user.complexity
+                    ? user.complexity
                     : 'The game session has not yet been created.'}
                 </Value>
-                {inGame && (
+                {user.inGame && (
                   <>
                     <EditBtn
                       type="button"
@@ -184,11 +156,11 @@ const Profile: React.FC<{}> = () => {
             <Item>
               <Text>Game session:</Text>
               <Value>
-                {inGame &&
+                {user.inGame &&
                   `Game creation date: ${
                     data && dateFormatting(data?.level.createdAt as string)
                   }`}
-                {!inGame && 'Start a new game'}
+                {!user.inGame && 'Start a new game'}
               </Value>
             </Item>
           </ul>
@@ -229,7 +201,7 @@ const Profile: React.FC<{}> = () => {
         >
           <EditComplexity
             onClose={() => setShowEditComplexityModal(false)}
-            complexity={complexity}
+            complexity={user.complexity}
           />
         </Modal>
       )}
