@@ -1,25 +1,24 @@
 {
   "files": {
     "main.css": "/lucky-online-game/static/css/main.3f4a881b.css",
-    "main.js": "/lucky-online-game/static/js/main.536fc1e9.js",
+    "main.js": "/lucky-online-game/static/js/main.7acd8f97.js",
     "static/js/845.f80bbbeb.chunk.js": "/lucky-online-game/static/js/845.f80bbbeb.chunk.js",
     "static/media/bg.png": "/lucky-online-game/static/media/bg.4347b46074ffec4f444b.png",
     "static/media/background.png": "/lucky-online-game/static/media/background.51937d06296df6a4c8cd.png",
-    "static/media/bg_sound.mp3": "/lucky-online-game/static/media/bg_sound.479c02488b367c2c5ead.mp3",
     "static/media/success.png": "/lucky-online-game/static/media/success.5d651991745456ad6c7c.png",
     "static/media/logo-icon.png": "/lucky-online-game/static/media/logo-icon.b2142ed00b8d94625175.png",
-    "static/media/icons.svg": "/lucky-online-game/static/media/icons.baebdb5e7c01df265283a75e77202c6f.svg",
+    "static/media/icons.svg": "/lucky-online-game/static/media/icons.714063388eebcdd0a6d44958e12086ae.svg",
     "static/media/level_up.mp3": "/lucky-online-game/static/media/level_up.1a792342c61dd3aa908a.mp3",
     "static/media/sound_victory.mp3": "/lucky-online-game/static/media/sound_victory.4c027b0f9bdd5f3b4b8a.mp3",
     "static/media/click_bid_button.mp3": "/lucky-online-game/static/media/click_bid_button.0035c8ee2b0ad59ca4ec.mp3",
     "index.html": "/lucky-online-game/index.html",
     "static/media/counter_click.mp3": "/lucky-online-game/static/media/counter_click.4722bdc51d055dde7cbb.mp3",
     "main.3f4a881b.css.map": "/lucky-online-game/static/css/main.3f4a881b.css.map",
-    "main.536fc1e9.js.map": "/lucky-online-game/static/js/main.536fc1e9.js.map",
+    "main.7acd8f97.js.map": "/lucky-online-game/static/js/main.7acd8f97.js.map",
     "845.f80bbbeb.chunk.js.map": "/lucky-online-game/static/js/845.f80bbbeb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3f4a881b.css",
-    "static/js/main.536fc1e9.js"
+    "static/js/main.7acd8f97.js"
   ]
 }
