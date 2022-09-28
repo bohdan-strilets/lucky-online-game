@@ -42,4 +42,9 @@ export const ButtonWrapper = styled.button<IButtonWrapperStyled>`
       }
     }};
   }
+
+  :disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 `;

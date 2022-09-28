@@ -8,6 +8,7 @@ export interface IButtonState {
   shadow?: boolean;
   borderRadius?: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean | undefined;
 }
 
 export type IButtonWrapperStyled = Pick<

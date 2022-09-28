@@ -17,6 +17,7 @@ import ProfilePage from 'pages/ProfilePage';
 import CreateNewGamePage from 'pages/CreateNewGamePage';
 import GamePage from 'pages/GamePage';
 import StatisticsPage from 'pages/StatisticsPage';
+import RatingPage from 'pages/RatingPage';
 
 import background from 'images/app/bg.png';
 
@@ -147,6 +148,16 @@ const App: React.FC = () => {
               <PrivateRoute>
                 <Layout showSidebars>
                   <StatisticsPage />
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/rating"
+            element={
+              <PrivateRoute>
+                <Layout showSidebars>
+                  <RatingPage />
                 </Layout>
               </PrivateRoute>
             }

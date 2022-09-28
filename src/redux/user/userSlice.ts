@@ -21,6 +21,8 @@ const initialState: IAuthState = {
     inGame: false,
     createdAt: null,
     updatedAt: null,
+    level: null,
+    statistics: null,
   },
   token: null,
   isLoggedIn: false,

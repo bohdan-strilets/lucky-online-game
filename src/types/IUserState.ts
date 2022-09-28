@@ -1,3 +1,6 @@
+import { ILevel } from './ILevel';
+import { IStatistics } from './IStatistics';
+
 export interface IUser {
   _id?: string | null;
   name: string | null;
@@ -12,6 +15,8 @@ export interface IUser {
   inGame?: boolean;
   createdAt?: string | null;
   updatedAt?: string | null;
+  level?: ILevel | null;
+  statistics?: IStatistics | null;
 }
 
 export interface IAuthState {

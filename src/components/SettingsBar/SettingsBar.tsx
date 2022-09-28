@@ -111,6 +111,40 @@ const SettingsBar: React.FC<{}> = () => {
                 height="40px"
                 background="blue"
                 borderRadius="10px"
+                onClick={() => navigate('/rating')}
+              >
+                <IconSwitcher
+                  name="medal"
+                  fill="var(--white-color)"
+                  size="22px"
+                />
+              </Button>
+            </Item>
+
+            <Item>
+              <Button
+                type="button"
+                width="40px"
+                height="40px"
+                background="blue"
+                borderRadius="10px"
+                onClick={() => navigate('/information')}
+              >
+                <IconSwitcher
+                  name="info"
+                  fill="var(--white-color)"
+                  size="22px"
+                />
+              </Button>
+            </Item>
+
+            <Item>
+              <Button
+                type="button"
+                width="40px"
+                height="40px"
+                background="blue"
+                borderRadius="10px"
                 onClick={switchFullScreen}
               >
                 {fullScreen ? (

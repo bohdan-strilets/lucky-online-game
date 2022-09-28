@@ -11,6 +11,7 @@ const Button: React.FC<IButtonState> = ({
   shadow,
   borderRadius,
   onClick,
+  disabled,
 }) => {
   return (
     <ButtonWrapper
@@ -22,6 +23,7 @@ const Button: React.FC<IButtonState> = ({
       shadow={shadow}
       borderRadius={borderRadius}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </ButtonWrapper>

@@ -20,6 +20,8 @@ export interface IUser {
   inGame: boolean;
   createdAt: string;
   updatedAt: string;
+  level?: ILevel;
+  statistics?: IStatistics;
 }
 
 export interface IAuthRes {
