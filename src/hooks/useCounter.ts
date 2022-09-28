@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useSound from 'use-sound';
 
 import counterClick from 'sounds/counter_click.mp3';

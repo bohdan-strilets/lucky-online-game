@@ -1,6 +1,5 @@
 import api from 'api';
 import { API_URL } from 'api';
-import { IGetAllUsers } from 'types/IGetAllUsers';
 
 const getAllUsers = async (page: number) => {
   try {
