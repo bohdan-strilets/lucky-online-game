@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import getAllUsers from 'helpers/getAllUsers';
+import useRating from 'hooks/useRating';
 
 import Container from 'components/InterfaceElements/Container';
 import ListItem from './ListItem';
 import Button from 'components/InterfaceElements/Button';
+import DropDownList from 'components/InterfaceElements/DropDownList';
 
 import {
   Wrapper,
@@ -15,38 +15,9 @@ import {
 } from './Rating.styled';
 
 const Rating: React.FC<{}> = () => {
-  const [page, setPage] = useState(1);
-  const [users, setUsers] = useState<null | any[] | undefined>(null);
-  const [totalUsers, setTotalUsers] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      if (page === 1) {
-        const { allUsers, total } = await getAllUsers(page);
-        setUsers(allUsers);
-        setTotalUsers(total);
-      }
-
-      if (page !== 1) {
-        const { allUsers } = await getAllUsers(page);
-        setUsers(prevState =>
-          prevState !== null && prevState !== undefined
-            ? [...prevState, ...allUsers]
-            : [],
-        );
-      }
-    })();
-  }, [page]);
-
-  console.log(users);
-
-  const showMore = () => setPage(prevState => prevState + 1);
-
-  const disabledbutton = () => {
-    if (users !== undefined && users !== null && totalUsers !== null) {
-      return users?.length + 1 >= totalUsers;
-    }
-  };
+  const { disabledbutton, getSortOption, showMore, sorting, users } =
+    useRating();
+  sorting();
 
   return (
     <Container
@@ -56,6 +27,20 @@ const Rating: React.FC<{}> = () => {
       margin="50px"
     >
       <Wrapper>
+        <DropDownList
+          options={[
+            'EXPERIENCE',
+            'LEVEL',
+            'BANK',
+            'TOTAL BETS',
+            'WON BETS',
+            'LOST BETS',
+          ]}
+          label="Sort by..."
+          top="15px"
+          right="15px"
+          getValue={getSortOption}
+        />
         <Title>Rating</Title>
         <CategoriesList>
           <CategoriesItem>Experience</CategoriesItem>
