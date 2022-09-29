@@ -25,14 +25,6 @@ export const List = styled.ul`
   margin-bottom: 30px;
 `;
 
-export const Item = styled.li`
-  margin-bottom: 15px;
-
-  :last-child {
-    margin-bottom: 0;
-  }
-`;
-
 export const ShowRulesButton = styled.button`
   display: flex;
   align-items: center;

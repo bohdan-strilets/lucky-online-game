@@ -132,8 +132,6 @@ const useRating = () => {
           break;
 
         default:
-          console.log('There is no such sorting case.');
-          break;
       }
     }
   };

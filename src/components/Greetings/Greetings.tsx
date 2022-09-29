@@ -1,11 +1,11 @@
 import useGreetings from 'hooks/useGreetings';
-import gameRules from 'data/gameRules.json';
 
 import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
+import Rules from './Rules';
 
-import { Title, Text, List, Item, ShowRulesButton } from './Greetings.styled';
+import { Title, Text, List, ShowRulesButton } from './Greetings.styled';
 
 const Greetings: React.FC<{}> = () => {
   const { isLoggedIn, navigate, showRulles, toogle } = useGreetings();
@@ -86,17 +86,7 @@ const Greetings: React.FC<{}> = () => {
         )}
       </ShowRulesButton>
 
-      {showRulles && (
-        <ol>
-          {gameRules.map(({ id, rules }) => {
-            return (
-              <Item key={id}>
-                <p>{rules}</p>
-              </Item>
-            );
-          })}
-        </ol>
-      )}
+      {showRulles && <Rules />}
     </Container>
   );
 };
