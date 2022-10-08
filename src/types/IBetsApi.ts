@@ -18,6 +18,7 @@ export interface IGetAllBetsRes {
   bets: IBets[];
   page: number;
   limit: number;
+  total: number;
 }
 
 export interface IGetOneBetRes {

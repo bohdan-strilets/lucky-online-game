@@ -3,6 +3,7 @@ import { persisteUserReducer } from './user/userSlice';
 import { levelApi } from './level/levelApi';
 import { statisticsApi } from './statistics/statisticsApi';
 import betsSlice from './bets/betsSlice';
+import { storeApi } from './store/storeApi';
 
 import {
   persistStore,
@@ -20,6 +21,7 @@ export const store = configureStore({
     bets: betsSlice.reducer,
     [levelApi.reducerPath]: levelApi.reducer,
     [statisticsApi.reducerPath]: statisticsApi.reducer,
+    [storeApi.reducerPath]: storeApi.reducer,
   },
 
   middleware: getDefaultMiddleware =>
@@ -29,7 +31,8 @@ export const store = configureStore({
       },
     })
       .concat(levelApi.middleware)
-      .concat(statisticsApi.middleware),
+      .concat(statisticsApi.middleware)
+      .concat(storeApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

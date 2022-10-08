@@ -19,6 +19,7 @@ const initialState: IBetsState = {
   },
   page: 0,
   limit: 0,
+  total: 0,
 };
 
 export const betsSlice = createSlice({
@@ -32,6 +33,7 @@ export const betsSlice = createSlice({
           state.bets = action.payload.bets;
           state.page = action.payload.page;
           state.limit = action.payload.limit;
+          state.total = action.payload.total;
         } catch (error) {}
       })
 

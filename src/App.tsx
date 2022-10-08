@@ -19,6 +19,8 @@ import GamePage from 'pages/GamePage';
 import StatisticsPage from 'pages/StatisticsPage';
 import RatingPage from 'pages/RatingPage';
 import InformationPage from 'pages/InformationPage';
+import BetLlistPage from 'pages/BetLlistPage';
+import StorePage from 'pages/StorePage';
 
 import background from 'images/app/bg.png';
 
@@ -169,6 +171,26 @@ const App: React.FC = () => {
               <PrivateRoute>
                 <Layout showSidebars>
                   <InformationPage />
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/bet-list"
+            element={
+              <PrivateRoute>
+                <Layout showSidebars>
+                  <BetLlistPage />
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/store"
+            element={
+              <PrivateRoute>
+                <Layout showSidebars>
+                  <StorePage />
                 </Layout>
               </PrivateRoute>
             }

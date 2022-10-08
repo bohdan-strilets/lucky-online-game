@@ -17,4 +17,5 @@ export interface IBetsState {
   bet: IBet;
   page: number;
   limit: number;
+  total: number;
 }
