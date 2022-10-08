@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/lucky-online-game/static/css/main.3f4a881b.css",
-    "main.js": "/lucky-online-game/static/js/main.876d45e1.js",
+    "main.css": "/lucky-online-game/static/css/main.a1c6c2ca.css",
+    "main.js": "/lucky-online-game/static/js/main.0c3abd68.js",
     "static/js/845.f80bbbeb.chunk.js": "/lucky-online-game/static/js/845.f80bbbeb.chunk.js",
     "static/media/bg.png": "/lucky-online-game/static/media/bg.4347b46074ffec4f444b.png",
     "static/media/background.png": "/lucky-online-game/static/media/background.51937d06296df6a4c8cd.png",
     "static/media/success.png": "/lucky-online-game/static/media/success.5d651991745456ad6c7c.png",
+    "static/media/icons.svg": "/lucky-online-game/static/media/icons.09e1b109d5abc90d6646f28cbfbabd8e.svg",
     "static/media/logo-icon.png": "/lucky-online-game/static/media/logo-icon.b2142ed00b8d94625175.png",
-    "static/media/icons.svg": "/lucky-online-game/static/media/icons.714063388eebcdd0a6d44958e12086ae.svg",
     "static/media/level_up.mp3": "/lucky-online-game/static/media/level_up.1a792342c61dd3aa908a.mp3",
     "static/media/sound_victory.mp3": "/lucky-online-game/static/media/sound_victory.4c027b0f9bdd5f3b4b8a.mp3",
     "static/media/click_bid_button.mp3": "/lucky-online-game/static/media/click_bid_button.0035c8ee2b0ad59ca4ec.mp3",
     "index.html": "/lucky-online-game/index.html",
     "static/media/counter_click.mp3": "/lucky-online-game/static/media/counter_click.4722bdc51d055dde7cbb.mp3",
-    "main.3f4a881b.css.map": "/lucky-online-game/static/css/main.3f4a881b.css.map",
-    "main.876d45e1.js.map": "/lucky-online-game/static/js/main.876d45e1.js.map",
+    "main.a1c6c2ca.css.map": "/lucky-online-game/static/css/main.a1c6c2ca.css.map",
+    "main.0c3abd68.js.map": "/lucky-online-game/static/js/main.0c3abd68.js.map",
     "845.f80bbbeb.chunk.js.map": "/lucky-online-game/static/js/845.f80bbbeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f4a881b.css",
-    "static/js/main.876d45e1.js"
+    "static/css/main.a1c6c2ca.css",
+    "static/js/main.0c3abd68.js"
   ]
 }
