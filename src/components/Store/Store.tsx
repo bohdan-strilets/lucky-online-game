@@ -1,14 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useGetAllItemsQuery } from 'redux/store/storeApi';
 import bankFormatting from 'helpers/bankFormatting';
+import useStore from 'hooks/useStore';
 
 import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import Modal from 'components/Modal';
 import ProductStore from 'components/Modal/ProductStore';
+import Loader from 'components/InterfaceElements/Loader';
 
-import { IItem } from 'types/IStore';
 import {
   List,
   Item,
@@ -20,49 +19,25 @@ import {
 } from './Store.styled';
 
 const Store: React.FC<{}> = () => {
-  const [items, setItems] = useState<null | undefined | IItem[]>(null);
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
-  const [allImages, setAllImages] = useState(0);
-  const [showMoreDetails, setShowMoreDetails] = useState(false);
-  const [currentTitle, setCurrentTitle] = useState<null | string>(null);
-  const [currentId, setCurrentId] = useState<null | string>(null);
-
-  const { data, isFetching } = useGetAllItemsQuery({ page, limit: 9 });
-
-  useEffect(() => {
-    if (data !== undefined) {
-      if (page === 1) {
-        setItems(data?.items);
-        setTotal(data?.total);
-        setAllImages(data.items.length);
-      }
-
-      if (page !== 1) {
-        setItems(data.items);
-        setAllImages(prevState => prevState + data.items.length);
-      }
-    }
-  }, [data, page]);
-
-  const showMore = () => setPage(prevState => prevState + 1);
-
-  const comeBack = () => setPage(prevState => prevState - 1);
-
-  const openModal = (e: React.MouseEvent<HTMLLIElement>) => {
-    const id = e.currentTarget.dataset.id;
-    const title = e.currentTarget.children[0].children[0].textContent;
-
-    setCurrentTitle(title);
-    setShowMoreDetails(true);
-
-    if (id) {
-      setCurrentId(id);
-    }
-  };
+  const {
+    allImages,
+    comeBack,
+    currentId,
+    currentTitle,
+    isFetching,
+    items,
+    openModal,
+    page,
+    showMore,
+    showMoreDetails,
+    total,
+    closeModal,
+  } = useStore();
 
   return (
     <>
+      {isFetching && <Loader />}
+
       <List>
         {items &&
           items.map(({ _id, imageURL, title, description, price }) => {
@@ -140,10 +115,7 @@ const Store: React.FC<{}> = () => {
       </Container>
 
       {showMoreDetails && (
-        <Modal
-          onClose={() => setShowMoreDetails(false)}
-          title={currentTitle ? currentTitle : ''}
-        >
+        <Modal onClose={closeModal} title={currentTitle ? currentTitle : ''}>
           <ProductStore id={currentId as string} />
         </Modal>
       )}
