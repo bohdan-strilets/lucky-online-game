@@ -42,3 +42,8 @@ export interface IEditComplexityData {
 export interface IEditBankData {
   bank: number;
 }
+
+export interface IBuyItemData {
+  id: string;
+  price: number;
+}

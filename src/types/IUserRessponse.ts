@@ -1,5 +1,6 @@
 import { ILevel } from './ILevel';
 import { IStatistics } from './IStatistics';
+import { IItem } from './IStore';
 
 export interface ITokens {
   accessToken: string;
@@ -22,6 +23,7 @@ export interface IUser {
   updatedAt: string;
   level?: ILevel;
   statistics?: IStatistics;
+  products: IItem[] | null;
 }
 
 export interface IAuthRes {
@@ -105,4 +107,11 @@ export interface IResetPasswordRes {
   status: string;
   code: number;
   message: string;
+}
+
+export interface IBuyItemRes {
+  status: string;
+  code: number;
+  products: IItem[];
+  bank: number;
 }

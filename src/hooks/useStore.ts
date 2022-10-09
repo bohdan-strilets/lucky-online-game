@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useGetAllItemsQuery } from 'redux/store/storeApi';
+import { useAppDispatch } from './useAppDispatch';
+import operations from 'redux/user/userOperations';
+import { useAppSelector } from './useAppSelector';
+import { getBank } from 'redux/user/userSelectors';
+
 import { IItem } from 'types/IStore';
+import { toast } from 'react-toastify';
 
 const useStore = () => {
   const [items, setItems] = useState<null | undefined | IItem[]>(null);
@@ -10,7 +16,11 @@ const useStore = () => {
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [currentTitle, setCurrentTitle] = useState<null | string>(null);
   const [currentId, setCurrentId] = useState<null | string>(null);
+  const [currentAmount, setCurrentAmount] = useState<null | number>(null);
+  const [showModalBuyItem, setShowModalBuyItem] = useState(false);
 
+  const bank = useAppSelector(getBank);
+  const dispatch = useAppDispatch();
   const { data, isFetching } = useGetAllItemsQuery({ page, limit: 9 });
 
   useEffect(() => {
@@ -32,9 +42,9 @@ const useStore = () => {
 
   const comeBack = () => setPage(prevState => prevState - 1);
 
-  const openModal = (e: React.MouseEvent<HTMLLIElement>) => {
+  const openModalMoreInfo = (e: React.MouseEvent<HTMLDivElement>) => {
     const id = e.currentTarget.dataset.id;
-    const title = e.currentTarget.children[0].children[0].textContent;
+    const title = e.currentTarget.children[0].textContent;
 
     setCurrentTitle(title);
     setShowMoreDetails(true);
@@ -44,12 +54,41 @@ const useStore = () => {
     }
   };
 
-  const closeModal = () => setShowMoreDetails(false);
+  const closeModalMoreInfo = () => setShowMoreDetails(false);
+
+  const openModalDialogWindow = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const price = e.currentTarget.dataset.price;
+    const id = e.currentTarget.dataset.id;
+
+    if (price !== null && price !== undefined && id !== undefined) {
+      setCurrentAmount(Number(price));
+      setCurrentId(id);
+    }
+
+    setShowModalBuyItem(true);
+  };
+
+  const closeModalDialogWindow = () => setShowModalBuyItem(false);
+
+  const buy = (id: string, price: number) => {
+    if (bank !== null && bank !== undefined && price > bank) {
+      toast.error('Sorry, there is not enough money in your account.');
+      setShowModalBuyItem(false);
+      return;
+    }
+
+    if (bank !== null && bank !== undefined && price <= bank) {
+      dispatch(operations.buyItem({ id, price: -price }));
+      toast.success('The item has been successfully purchased. Thank you.');
+      setShowModalBuyItem(false);
+      return;
+    }
+  };
 
   return {
     showMore,
     comeBack,
-    openModal,
+    openModalMoreInfo,
     items,
     page,
     total,
@@ -58,7 +97,12 @@ const useStore = () => {
     currentTitle,
     currentId,
     isFetching,
-    closeModal,
+    closeModalMoreInfo,
+    buy,
+    showModalBuyItem,
+    openModalDialogWindow,
+    closeModalDialogWindow,
+    currentAmount,
   };
 };
 

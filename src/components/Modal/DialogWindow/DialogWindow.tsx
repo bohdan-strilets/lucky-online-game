@@ -7,6 +7,8 @@ const DialogWindow: React.FC<IDialogWindowState> = ({
   onCencel,
   onDelete,
   text,
+  successBtnText,
+  failureBtnText,
 }) => {
   return (
     <div>
@@ -23,7 +25,7 @@ const DialogWindow: React.FC<IDialogWindowState> = ({
             shadow
             onClick={onCencel}
           >
-            Cancel
+            {failureBtnText}
           </Button>
         </Item>
         <Item>
@@ -36,7 +38,7 @@ const DialogWindow: React.FC<IDialogWindowState> = ({
             shadow
             onClick={onDelete}
           >
-            Delete
+            {successBtnText}
           </Button>
         </Item>
       </List>

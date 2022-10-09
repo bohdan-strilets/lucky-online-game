@@ -57,23 +57,19 @@ const Controllers: React.FC<{}> = () => {
       </List>
 
       {showDialogModal && (
-        <Modal
-          onClose={() => setShowDialogModal(false)}
-          title="Delete account?"
-        >
+        <Modal onClose={() => setShowDialogModal(false)} title="Delete account?">
           <DialogWindow
             onCencel={() => setShowDialogModal(false)}
             onDelete={deleteAccount}
             text='Do you really want to delete your account and all data associated with it. All game progress will be lost, including statistics. Instead, you can use the delete "game session" function.'
+            failureBtnText="Cancel"
+            successBtnText="Delete"
           />
         </Modal>
       )}
 
       {showEditProfileModal && (
-        <Modal
-          onClose={() => setShowEditProfileModal(false)}
-          title="Edit personal data"
-        >
+        <Modal onClose={() => setShowEditProfileModal(false)} title="Edit personal data">
           <EditProfile onClose={() => setShowEditProfileModal(false)} />
         </Modal>
       )}

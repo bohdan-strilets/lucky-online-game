@@ -15,6 +15,7 @@ import {
   IChangeBankRes,
   IDeleteSessionRes,
   IResetPasswordRes,
+  IBuyItemRes,
 } from 'types/IUserRessponse';
 import {
   ISignupData,
@@ -25,37 +26,32 @@ import {
   IEditComplexityData,
   IEditBankData,
   IResetPasswordData,
+  IBuyItemData,
 } from 'types/IProfile';
 
-const signup = createAsyncThunk<IAuthRes, ISignupData>(
-  'user/signup',
-  async user => {
-    try {
-      const { data } = await api.post('/api/v1/auth/signup', user);
-      return data;
-    } catch (error: any) {
-      const message = error.response.data.message;
-      message
-        ? toast.warning(message)
-        : toast.warning('Sorry something went wrong... Please try again.');
-    }
-  },
-);
+const signup = createAsyncThunk<IAuthRes, ISignupData>('user/signup', async user => {
+  try {
+    const { data } = await api.post('/api/v1/auth/signup', user);
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
 
-const signin = createAsyncThunk<IAuthRes, ISigninData>(
-  'user/signin',
-  async user => {
-    try {
-      const { data } = await api.post('/api/v1/auth/signin', user);
-      return data;
-    } catch (error: any) {
-      const message = error.response.data.message;
-      message
-        ? toast.warning(message)
-        : toast.warning('Sorry something went wrong... Please try again.');
-    }
-  },
-);
+const signin = createAsyncThunk<IAuthRes, ISigninData>('user/signin', async user => {
+  try {
+    const { data } = await api.post('/api/v1/auth/signin', user);
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
 
 const signout = createAsyncThunk('user/signout', async () => {
   try {
@@ -69,35 +65,29 @@ const signout = createAsyncThunk('user/signout', async () => {
   }
 });
 
-const getCurrentUser = createAsyncThunk<ICurrentRes>(
-  'user/get-current-user',
-  async () => {
-    try {
-      const { data } = await api.get('/api/v1/user/get-current');
-      return data;
-    } catch (error: any) {
-      const message = error.response.data.message;
-      message
-        ? toast.warning(message)
-        : toast.warning('Sorry something went wrong... Please try again.');
-    }
-  },
-);
+const getCurrentUser = createAsyncThunk<ICurrentRes>('user/get-current-user', async () => {
+  try {
+    const { data } = await api.get('/api/v1/user/get-current');
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
 
-const changeAvatar = createAsyncThunk<IChangeAvatarRes, any>(
-  'user/change-avatar',
-  async avatar => {
-    try {
-      const { data } = await api.patch('/api/v1/user/change-avatar', avatar);
-      return data;
-    } catch (error: any) {
-      const message = error.response.data.message;
-      message
-        ? toast.warning(message)
-        : toast.warning('Sorry something went wrong... Please try again.');
-    }
-  },
-);
+const changeAvatar = createAsyncThunk<IChangeAvatarRes, any>('user/change-avatar', async avatar => {
+  try {
+    const { data } = await api.patch('/api/v1/user/change-avatar', avatar);
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
 
 const changeAccount = createAsyncThunk<IChangeAccountRes, IEditProfileData>(
   'user/change-account',
@@ -114,20 +104,17 @@ const changeAccount = createAsyncThunk<IChangeAccountRes, IEditProfileData>(
   },
 );
 
-const deleteAccount = createAsyncThunk<IDeleteAccountRes>(
-  'user/delete-account',
-  async () => {
-    try {
-      const { data } = await api.delete('/api/v1/user/delete-account');
-      return data;
-    } catch (error: any) {
-      const message = error.response.data.message;
-      message
-        ? toast.warning(message)
-        : toast.warning('Sorry something went wrong... Please try again.');
-    }
-  },
-);
+const deleteAccount = createAsyncThunk<IDeleteAccountRes>('user/delete-account', async () => {
+  try {
+    const { data } = await api.delete('/api/v1/user/delete-account');
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
 
 const changeEmail = createAsyncThunk<IChangeEmailRes, IEditEmailData>(
   'user/change-email',
@@ -148,10 +135,7 @@ const changePassword = createAsyncThunk<IChangePasswordRes, IEditPasswordData>(
   'user/change-password',
   async password => {
     try {
-      const { data } = await api.patch(
-        '/api/v1/user/change-password',
-        password,
-      );
+      const { data } = await api.patch('/api/v1/user/change-password', password);
       return data;
     } catch (error: any) {
       const message = error.response.data.message;
@@ -162,23 +146,20 @@ const changePassword = createAsyncThunk<IChangePasswordRes, IEditPasswordData>(
   },
 );
 
-const changeComplexity = createAsyncThunk<
-  IChangeComplexityRes,
-  IEditComplexityData
->('user/change-complexity', async complexity => {
-  try {
-    const { data } = await api.patch(
-      '/api/v1/user/change-complexity',
-      complexity,
-    );
-    return data;
-  } catch (error: any) {
-    const message = error.response.data.message;
-    message
-      ? toast.warning(message)
-      : toast.warning('Sorry something went wrong... Please try again.');
-  }
-});
+const changeComplexity = createAsyncThunk<IChangeComplexityRes, IEditComplexityData>(
+  'user/change-complexity',
+  async complexity => {
+    try {
+      const { data } = await api.patch('/api/v1/user/change-complexity', complexity);
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
 
 const createSession = createAsyncThunk<ICreateSessionRes, IEditComplexityData>(
   'user/create-session',
@@ -210,27 +191,9 @@ const changeBank = createAsyncThunk<IChangeBankRes, IEditBankData>(
   },
 );
 
-const deleteSession = createAsyncThunk<IDeleteSessionRes>(
-  'user/delete-session',
-  async () => {
-    try {
-      const { data } = await api.delete('/api/v1/user/delete-session');
-      return data;
-    } catch (error: any) {
-      const message = error.response.data.message;
-      message
-        ? toast.warning(message)
-        : toast.warning('Sorry something went wrong... Please try again.');
-    }
-  },
-);
-
-const sendPasswordResetEmail = createAsyncThunk<
-  IResetPasswordRes,
-  IEditEmailData
->('user/send-password-reset-email', async email => {
+const deleteSession = createAsyncThunk<IDeleteSessionRes>('user/delete-session', async () => {
   try {
-    const { data } = await api.post('/api/v1/user/send-password-email', email);
+    const { data } = await api.delete('/api/v1/user/delete-session');
     return data;
   } catch (error: any) {
     const message = error.response.data.message;
@@ -240,14 +203,11 @@ const sendPasswordResetEmail = createAsyncThunk<
   }
 });
 
-const resetPassword = createAsyncThunk<IResetPasswordRes, IResetPasswordData>(
-  'user/reset-password',
-  async resetPassword => {
+const sendPasswordResetEmail = createAsyncThunk<IResetPasswordRes, IEditEmailData>(
+  'user/send-password-reset-email',
+  async email => {
     try {
-      const { data } = await api.post(
-        '/api/v1/user/reset-password',
-        resetPassword,
-      );
+      const { data } = await api.post('/api/v1/user/send-password-email', email);
       return data;
     } catch (error: any) {
       const message = error.response.data.message;
@@ -257,6 +217,45 @@ const resetPassword = createAsyncThunk<IResetPasswordRes, IResetPasswordData>(
     }
   },
 );
+
+const resetPassword = createAsyncThunk<IResetPasswordRes, IResetPasswordData>(
+  'user/reset-password',
+  async resetPassword => {
+    try {
+      const { data } = await api.post('/api/v1/user/reset-password', resetPassword);
+      return data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message
+        ? toast.warning(message)
+        : toast.warning('Sorry something went wrong... Please try again.');
+    }
+  },
+);
+
+const buyItem = createAsyncThunk<IBuyItemRes, IBuyItemData>('user/buy-item', async id => {
+  try {
+    const { data } = await api.post('/api/v1/user/buy-item', id);
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
+
+const sellItem = createAsyncThunk<IBuyItemRes, { id: string }>('user/sell-item', async id => {
+  try {
+    const { data } = await api.put('/api/v1/user/sell-item', id);
+    return data;
+  } catch (error: any) {
+    const message = error.response.data.message;
+    message
+      ? toast.warning(message)
+      : toast.warning('Sorry something went wrong... Please try again.');
+  }
+});
 
 const operations = {
   signup,
@@ -274,6 +273,8 @@ const operations = {
   deleteSession,
   sendPasswordResetEmail,
   resetPassword,
+  buyItem,
+  sellItem,
 };
 
 export default operations;

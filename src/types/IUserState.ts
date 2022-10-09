@@ -1,5 +1,6 @@
 import { ILevel } from './ILevel';
 import { IStatistics } from './IStatistics';
+import { IItem } from './IStore';
 
 export interface IUser {
   _id?: string | null;
@@ -17,6 +18,7 @@ export interface IUser {
   updatedAt?: string | null;
   level?: ILevel | null;
   statistics?: IStatistics | null;
+  products: IItem[] | null;
 }
 
 export interface IAuthState {

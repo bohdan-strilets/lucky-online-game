@@ -7,16 +7,9 @@ import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import Modal from 'components/Modal';
 import ProductStore from 'components/Modal/ProductStore';
 import Loader from 'components/InterfaceElements/Loader';
+import DialogWindow from 'components/Modal/DialogWindow';
 
-import {
-  List,
-  Item,
-  Title,
-  Photo,
-  Description,
-  Price,
-  Navigation,
-} from './Store.styled';
+import { List, Item, Title, Photo, Description, Price, Navigation } from './Store.styled';
 
 const Store: React.FC<{}> = () => {
   const {
@@ -26,12 +19,17 @@ const Store: React.FC<{}> = () => {
     currentTitle,
     isFetching,
     items,
-    openModal,
+    openModalMoreInfo,
     page,
     showMore,
     showMoreDetails,
     total,
-    closeModal,
+    closeModalMoreInfo,
+    buy,
+    showModalBuyItem,
+    openModalDialogWindow,
+    closeModalDialogWindow,
+    currentAmount,
   } = useStore();
 
   return (
@@ -42,17 +40,14 @@ const Store: React.FC<{}> = () => {
         {items &&
           items.map(({ _id, imageURL, title, description, price }) => {
             return (
-              <Item key={_id} data-id={_id} onClick={openModal}>
-                <Container
-                  type="color"
-                  width="100%"
-                  padding="20px"
-                  height="600px"
-                >
-                  <Title>{title}</Title>
-                  <Photo src={imageURL} alt={title} />
-                  <Description>{description}</Description>
-                  <Price>{bankFormatting(Number(price).toFixed(2))} $</Price>
+              <Item key={_id} data-id={_id}>
+                <Container type="color" width="100%" padding="20px" height="600px">
+                  <div data-id={_id} onClick={openModalMoreInfo}>
+                    <Title>{title}</Title>
+                    <Photo src={imageURL} alt={title} />
+                    <Description>{description}</Description>
+                    <Price>{bankFormatting(Number(price).toFixed(2))} $</Price>
+                  </div>
 
                   <Button
                     type="button"
@@ -61,6 +56,9 @@ const Store: React.FC<{}> = () => {
                     width="100%"
                     borderRadius="50px"
                     shadow
+                    onClick={openModalDialogWindow}
+                    data-price={price}
+                    data-id={_id}
                   >
                     Buy
                   </Button>
@@ -70,13 +68,7 @@ const Store: React.FC<{}> = () => {
           })}
       </List>
 
-      <Container
-        type="transparent"
-        width="100%"
-        alignItems="center"
-        padding="15px"
-        margin="15px"
-      >
+      <Container type="transparent" width="100%" alignItems="center" padding="15px" margin="15px">
         <Navigation>
           {page > 1 && (
             <Button
@@ -88,11 +80,7 @@ const Store: React.FC<{}> = () => {
               margin="0 50px 0 0"
               onClick={comeBack}
             >
-              <IconSwitcher
-                name="arrowLeft"
-                size="22px"
-                fill="var(--white-color)"
-              />
+              <IconSwitcher name="arrowLeft" size="22px" fill="var(--white-color)" />
             </Button>
           )}
           {allImages !== total && (
@@ -104,19 +92,26 @@ const Store: React.FC<{}> = () => {
               width="150px"
               onClick={showMore}
             >
-              <IconSwitcher
-                name="arrowRight"
-                size="22px"
-                fill="var(--white-color)"
-              />
+              <IconSwitcher name="arrowRight" size="22px" fill="var(--white-color)" />
             </Button>
           )}
         </Navigation>
       </Container>
 
       {showMoreDetails && (
-        <Modal onClose={closeModal} title={currentTitle ? currentTitle : ''}>
+        <Modal onClose={closeModalMoreInfo} title={currentTitle ? currentTitle : ''}>
           <ProductStore id={currentId as string} />
+        </Modal>
+      )}
+
+      {showModalBuyItem && (
+        <Modal onClose={closeModalDialogWindow} title="Do you want to buy this item?">
+          <DialogWindow
+            onCencel={closeModalDialogWindow}
+            onDelete={() => buy(currentId as string, currentAmount as number)}
+            failureBtnText="Cancel"
+            successBtnText="Buy"
+          />
         </Modal>
       )}
     </>

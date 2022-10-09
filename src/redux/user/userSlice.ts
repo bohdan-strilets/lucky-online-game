@@ -23,6 +23,7 @@ const initialState: IAuthState = {
     updatedAt: null,
     level: null,
     statistics: null,
+    products: null,
   },
   token: null,
   isLoggedIn: false,
@@ -133,7 +134,7 @@ export const userSlice = createSlice({
         state.user.bank = action.payload.bank;
       })
 
-      .addCase(operations.deleteSession.fulfilled, (state, action) => {
+      .addCase(operations.deleteSession.fulfilled, state => {
         try {
           state.user.inGame = false;
           state.user.complexity = null;
@@ -142,11 +143,17 @@ export const userSlice = createSlice({
 
       .addCase(operations.sendPasswordResetEmail.fulfilled, () => {})
 
-      .addCase(operations.resetPassword.fulfilled, () => {});
+      .addCase(operations.resetPassword.fulfilled, () => {})
+
+      .addCase(operations.buyItem.fulfilled, (state, action) => {
+        state.user.products = action.payload.products;
+        state.user.bank = action.payload.bank;
+      })
+
+      .addCase(operations.sellItem.fulfilled, (state, action) => {
+        state.user.products = action.payload.products;
+      });
   },
 });
 
-export const persisteUserReducer = persistReducer(
-  userPersistConfig,
-  userSlice.reducer,
-);
+export const persisteUserReducer = persistReducer(userPersistConfig, userSlice.reducer);

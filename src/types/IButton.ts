@@ -9,9 +9,10 @@ export interface IButtonState {
   borderRadius?: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean | undefined;
+  otherAttributes?: any;
 }
 
 export type IButtonWrapperStyled = Pick<
   IButtonState,
-  'width' | 'height' | 'margin' | 'background' | 'shadow' | 'borderRadius'
+  'width' | 'height' | 'margin' | 'background' | 'shadow' | 'borderRadius' | 'otherAttributes'
 >;
