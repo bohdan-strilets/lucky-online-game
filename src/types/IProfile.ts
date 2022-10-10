@@ -47,3 +47,8 @@ export interface IBuyItemData {
   id: string;
   price: number;
 }
+
+export interface ISellItemData {
+  index: number;
+  price: number;
+}

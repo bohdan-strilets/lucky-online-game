@@ -14,6 +14,6 @@ export const BankWrapper = styled.div`
 `;
 
 export const Amount = styled.p`
-  font-size: 38px;
+  font-size: 30px;
   font-weight: 900;
 `;

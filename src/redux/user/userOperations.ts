@@ -27,6 +27,7 @@ import {
   IEditBankData,
   IResetPasswordData,
   IBuyItemData,
+  ISellItemData,
 } from 'types/IProfile';
 
 const signup = createAsyncThunk<IAuthRes, ISignupData>('user/signup', async user => {
@@ -233,9 +234,9 @@ const resetPassword = createAsyncThunk<IResetPasswordRes, IResetPasswordData>(
   },
 );
 
-const buyItem = createAsyncThunk<IBuyItemRes, IBuyItemData>('user/buy-item', async id => {
+const buyItem = createAsyncThunk<IBuyItemRes, IBuyItemData>('user/buy-item', async buyData => {
   try {
-    const { data } = await api.post('/api/v1/user/buy-item', id);
+    const { data } = await api.post('/api/v1/user/buy-item', buyData);
     return data;
   } catch (error: any) {
     const message = error.response.data.message;
@@ -245,9 +246,9 @@ const buyItem = createAsyncThunk<IBuyItemRes, IBuyItemData>('user/buy-item', asy
   }
 });
 
-const sellItem = createAsyncThunk<IBuyItemRes, { id: string }>('user/sell-item', async id => {
+const sellItem = createAsyncThunk<IBuyItemRes, ISellItemData>('user/sell-item', async sellData => {
   try {
-    const { data } = await api.put('/api/v1/user/sell-item', id);
+    const { data } = await api.put('/api/v1/user/sell-item', sellData);
     return data;
   } catch (error: any) {
     const message = error.response.data.message;

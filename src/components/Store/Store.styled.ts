@@ -13,6 +13,10 @@ export const Item = styled.li`
   cursor: pointer;
 `;
 
+export const Wrapper = styled.div`
+  margin-bottom: auto;
+`;
+
 export const Title = styled.h2`
   width: 100%;
   margin-bottom: 15px;
@@ -23,12 +27,14 @@ export const Title = styled.h2`
 `;
 
 export const Photo = styled.img`
-  margin: 0 auto 15px auto;
+  margin: 0 auto 40px auto;
   max-height: 300px;
 `;
 
 export const Description = styled.p`
-  margin-bottom: auto;
+  margin-bottom: 15px;
+  overflow-y: auto;
+  height: 50px;
 `;
 
 export const Price = styled.p`

@@ -59,8 +59,8 @@ const Controllers: React.FC<{}> = () => {
       {showDialogModal && (
         <Modal onClose={() => setShowDialogModal(false)} title="Delete account?">
           <DialogWindow
-            onCencel={() => setShowDialogModal(false)}
-            onDelete={deleteAccount}
+            onFailure={() => setShowDialogModal(false)}
+            onSuccess={deleteAccount}
             text='Do you really want to delete your account and all data associated with it. All game progress will be lost, including statistics. Instead, you can use the delete "game session" function.'
             failureBtnText="Cancel"
             successBtnText="Delete"

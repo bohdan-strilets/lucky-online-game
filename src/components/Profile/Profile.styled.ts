@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
   width: 100%;
+  padding-bottom: 50px;
 `;
 
 export const Header = styled.div`

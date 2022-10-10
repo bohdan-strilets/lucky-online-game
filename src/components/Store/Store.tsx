@@ -9,7 +9,7 @@ import ProductStore from 'components/Modal/ProductStore';
 import Loader from 'components/InterfaceElements/Loader';
 import DialogWindow from 'components/Modal/DialogWindow';
 
-import { List, Item, Title, Photo, Description, Price, Navigation } from './Store.styled';
+import { List, Item, Wrapper, Title, Photo, Description, Price, Navigation } from './Store.styled';
 
 const Store: React.FC<{}> = () => {
   const {
@@ -42,12 +42,12 @@ const Store: React.FC<{}> = () => {
             return (
               <Item key={_id} data-id={_id}>
                 <Container type="color" width="100%" padding="20px" height="600px">
-                  <div data-id={_id} onClick={openModalMoreInfo}>
+                  <Wrapper data-id={_id} onClick={openModalMoreInfo}>
                     <Title>{title}</Title>
                     <Photo src={imageURL} alt={title} />
                     <Description>{description}</Description>
                     <Price>{bankFormatting(Number(price).toFixed(2))} $</Price>
-                  </div>
+                  </Wrapper>
 
                   <Button
                     type="button"
@@ -107,8 +107,8 @@ const Store: React.FC<{}> = () => {
       {showModalBuyItem && (
         <Modal onClose={closeModalDialogWindow} title="Do you want to buy this item?">
           <DialogWindow
-            onCencel={closeModalDialogWindow}
-            onDelete={() => buy(currentId as string, currentAmount as number)}
+            onFailure={closeModalDialogWindow}
+            onSuccess={() => buy(currentId as string, currentAmount as number)}
             failureBtnText="Cancel"
             successBtnText="Buy"
           />

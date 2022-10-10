@@ -152,6 +152,7 @@ export const userSlice = createSlice({
 
       .addCase(operations.sellItem.fulfilled, (state, action) => {
         state.user.products = action.payload.products;
+        state.user.bank = action.payload.bank;
       });
   },
 });

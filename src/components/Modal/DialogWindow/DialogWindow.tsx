@@ -4,8 +4,8 @@ import { IDialogWindowState } from 'types/IDialogWindow';
 import { Text, List, Item } from './DialogWindow.styled';
 
 const DialogWindow: React.FC<IDialogWindowState> = ({
-  onCencel,
-  onDelete,
+  onFailure,
+  onSuccess,
   text,
   successBtnText,
   failureBtnText,
@@ -23,7 +23,7 @@ const DialogWindow: React.FC<IDialogWindowState> = ({
             width="300px"
             borderRadius="50px"
             shadow
-            onClick={onCencel}
+            onClick={onFailure}
           >
             {failureBtnText}
           </Button>
@@ -36,7 +36,7 @@ const DialogWindow: React.FC<IDialogWindowState> = ({
             width="300px"
             borderRadius="50px"
             shadow
-            onClick={onDelete}
+            onClick={onSuccess}
           >
             {successBtnText}
           </Button>

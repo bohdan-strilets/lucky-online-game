@@ -11,6 +11,8 @@ import EditEmail from 'components/Modal/EditEmail';
 import EditPassword from 'components/Modal/EditPassword';
 import EditComplexity from 'components/Modal/EditComplexity';
 import DialogWindow from 'components/Modal/DialogWindow';
+import MyItems from './MyItems';
+import EmptyList from './EmptyList';
 
 import {
   Wrapper,
@@ -40,6 +42,7 @@ const Profile: React.FC<{}> = () => {
     showEditPasswordModal,
     setshowDeleteSessionModal,
     user,
+    products,
   } = useProfile();
 
   return (
@@ -126,6 +129,8 @@ const Profile: React.FC<{}> = () => {
         </Wrapper>
       )}
 
+      {products && products.length > 0 ? <MyItems products={products} /> : <EmptyList />}
+
       {showEditAvatarModal && (
         <Modal title="Choose a new avatar" onClose={() => setShowEditAvatarModal(false)}>
           <EditAvatar onClose={() => setShowEditAvatarModal(false)} />
@@ -159,8 +164,8 @@ const Profile: React.FC<{}> = () => {
           onClose={() => setshowDeleteSessionModal(false)}
         >
           <DialogWindow
-            onCencel={() => setshowDeleteSessionModal(false)}
-            onDelete={deleteGameSession}
+            onFailure={() => setshowDeleteSessionModal(false)}
+            onSuccess={deleteGameSession}
             text="After deleting a game session, data such as betting history, statistics and game level will be lost. Are you sure you want to continue?"
             failureBtnText="Cancel"
             successBtnText="Delete"

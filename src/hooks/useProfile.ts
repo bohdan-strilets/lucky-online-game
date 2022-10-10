@@ -4,7 +4,7 @@ import { useAppDispatch } from 'hooks/useAppDispatch';
 import operations from 'redux/user/userOperations';
 import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 
-import { getUser } from 'redux/user/userSelectors';
+import { getUser, getProducts } from 'redux/user/userSelectors';
 import moment from 'moment';
 
 import { IDeleteSessionRes } from 'types/IUserRessponse';
@@ -17,13 +17,12 @@ const useProfile = () => {
   const [showDeleteSessionModal, setshowDeleteSessionModal] = useState(false);
 
   const user = useAppSelector(getUser);
+  const products = useAppSelector(getProducts);
   const dispatch = useAppDispatch();
   const { data } = useGetLevelInfoQuery();
   const age = () => {
     if (user.dateBirth) {
-      return user.dateBirth?.length > 9
-        ? Number.parseInt(moment(user.dateBirth).fromNow(true))
-        : 0;
+      return user.dateBirth?.length > 9 ? Number.parseInt(moment(user.dateBirth).fromNow(true)) : 0;
     }
   };
 
@@ -50,6 +49,7 @@ const useProfile = () => {
     age,
     deleteGameSession,
     user,
+    products,
   };
 };
 

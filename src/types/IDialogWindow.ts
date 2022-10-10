@@ -1,6 +1,6 @@
 export interface IDialogWindowState {
-  onCencel: () => void;
-  onDelete: () => void;
+  onFailure: () => void;
+  onSuccess: () => void;
   text?: string;
   successBtnText: string;
   failureBtnText: string;
