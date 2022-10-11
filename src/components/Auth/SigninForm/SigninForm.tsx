@@ -5,7 +5,6 @@ import EntryField from 'components/InterfaceElements/EntryField';
 import Button from 'components/InterfaceElements/Button';
 import Container from 'components/InterfaceElements/Container';
 import AuthNav from '../AuthNav';
-import Checkbox from 'components/InterfaceElements/Checkbox';
 import Modal from 'components/Modal';
 import ResetPassword from 'components/Modal/ResetPassword';
 
@@ -75,12 +74,6 @@ const SigninForm: React.FC<{}> = () => {
             </Button>
 
             <Tuple>
-              <Checkbox
-                name="rememberMe"
-                label="To remember me"
-                checked={values.rememberMe}
-                value={values.rememberMe}
-              />
               <StyledLink type="button" onClick={toogleModalResetPassword}>
                 Lost your password?
               </StyledLink>
