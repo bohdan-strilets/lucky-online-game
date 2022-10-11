@@ -45,3 +45,8 @@ export const ShowRulesButton = styled.button`
     opacity: 0.6;
   }
 `;
+
+export const Warning = styled.p`
+  color: var(--red-color);
+  margin-top: 20px;
+`;

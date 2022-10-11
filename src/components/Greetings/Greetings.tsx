@@ -5,10 +5,23 @@ import Button from 'components/InterfaceElements/Button';
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import Rules from './Rules';
 
-import { Title, Text, List, ShowRulesButton } from './Greetings.styled';
+import {
+  Title,
+  Text,
+  List,
+  ShowRulesButton,
+  Warning,
+} from './Greetings.styled';
 
 const Greetings: React.FC<{}> = () => {
-  const { isLoggedIn, navigate, showRulles, toogle } = useGreetings();
+  const {
+    isLoggedIn,
+    showRulles,
+    toogle,
+    redirectToProfile,
+    redirectToSignup,
+    redirectToSignin,
+  } = useGreetings();
 
   return (
     <Container
@@ -36,7 +49,7 @@ const Greetings: React.FC<{}> = () => {
           borderRadius="50px"
           shadow
           margin="0 0 30px 0"
-          onClick={() => navigate('/profile')}
+          onClick={redirectToProfile}
         >
           start
         </Button>
@@ -50,7 +63,7 @@ const Greetings: React.FC<{}> = () => {
               width="380px"
               borderRadius="50px"
               shadow
-              onClick={() => navigate('/sign-up')}
+              onClick={redirectToSignup}
             >
               Sign up
             </Button>
@@ -63,7 +76,7 @@ const Greetings: React.FC<{}> = () => {
               width="380px"
               borderRadius="50px"
               shadow
-              onClick={() => navigate('/sign-in')}
+              onClick={redirectToSignin}
             >
               Sign in
             </Button>
@@ -87,6 +100,8 @@ const Greetings: React.FC<{}> = () => {
       </ShowRulesButton>
 
       {showRulles && <Rules />}
+
+      <Warning>Warning!!! There are sounds on the site!</Warning>
     </Container>
   );
 };

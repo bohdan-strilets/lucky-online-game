@@ -18,6 +18,7 @@ const SigninForm: React.FC<{}> = () => {
     showModalResetPassword,
     signinSchema,
     toogleModalResetPassword,
+    play,
   } = useLogin();
 
   return (
@@ -68,6 +69,7 @@ const SigninForm: React.FC<{}> = () => {
               height="60px"
               borderRadius="50px"
               shadow
+              onClick={() => play({ id: 'counter_click' })}
             >
               Sign in
             </Button>

@@ -12,13 +12,16 @@ import { useGetLevelInfoQuery } from 'redux/level/levelApi';
 import betsOperations from 'redux/bets/betsOperations';
 import types from 'helpers/betTypes';
 import useSound from 'use-sound';
+import { getSoundOff } from 'redux/options/optionsSelectors';
 
-import soundVictory from 'sounds/sound_victory.mp3';
+import sounds from 'sounds/sounds.mp3';
+import sprite from 'sounds/sprite';
 import { IChangeBetRes } from 'types/IBetsApi';
 
 const useMakeMove = () => {
   const dispatch = useAppDispatch();
-  const [play] = useSound(soundVictory);
+  const soundOff = useAppSelector(getSoundOff);
+  const [play] = useSound(sounds, { sprite: sprite, soundEnabled: soundOff });
 
   const [changeExperience] = useChangeExperienceMutation();
   const { coefficientInfo } = useCoefficient();
@@ -66,7 +69,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -107,7 +110,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -149,7 +152,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -191,7 +194,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -233,7 +236,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -275,7 +278,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -317,7 +320,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -359,7 +362,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -401,7 +404,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -443,7 +446,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -485,7 +488,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -527,7 +530,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -569,7 +572,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,
@@ -611,7 +614,7 @@ const useMakeMove = () => {
             );
           }
 
-          play();
+          play({ id: 'sound_victory' });
           return {
             isWon: true,
             randomNumber,

@@ -1,8 +1,11 @@
 import { useChangeLevelMutation } from 'redux/level/levelApi';
 import { useChangeRankMutation } from 'redux/level/levelApi';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { getSoundOff } from 'redux/options/optionsSelectors';
 
 import useSound from 'use-sound';
-import levelUp from 'sounds/level_up.mp3';
+import sounds from 'sounds/sounds.mp3';
+import sprite from 'sounds/sprite';
 
 import experienceInfo from 'data/experience.json';
 import rankTypes from 'helpers/rankTypes';
@@ -11,7 +14,8 @@ import { toast } from 'react-toastify';
 const useExperience = () => {
   const [changeLevel] = useChangeLevelMutation();
   const [changeRank, { data }] = useChangeRankMutation();
-  const [play] = useSound(levelUp);
+  const soundOff = useAppSelector(getSoundOff);
+  const [play] = useSound(sounds, { sprite: sprite, soundEnabled: soundOff });
 
   const findNextLevel = (currentLevel: number) => {
     const nextLevelInfo = experienceInfo.find(
@@ -39,7 +43,7 @@ const useExperience = () => {
       ?.experience as number;
 
     if (currentExperience >= exp) {
-      play();
+      play({ id: 'level_up' });
       toast.success('Your level has increased.');
       return changeLevel();
     }
@@ -53,7 +57,7 @@ const useExperience = () => {
       data &&
       data.rank !== rankTypes.jester.type
     ) {
-      play();
+      play({ id: 'level_up' });
       toast.success('Your rank JESTER.');
       return changeRank({ rank: rankTypes.jester.type });
     }
@@ -63,7 +67,7 @@ const useExperience = () => {
       data &&
       data.rank !== rankTypes.beginning.type
     ) {
-      play();
+      play({ id: 'level_up' });
       toast.success('Your rank BEGINNING.');
       return changeRank({ rank: rankTypes.beginning.type });
     }
@@ -73,7 +77,7 @@ const useExperience = () => {
       data &&
       data.rank !== rankTypes.entrepreneur.type
     ) {
-      play();
+      play({ id: 'level_up' });
       toast.success('Your rank ENTREPRENEUR.');
       return changeRank({ rank: rankTypes.entrepreneur.type });
     }
@@ -83,7 +87,7 @@ const useExperience = () => {
       data &&
       data.rank !== rankTypes.businessman.type
     ) {
-      play();
+      play({ id: 'level_up' });
       toast.success('Your rank BUSINESSMAN.');
       return changeRank({ rank: rankTypes.businessman.type });
     }
@@ -93,7 +97,7 @@ const useExperience = () => {
       data &&
       data.rank !== rankTypes.deputy.type
     ) {
-      play();
+      play({ id: 'level_up' });
       toast.success('Your rank DEPUTY.');
       return changeRank({ rank: rankTypes.deputy.type });
     }
@@ -103,7 +107,7 @@ const useExperience = () => {
       data &&
       data.rank !== rankTypes.investor.type
     ) {
-      play();
+      play({ id: 'level_up' });
       toast.success('Your rank INVESTOR.');
       return changeRank({ rank: rankTypes.investor.type });
     }

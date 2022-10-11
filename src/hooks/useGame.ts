@@ -6,13 +6,15 @@ import useMakeMove from 'hooks/useMakeMove';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import operations from 'redux/user/userOperations';
 import betsOperations from 'redux/bets/betsOperations';
+import { getSoundOff } from 'redux/options/optionsSelectors';
 
 import { toast } from 'react-toastify';
 
 import useSound from 'use-sound';
-import clickBidButton from 'sounds/click_bid_button.mp3';
+import sounds from 'sounds/sounds.mp3';
 
 import { ICreateBetRes } from 'types/IBetsApi';
+import sprite from 'sounds/sprite';
 
 const useGame = () => {
   const dispatch = useAppDispatch();
@@ -21,8 +23,8 @@ const useGame = () => {
   const { getCoefficient } = useCoefficient();
   const { getWinner } = useMakeMove();
 
-  const [play] = useSound(clickBidButton, { volume: 0.3, playbackRate: 0.5 });
-  const onPlay = () => play();
+  const soundOff = useAppSelector(getSoundOff);
+  const [play] = useSound(sounds, { sprite: sprite, soundEnabled: soundOff });
 
   const [type, setType] = useState<string | null>(null);
   const [color, setColor] = useState<string | null>(null);
@@ -98,12 +100,12 @@ const useGame = () => {
     amountHandler,
     submitHandler,
     randomNumber,
-    onPlay,
     showSuccessModal,
     experienceGained,
     receivedMoney,
     isWon,
     toggleSuccesModal,
+    play,
   };
 };
 

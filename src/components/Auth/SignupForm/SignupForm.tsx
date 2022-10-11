@@ -9,7 +9,7 @@ import AuthNav from '../AuthNav';
 import { Tuple, Text, PolicyLink } from './SignupForm.styled';
 
 const SignupForm: React.FC<{}> = () => {
-  const { initialValues, registration, signupSchema } = useRegistration();
+  const { initialValues, registration, signupSchema, play } = useRegistration();
 
   return (
     <Container
@@ -84,6 +84,7 @@ const SignupForm: React.FC<{}> = () => {
               height="60px"
               borderRadius="50px"
               shadow
+              onClick={() => play({ id: 'counter_click' })}
             >
               Sign up
             </Button>

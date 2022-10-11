@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
 import getAllUsers from 'helpers/getAllUsers';
+import useSound from 'use-sound';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { getSoundOff } from 'redux/options/optionsSelectors';
+
+import sounds from 'sounds/sounds.mp3';
+import sprite from 'sounds/sprite';
 import { IUser } from 'types/IUserState';
 
 const useRating = () => {
@@ -7,6 +13,9 @@ const useRating = () => {
   const [users, setUsers] = useState<null | IUser[] | undefined>(null);
   const [totalUsers, setTotalUsers] = useState(null);
   const [sortOption, setSortOption] = useState<string | null>(null);
+
+  const soundOff = useAppSelector(getSoundOff);
+  const [play] = useSound(sounds, { sprite: sprite, soundEnabled: soundOff });
 
   useEffect(() => {
     (async () => {
@@ -27,7 +36,10 @@ const useRating = () => {
     })();
   }, [page]);
 
-  const showMore = () => setPage(prevState => prevState + 1);
+  const showMore = () => {
+    setPage(prevState => prevState + 1);
+    play({ id: 'counter_click' });
+  };
 
   const disabledbutton = () => {
     if (users !== undefined && users !== null && totalUsers !== null) {

@@ -1,7 +1,4 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import operations from 'redux/user/userOperations';
+import useProfileControllers from 'hooks/useProfileControllers';
 
 import Button from 'components/InterfaceElements/Button';
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
@@ -9,23 +6,16 @@ import Modal from 'components/Modal';
 import DialogWindow from 'components/Modal/DialogWindow';
 import EditProfile from 'components/Modal/EditProfile';
 
-import { IDeleteAccountRes } from 'types/IUserRessponse';
 import { List, Item } from './Controllers.styled';
 
 const Controllers: React.FC<{}> = () => {
-  const [showDialogModal, setShowDialogModal] = useState(false);
-  const [showEditProfileModal, setShowEditProfileModal] = useState(false);
-
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const deleteAccount = async () => {
-    const res = await dispatch(operations.deleteAccount());
-
-    if ((res.payload as IDeleteAccountRes).status === 'ok') {
-      navigate('/');
-    }
-  };
+  const {
+    switchEditProfileModal,
+    switchDialogModal,
+    showDialogModal,
+    showEditProfileModal,
+    deleteAccount,
+  } = useProfileControllers();
 
   return (
     <>
@@ -37,7 +27,7 @@ const Controllers: React.FC<{}> = () => {
             borderRadius="10px"
             height="50px"
             width="50px"
-            onClick={() => setShowEditProfileModal(true)}
+            onClick={() => switchEditProfileModal(true)}
           >
             <IconSwitcher name="adjust" size="18px" fill="var(--white-color)" />
           </Button>
@@ -49,7 +39,7 @@ const Controllers: React.FC<{}> = () => {
             borderRadius="10px"
             height="50px"
             width="50px"
-            onClick={() => setShowDialogModal(true)}
+            onClick={() => switchDialogModal(true)}
           >
             <IconSwitcher name="delete" size="18px" fill="var(--white-color)" />
           </Button>
@@ -57,9 +47,9 @@ const Controllers: React.FC<{}> = () => {
       </List>
 
       {showDialogModal && (
-        <Modal onClose={() => setShowDialogModal(false)} title="Delete account?">
+        <Modal onClose={() => switchDialogModal(false)} title="Delete account?">
           <DialogWindow
-            onFailure={() => setShowDialogModal(false)}
+            onFailure={() => switchDialogModal(false)}
             onSuccess={deleteAccount}
             text='Do you really want to delete your account and all data associated with it. All game progress will be lost, including statistics. Instead, you can use the delete "game session" function.'
             failureBtnText="Cancel"
@@ -69,8 +59,11 @@ const Controllers: React.FC<{}> = () => {
       )}
 
       {showEditProfileModal && (
-        <Modal onClose={() => setShowEditProfileModal(false)} title="Edit personal data">
-          <EditProfile onClose={() => setShowEditProfileModal(false)} />
+        <Modal
+          onClose={() => switchEditProfileModal(false)}
+          title="Edit personal data"
+        >
+          <EditProfile onClose={() => switchEditProfileModal(false)} />
         </Modal>
       )}
     </>

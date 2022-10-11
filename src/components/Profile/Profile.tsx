@@ -31,22 +31,27 @@ const Profile: React.FC<{}> = () => {
     age,
     data,
     deleteGameSession,
-    setShowEditAvatarModal,
-    setShowEditComplexityModal,
-    setShowEditEmailModal,
-    setShowEditPasswordModal,
+    switchEditAvatarModal,
+    switchEditComplexityModal,
+    switchEditEmailModal,
+    switchEditPasswordModal,
     showDeleteSessionModal,
     showEditAvatarModal,
     showEditComplexityModal,
     showEditEmailModal,
     showEditPasswordModal,
-    setshowDeleteSessionModal,
+    switchDeleteSessionModal,
     user,
     products,
   } = useProfile();
 
   return (
-    <Container type="transparent" width="1050px" padding="70px 50px" margin="50px">
+    <Container
+      type="transparent"
+      width="1050px"
+      padding="70px 50px"
+      margin="50px"
+    >
       <Controllers />
 
       {user.name && (
@@ -56,16 +61,20 @@ const Profile: React.FC<{}> = () => {
 
             <div>
               <p>
-                Account creation date: {user.createdAt && dateFormatting(user.createdAt as string)}
+                Account creation date:{' '}
+                {user.createdAt && dateFormatting(user.createdAt as string)}
               </p>
-              <p>Last update date: {user.updatedAt && dateFormatting(user.updatedAt as string)}</p>
+              <p>
+                Last update date:{' '}
+                {user.updatedAt && dateFormatting(user.updatedAt as string)}
+              </p>
             </div>
           </Header>
 
           <Avatar
             src={`${API_URL}/${user.avatarURL}`}
             alt={`${user.name} user avatar`}
-            onClick={() => setShowEditAvatarModal(true)}
+            onClick={() => switchEditAvatarModal(true)}
           />
 
           <Name>
@@ -77,8 +86,15 @@ const Profile: React.FC<{}> = () => {
               <Text>Email:</Text>
               <div>
                 <Value>{user.email}</Value>
-                <EditBtn type="button" onClick={() => setShowEditEmailModal(true)}>
-                  <IconSwitcher name="pen" size="16px" fill="var(--green-color)" />
+                <EditBtn
+                  type="button"
+                  onClick={() => switchEditEmailModal(true)}
+                >
+                  <IconSwitcher
+                    name="pen"
+                    size="16px"
+                    fill="var(--green-color)"
+                  />
                 </EditBtn>
               </div>
             </Item>
@@ -86,8 +102,15 @@ const Profile: React.FC<{}> = () => {
               <Text>Password:</Text>
               <div>
                 <Value>******</Value>
-                <EditBtn type="button" onClick={() => setShowEditPasswordModal(true)}>
-                  <IconSwitcher name="pen" size="16px" fill="var(--green-color)" />
+                <EditBtn
+                  type="button"
+                  onClick={() => switchEditPasswordModal(true)}
+                >
+                  <IconSwitcher
+                    name="pen"
+                    size="16px"
+                    fill="var(--green-color)"
+                  />
                 </EditBtn>
               </div>
             </Item>
@@ -103,15 +126,31 @@ const Profile: React.FC<{}> = () => {
               <Text>Complexity:</Text>
               <div>
                 <Value>
-                  {user.complexity ? user.complexity : 'The game session has not yet been created.'}
+                  {user.complexity
+                    ? user.complexity
+                    : 'The game session has not yet been created.'}
                 </Value>
                 {user.inGame && (
                   <>
-                    <EditBtn type="button" onClick={() => setShowEditComplexityModal(true)}>
-                      <IconSwitcher name="pen" size="16px" fill="var(--green-color)" />
+                    <EditBtn
+                      type="button"
+                      onClick={() => switchEditComplexityModal(true)}
+                    >
+                      <IconSwitcher
+                        name="pen"
+                        size="16px"
+                        fill="var(--green-color)"
+                      />
                     </EditBtn>
-                    <EditBtn type="button" onClick={() => setshowDeleteSessionModal(true)}>
-                      <IconSwitcher name="delete" size="16px" fill="var(--green-color)" />
+                    <EditBtn
+                      type="button"
+                      onClick={() => switchDeleteSessionModal(true)}
+                    >
+                      <IconSwitcher
+                        name="delete"
+                        size="16px"
+                        fill="var(--green-color)"
+                      />
                     </EditBtn>
                   </>
                 )}
@@ -121,7 +160,9 @@ const Profile: React.FC<{}> = () => {
               <Text>Game session:</Text>
               <Value>
                 {user.inGame &&
-                  `Game creation date: ${data && dateFormatting(data?.level.createdAt as string)}`}
+                  `Game creation date: ${
+                    data && dateFormatting(data?.level.createdAt as string)
+                  }`}
                 {!user.inGame && 'Start a new game'}
               </Value>
             </Item>
@@ -129,30 +170,43 @@ const Profile: React.FC<{}> = () => {
         </Wrapper>
       )}
 
-      {products && products.length > 0 ? <MyItems products={products} /> : <EmptyList />}
+      {products && products.length > 0 ? (
+        <MyItems products={products} />
+      ) : (
+        <EmptyList />
+      )}
 
       {showEditAvatarModal && (
-        <Modal title="Choose a new avatar" onClose={() => setShowEditAvatarModal(false)}>
-          <EditAvatar onClose={() => setShowEditAvatarModal(false)} />
+        <Modal
+          title="Choose a new avatar"
+          onClose={() => switchEditAvatarModal(false)}
+        >
+          <EditAvatar onClose={() => switchEditAvatarModal(false)} />
         </Modal>
       )}
 
       {showEditEmailModal && (
-        <Modal title="Change email" onClose={() => setShowEditEmailModal(false)}>
-          <EditEmail onClose={() => setShowEditEmailModal(false)} />
+        <Modal title="Change email" onClose={() => switchEditEmailModal(false)}>
+          <EditEmail onClose={() => switchEditEmailModal(false)} />
         </Modal>
       )}
 
       {showEditPasswordModal && (
-        <Modal title="Change password" onClose={() => setShowEditPasswordModal(false)}>
-          <EditPassword onClose={() => setShowEditPasswordModal(false)} />
+        <Modal
+          title="Change password"
+          onClose={() => switchEditPasswordModal(false)}
+        >
+          <EditPassword onClose={() => switchEditPasswordModal(false)} />
         </Modal>
       )}
 
       {showEditComplexityModal && (
-        <Modal title="Change complexity" onClose={() => setShowEditComplexityModal(false)}>
+        <Modal
+          title="Change complexity"
+          onClose={() => switchEditComplexityModal(false)}
+        >
           <EditComplexity
-            onClose={() => setShowEditComplexityModal(false)}
+            onClose={() => switchEditComplexityModal(false)}
             complexity={user.complexity}
           />
         </Modal>
@@ -161,10 +215,10 @@ const Profile: React.FC<{}> = () => {
       {showDeleteSessionModal && (
         <Modal
           title="Delete current game session?"
-          onClose={() => setshowDeleteSessionModal(false)}
+          onClose={() => switchDeleteSessionModal(false)}
         >
           <DialogWindow
-            onFailure={() => setshowDeleteSessionModal(false)}
+            onFailure={() => switchDeleteSessionModal(false)}
             onSuccess={deleteGameSession}
             text="After deleting a game session, data such as betting history, statistics and game level will be lost. Are you sure you want to continue?"
             failureBtnText="Cancel"

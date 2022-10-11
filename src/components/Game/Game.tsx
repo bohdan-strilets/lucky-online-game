@@ -14,7 +14,6 @@ const Game: React.FC<{}> = () => {
   const {
     amountHandler,
     experienceGained,
-    onPlay,
     randomNumber,
     rateHandler,
     receivedMoney,
@@ -22,6 +21,7 @@ const Game: React.FC<{}> = () => {
     submitHandler,
     isWon,
     toggleSuccesModal,
+    play,
   } = useGame();
 
   return (
@@ -39,7 +39,7 @@ const Game: React.FC<{}> = () => {
           margin="0 0 0 150px"
           topLeftRadius="30px"
           topRightRadius="30px"
-          onClick={onPlay}
+          onClick={() => play({ id: 'mouse_click' })}
         >
           <Input
             type="radio"
@@ -58,7 +58,7 @@ const Game: React.FC<{}> = () => {
               width="150px"
               height="240px"
               topLeftRadius="70px"
-              onClick={onPlay}
+              onClick={() => play({ id: 'mouse_click' })}
             >
               <Input
                 type="radio"
@@ -70,7 +70,11 @@ const Game: React.FC<{}> = () => {
               />
               <Label>high</Label>
             </Item>
-            <Item width="150px" height="240px" onClick={onPlay}>
+            <Item
+              width="150px"
+              height="240px"
+              onClick={() => play({ id: 'mouse_click' })}
+            >
               <Input
                 type="radio"
                 name="rate"
@@ -81,7 +85,11 @@ const Game: React.FC<{}> = () => {
               />
               <Label>even</Label>
             </Item>
-            <Item width="150px" height="240px" onClick={onPlay}>
+            <Item
+              width="150px"
+              height="240px"
+              onClick={() => play({ id: 'mouse_click' })}
+            >
               <Input
                 type="radio"
                 name="rate"
@@ -102,7 +110,7 @@ const Game: React.FC<{}> = () => {
                   width="calc(100% / 3)"
                   height="60px"
                   background={color}
-                  onClick={onPlay}
+                  onClick={() => play({ id: 'mouse_click' })}
                 >
                   <Input
                     type="radio"
@@ -123,7 +131,7 @@ const Game: React.FC<{}> = () => {
               width="150px"
               height="240px"
               topRightRadius="70px"
-              onClick={onPlay}
+              onClick={() => play({ id: 'mouse_click' })}
             >
               <Input
                 type="radio"
@@ -135,7 +143,11 @@ const Game: React.FC<{}> = () => {
               />
               <Label>low</Label>
             </Item>
-            <Item width="150px" height="240px" onClick={onPlay}>
+            <Item
+              width="150px"
+              height="240px"
+              onClick={() => play({ id: 'mouse_click' })}
+            >
               <Input
                 type="radio"
                 name="rate"
@@ -146,7 +158,11 @@ const Game: React.FC<{}> = () => {
               />
               <Label>odd</Label>
             </Item>
-            <Item width="150px" height="240px" onClick={onPlay}>
+            <Item
+              width="150px"
+              height="240px"
+              onClick={() => play({ id: 'mouse_click' })}
+            >
               <Input
                 type="radio"
                 name="rate"
@@ -165,7 +181,7 @@ const Game: React.FC<{}> = () => {
             width="50px"
             height="60px"
             bottomLeftRadius="30px"
-            onClick={onPlay}
+            onClick={() => play({ id: 'mouse_click' })}
           >
             <Input
               type="radio"
@@ -177,7 +193,11 @@ const Game: React.FC<{}> = () => {
             />
             <Label fontSize="20px">12P</Label>
           </Item>
-          <Item width="50px" height="60px" onClick={onPlay}>
+          <Item
+            width="50px"
+            height="60px"
+            onClick={() => play({ id: 'mouse_click' })}
+          >
             <Input
               type="radio"
               name="rate"
@@ -188,7 +208,11 @@ const Game: React.FC<{}> = () => {
             />
             <Label fontSize="20px">12M</Label>
           </Item>
-          <Item width="50px" height="60px" onClick={onPlay}>
+          <Item
+            width="50px"
+            height="60px"
+            onClick={() => play({ id: 'mouse_click' })}
+          >
             <Input
               type="radio"
               name="rate"
@@ -199,7 +223,11 @@ const Game: React.FC<{}> = () => {
             />
             <Label fontSize="20px">12D</Label>
           </Item>
-          <Item width="100px" height="60px" onClick={onPlay}>
+          <Item
+            width="100px"
+            height="60px"
+            onClick={() => play({ id: 'mouse_click' })}
+          >
             <Input
               type="radio"
               name="rate"
@@ -209,7 +237,11 @@ const Game: React.FC<{}> = () => {
               onClick={rateHandler}
             />
           </Item>
-          <Item width="100px" height="60px" onClick={onPlay}>
+          <Item
+            width="100px"
+            height="60px"
+            onClick={() => play({ id: 'mouse_click' })}
+          >
             <Input
               type="radio"
               name="rate"
@@ -219,7 +251,11 @@ const Game: React.FC<{}> = () => {
               onClick={rateHandler}
             />
           </Item>
-          <Item width="100px" height="60px" onClick={onPlay}>
+          <Item
+            width="100px"
+            height="60px"
+            onClick={() => play({ id: 'mouse_click' })}
+          >
             <Input
               type="radio"
               name="rate"
@@ -229,7 +265,11 @@ const Game: React.FC<{}> = () => {
               onClick={rateHandler}
             />
           </Item>
-          <Item width="50px" height="60px" onClick={onPlay}>
+          <Item
+            width="50px"
+            height="60px"
+            onClick={() => play({ id: 'mouse_click' })}
+          >
             <Input
               type="radio"
               name="rate"
@@ -240,7 +280,11 @@ const Game: React.FC<{}> = () => {
             />
             <Label fontSize="20px">12D</Label>
           </Item>
-          <Item width="50px" height="60px" onClick={onPlay}>
+          <Item
+            width="50px"
+            height="60px"
+            onClick={() => play({ id: 'mouse_click' })}
+          >
             <Input
               type="radio"
               name="rate"
@@ -255,7 +299,7 @@ const Game: React.FC<{}> = () => {
             width="50px"
             height="60px"
             bottomRightRadius="30px"
-            onClick={onPlay}
+            onClick={() => play({ id: 'mouse_click' })}
           >
             <Input
               type="radio"
@@ -279,6 +323,7 @@ const Game: React.FC<{}> = () => {
           borderRadius="50px"
           margin="30px 0 0 0"
           shadow
+          onClick={() => play({ id: 'counter_click' })}
         >
           Make a bet
         </Button>

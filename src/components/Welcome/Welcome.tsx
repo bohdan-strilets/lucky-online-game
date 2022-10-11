@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks/useAppSelector';
 import { getUser } from 'redux/user/userSelectors';
+import useSound from 'use-sound';
+import { getSoundOff } from 'redux/options/optionsSelectors';
 
+import sounds from 'sounds/sounds.mp3';
+import sprite from 'sounds/sprite';
 import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
 
@@ -10,8 +14,11 @@ import { Title, Text } from './Welcome.styled';
 const Welcome: React.FC<{}> = () => {
   const { isVerified } = useAppSelector(getUser);
   const navigate = useNavigate();
+  const soundOff = useAppSelector(getSoundOff);
+  const [play] = useSound(sounds, { sprite: sprite, soundEnabled: soundOff });
 
   const clickHandler = () => {
+    play({ id: 'counter_click' });
     if (isVerified) {
       navigate('/profile');
     }

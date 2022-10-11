@@ -4,6 +4,7 @@ import { levelApi } from './level/levelApi';
 import { statisticsApi } from './statistics/statisticsApi';
 import betsSlice from './bets/betsSlice';
 import { storeApi } from './store/storeApi';
+import { persisteOptionsReducer } from './options/optionsSlice';
 
 import {
   persistStore,
@@ -22,6 +23,7 @@ export const store = configureStore({
     [levelApi.reducerPath]: levelApi.reducer,
     [statisticsApi.reducerPath]: statisticsApi.reducer,
     [storeApi.reducerPath]: storeApi.reducer,
+    options: persisteOptionsReducer,
   },
 
   middleware: getDefaultMiddleware =>

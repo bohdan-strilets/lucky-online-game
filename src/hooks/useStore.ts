@@ -4,7 +4,11 @@ import { useAppDispatch } from './useAppDispatch';
 import operations from 'redux/user/userOperations';
 import { useAppSelector } from './useAppSelector';
 import { getBank } from 'redux/user/userSelectors';
+import useSound from 'use-sound';
+import { getSoundOff } from 'redux/options/optionsSelectors';
 
+import sounds from 'sounds/sounds.mp3';
+import sprite from 'sounds/sprite';
 import { IItem } from 'types/IStore';
 import { toast } from 'react-toastify';
 
@@ -19,6 +23,8 @@ const useStore = () => {
   const [currentAmount, setCurrentAmount] = useState<null | number>(null);
   const [showModalBuyItem, setShowModalBuyItem] = useState(false);
 
+  const soundOff = useAppSelector(getSoundOff);
+  const [play] = useSound(sounds, { sprite: sprite, soundEnabled: soundOff });
   const bank = useAppSelector(getBank);
   const dispatch = useAppDispatch();
   const { data, isFetching } = useGetAllItemsQuery({ page, limit: 9 });
@@ -38,14 +44,21 @@ const useStore = () => {
     }
   }, [data, page]);
 
-  const showMore = () => setPage(prevState => prevState + 1);
+  const showMore = () => {
+    setPage(prevState => prevState + 1);
+    play({ id: 'counter_click' });
+  };
 
-  const comeBack = () => setPage(prevState => prevState - 1);
+  const comeBack = () => {
+    setPage(prevState => prevState - 1);
+    play({ id: 'counter_click' });
+  };
 
   const openModalMoreInfo = (e: React.MouseEvent<HTMLDivElement>) => {
     const id = e.currentTarget.dataset.id;
     const title = e.currentTarget.children[0].textContent;
 
+    play({ id: 'counter_click' });
     setCurrentTitle(title);
     setShowMoreDetails(true);
 
@@ -54,9 +67,14 @@ const useStore = () => {
     }
   };
 
-  const closeModalMoreInfo = () => setShowMoreDetails(false);
+  const closeModalMoreInfo = () => {
+    setShowMoreDetails(false);
+    play({ id: 'counter_click' });
+  };
 
-  const openModalDialogWindow = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const openModalDialogWindow = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
     const price = e.currentTarget.dataset.price;
     const id = e.currentTarget.dataset.id;
 
@@ -65,10 +83,14 @@ const useStore = () => {
       setCurrentId(id);
     }
 
+    play({ id: 'counter_click' });
     setShowModalBuyItem(true);
   };
 
-  const closeModalDialogWindow = () => setShowModalBuyItem(false);
+  const closeModalDialogWindow = () => {
+    setShowModalBuyItem(false);
+    play({ id: 'counter_click' });
+  };
 
   const buy = (id: string, price: number) => {
     if (bank !== null && bank !== undefined && price > bank) {

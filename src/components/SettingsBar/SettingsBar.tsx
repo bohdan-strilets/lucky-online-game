@@ -14,8 +14,15 @@ const SettingsBar: React.FC<{}> = () => {
     switchFullScreen,
     avatarURL,
     name,
-    navigate,
     fullScreen,
+    openBetList,
+    openProfile,
+    openStatistics,
+    openStore,
+    openRating,
+    openInformation,
+    soundSwitch,
+    soundOff,
   } = useSettingsBar();
 
   return (
@@ -60,7 +67,7 @@ const SettingsBar: React.FC<{}> = () => {
                 height="40px"
                 background="blue"
                 borderRadius="10px"
-                onClick={() => navigate('/bet-list')}
+                onClick={openBetList}
               >
                 <IconSwitcher
                   name="list"
@@ -77,7 +84,7 @@ const SettingsBar: React.FC<{}> = () => {
                 height="40px"
                 background="blue"
                 borderRadius="10px"
-                onClick={() => navigate('/profile')}
+                onClick={openProfile}
               >
                 <IconSwitcher
                   name="settings"
@@ -94,7 +101,7 @@ const SettingsBar: React.FC<{}> = () => {
                 height="40px"
                 background="blue"
                 borderRadius="10px"
-                onClick={() => navigate('/statistics')}
+                onClick={openStatistics}
               >
                 <IconSwitcher
                   name="bar"
@@ -111,7 +118,7 @@ const SettingsBar: React.FC<{}> = () => {
                 height="40px"
                 background="blue"
                 borderRadius="10px"
-                onClick={() => navigate('/store')}
+                onClick={openStore}
               >
                 <IconSwitcher
                   name="store"
@@ -128,7 +135,7 @@ const SettingsBar: React.FC<{}> = () => {
                 height="40px"
                 background="blue"
                 borderRadius="10px"
-                onClick={() => navigate('/rating')}
+                onClick={openRating}
               >
                 <IconSwitcher
                   name="medal"
@@ -145,13 +152,38 @@ const SettingsBar: React.FC<{}> = () => {
                 height="40px"
                 background="blue"
                 borderRadius="10px"
-                onClick={() => navigate('/information')}
+                onClick={openInformation}
               >
                 <IconSwitcher
                   name="info"
                   fill="var(--white-color)"
                   size="22px"
                 />
+              </Button>
+            </Item>
+
+            <Item>
+              <Button
+                type="button"
+                width="40px"
+                height="40px"
+                background="blue"
+                borderRadius="10px"
+                onClick={soundSwitch}
+              >
+                {soundOff ? (
+                  <IconSwitcher
+                    name="sound_on"
+                    fill="var(--white-color)"
+                    size="22px"
+                  />
+                ) : (
+                  <IconSwitcher
+                    name="sound_off"
+                    fill="var(--white-color)"
+                    size="22px"
+                  />
+                )}
               </Button>
             </Item>
 

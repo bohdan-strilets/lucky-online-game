@@ -1,30 +1,34 @@
 import { useState } from 'react';
 import useSound from 'use-sound';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { getSoundOff } from 'redux/options/optionsSelectors';
 
-import counterClick from 'sounds/counter_click.mp3';
+import sounds from 'sounds/sounds.mp3';
+import sprite from 'sounds/sprite';
 
 const useCounter = () => {
   const [value, setValue] = useState(0);
-  const [play] = useSound(counterClick);
+  const soundOff = useAppSelector(getSoundOff);
+  const [play] = useSound(sounds, { sprite: sprite, soundEnabled: soundOff });
 
   const increment = () => {
-    play();
+    play({ id: 'counter_click' });
     setValue(prevstate => prevstate + 1);
   };
 
   const decrement = () => {
-    play();
+    play({ id: 'counter_click' });
     setValue(prevstate => prevstate - 1);
   };
 
   const addedValue = (e: React.MouseEvent<HTMLButtonElement>) => {
-    play();
+    play({ id: 'counter_click' });
     const value = Number(e.currentTarget.textContent);
     setValue(prevState => prevState + value);
   };
 
   const resetValue = () => {
-    play();
+    play({ id: 'counter_click' });
     setValue(0);
   };
 
