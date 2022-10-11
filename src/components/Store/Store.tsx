@@ -9,7 +9,16 @@ import ProductStore from 'components/Modal/ProductStore';
 import Loader from 'components/InterfaceElements/Loader';
 import DialogWindow from 'components/Modal/DialogWindow';
 
-import { List, Item, Wrapper, Title, Photo, Description, Price, Navigation } from './Store.styled';
+import {
+  List,
+  Item,
+  Wrapper,
+  Title,
+  Photo,
+  Description,
+  Price,
+  Navigation,
+} from './Store.styled';
 
 const Store: React.FC<{}> = () => {
   const {
@@ -41,7 +50,12 @@ const Store: React.FC<{}> = () => {
           items.map(({ _id, imageURL, title, description, price }) => {
             return (
               <Item key={_id} data-id={_id}>
-                <Container type="color" width="100%" padding="20px" height="600px">
+                <Container
+                  type="color"
+                  width="100%"
+                  padding="20px"
+                  height="600px"
+                >
                   <Wrapper data-id={_id} onClick={openModalMoreInfo}>
                     <Title>{title}</Title>
                     <Photo src={imageURL} alt={title} />
@@ -68,7 +82,13 @@ const Store: React.FC<{}> = () => {
           })}
       </List>
 
-      <Container type="transparent" width="100%" alignItems="center" padding="15px" margin="15px">
+      <Container
+        type="transparent"
+        width="100%"
+        alignItems="center"
+        padding="15px"
+        margin="15px"
+      >
         <Navigation>
           {page > 1 && (
             <Button
@@ -80,7 +100,11 @@ const Store: React.FC<{}> = () => {
               margin="0 50px 0 0"
               onClick={comeBack}
             >
-              <IconSwitcher name="arrowLeft" size="22px" fill="var(--white-color)" />
+              <IconSwitcher
+                name="arrowLeft"
+                size="22px"
+                fill="var(--white-color)"
+              />
             </Button>
           )}
           {allImages !== total && (
@@ -92,20 +116,30 @@ const Store: React.FC<{}> = () => {
               width="150px"
               onClick={showMore}
             >
-              <IconSwitcher name="arrowRight" size="22px" fill="var(--white-color)" />
+              <IconSwitcher
+                name="arrowRight"
+                size="22px"
+                fill="var(--white-color)"
+              />
             </Button>
           )}
         </Navigation>
       </Container>
 
       {showMoreDetails && (
-        <Modal onClose={closeModalMoreInfo} title={currentTitle ? currentTitle : ''}>
+        <Modal
+          onClose={closeModalMoreInfo}
+          title={currentTitle ? currentTitle : ''}
+        >
           <ProductStore id={currentId as string} />
         </Modal>
       )}
 
       {showModalBuyItem && (
-        <Modal onClose={closeModalDialogWindow} title="Do you want to buy this item?">
+        <Modal
+          onClose={closeModalDialogWindow}
+          title="Do you want to buy this item?"
+        >
           <DialogWindow
             onFailure={closeModalDialogWindow}
             onSuccess={() => buy(currentId as string, currentAmount as number)}

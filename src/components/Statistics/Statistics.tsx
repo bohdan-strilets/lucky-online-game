@@ -1,24 +1,20 @@
 import { useEffect } from 'react';
 import { useGetStatisticsQuery } from 'redux/statistics/statisticsApi';
 import bankFormatting from 'helpers/bankFormatting';
+import useNetProfit from 'hooks/useNetProfit';
 
 import Container from 'components/InterfaceElements/Container';
+import Loader from 'components/InterfaceElements/Loader';
+
 import { Wrapper, Title, Item, Text } from './Statistics.styled';
 
 const Statistics: React.FC<{}> = () => {
-  const { data: statistics, refetch } = useGetStatisticsQuery();
+  const { data: statistics, refetch, isFetching } = useGetStatisticsQuery();
+  const { netto } = useNetProfit();
 
   useEffect(() => {
     refetch();
   }, [refetch]);
-
-  const netto = () => {
-    if (statistics !== undefined) {
-      return (
-        statistics?.statistics.moneyEarned - statistics?.statistics.moneySpent
-      );
-    }
-  };
 
   return (
     <Container
@@ -27,6 +23,8 @@ const Statistics: React.FC<{}> = () => {
       padding="70px 50px"
       margin="50px"
     >
+      {isFetching && <Loader />}
+
       {statistics?.statistics ? (
         <Wrapper>
           <Title>Statistics</Title>
@@ -62,7 +60,7 @@ const Statistics: React.FC<{}> = () => {
             </Item>
             <Item>
               <Text>Net profit amounted to:</Text>
-              <Text>{`${bankFormatting(Number(netto()).toFixed(2))} $`}</Text>
+              <Text>{`${bankFormatting(Number(netto).toFixed(2))} $`}</Text>
             </Item>
           </ul>
         </Wrapper>

@@ -47,6 +47,7 @@ const useMyItems = () => {
       );
       closeDialogWindow();
       toast.success("You have successfully sold an item you don't want.");
+      play({ id: 'sound_victory' });
     }
   };
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useGetAllItemsQuery } from 'redux/store/storeApi';
 import { useAppDispatch } from './useAppDispatch';
 import operations from 'redux/user/userOperations';
@@ -103,6 +103,7 @@ const useStore = () => {
       dispatch(operations.buyItem({ id, price: -price }));
       toast.success('The item has been successfully purchased. Thank you.');
       setShowModalBuyItem(false);
+      play({ id: 'sound_victory' });
       return;
     }
   };
