@@ -1,14 +1,25 @@
 import { useGetOneItemQuery } from 'redux/store/storeApi';
 import bankFormatting from 'helpers/bankFormatting';
+import useStore from 'hooks/useStore';
 
 import Button from 'components/InterfaceElements/Button';
 import Loader from 'components/InterfaceElements/Loader';
+import Modal from '../Modal';
+import DialogWindow from '../DialogWindow';
 
 import { IProductStore } from 'types/IProductStore';
 import { PhotoWrapper, Photo, Text, Price } from './ProductStore.styled';
 
 const ProductStore: React.FC<IProductStore> = ({ id }) => {
   const { data, isFetching } = useGetOneItemQuery(id);
+  const {
+    buy,
+    closeModalDialogWindow,
+    openModalDialogWindow,
+    showModalBuyItem,
+    currentId,
+    currentAmount,
+  } = useStore();
 
   return (
     <>
@@ -27,10 +38,25 @@ const ProductStore: React.FC<IProductStore> = ({ id }) => {
           width="100%"
           borderRadius="50px"
           shadow
+          onClick={openModalDialogWindow}
         >
           Buy
         </Button>
       </div>
+
+      {showModalBuyItem && (
+        <Modal
+          onClose={closeModalDialogWindow}
+          title="Do you want to buy this item?"
+        >
+          <DialogWindow
+            onFailure={closeModalDialogWindow}
+            onSuccess={() => buy(currentId as string, currentAmount as number)}
+            failureBtnText="Cancel"
+            successBtnText="Buy"
+          />
+        </Modal>
+      )}
     </>
   );
 };

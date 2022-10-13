@@ -7,7 +7,7 @@ import { RootState } from 'redux/store';
 export const statisticsApi = createApi({
   reducerPath: 'statisticsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${API_URL}/api/v1/statistics`,
+    baseUrl: `${API_URL}api/v1/statistics`,
 
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;

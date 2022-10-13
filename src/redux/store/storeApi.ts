@@ -7,7 +7,7 @@ import { RootState } from 'redux/store';
 export const storeApi = createApi({
   reducerPath: 'storeApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${API_URL}/api/v1/store`,
+    baseUrl: `${API_URL}api/v1/store`,
 
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;

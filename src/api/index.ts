@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-export const API_URL = 'http://localhost:5000';
+// export const API_URL = 'http://localhost:5000/';
+export const API_URL = 'https://lucky-online-game-api.herokuapp.com/';
 
 const api = axios.create({
   withCredentials: true,
@@ -26,12 +27,16 @@ api.interceptors.response.use(
     return config;
   },
   async error => {
-    const originalRequest = error.config;
+    if (
+      error.response.status === 401 &&
+      error.config &&
+      !error.config._isRetry
+    ) {
+      const originalRequest = error.config;
 
-    if (error.response.status === 401 && !error.config._isRetry) {
       originalRequest._isRetry = true;
       try {
-        const { data } = await api.get('/api/v1/user/refresh-user');
+        const { data } = await api.get('api/v1/user/refresh-user');
 
         const dataToLS = {
           token: data.tokens.accessToken,

@@ -12,7 +12,7 @@ import { RootState } from 'redux/store';
 export const levelApi = createApi({
   reducerPath: 'levelApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${API_URL}/api/v1/level`,
+    baseUrl: `${API_URL}api/v1/level`,
 
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.token;
