@@ -2,7 +2,6 @@
   "name": "lucky-online-game",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://bohdan-strilets.github.io/lucky-online-game/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -20,6 +19,7 @@
     "formik": "^2.2.9",
     "howler": "^2.2.3",
     "moment": "^2.29.4",
+    "netlify-cli": "^12.0.9",
     "react": "^18.0.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.0.0",
@@ -37,7 +37,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint:js": "eslint src/**/*.{js,jsx,ts,tsx}",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "predeploy": "npm run build",
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [
