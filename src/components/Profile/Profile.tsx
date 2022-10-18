@@ -72,7 +72,7 @@ const Profile: React.FC<{}> = () => {
           </Header>
 
           <Avatar
-            src={`${API_URL}/${user.avatarURL}`}
+            src={`${API_URL}${user.avatarURL}`}
             alt={`${user.name} user avatar`}
             onClick={() => switchEditAvatarModal(true)}
           />

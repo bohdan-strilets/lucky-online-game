@@ -37,7 +37,7 @@ const SettingsBar: React.FC<{}> = () => {
         <div>
           {avatarURL && (
             <Avatar
-              src={`${API_URL}/${avatarURL}`}
+              src={`${API_URL}${avatarURL}`}
               alt={`${name} user avatar`}
             />
           )}
