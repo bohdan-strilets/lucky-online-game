@@ -6,6 +6,7 @@ import { IChangeAvatarRes } from 'types/IUserRessponse';
 const useEditAvatar = (onClose: () => void) => {
   const dispatch = useAppDispatch();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [fileInputState, setFileInputState] = useState('');
   const [selectedFile, setSelectedFile] = useState<null | File | Blob>(null);
   const [previewSource, setPreviewSource] = useState<
@@ -17,6 +18,7 @@ const useEditAvatar = (onClose: () => void) => {
 
     if (selectedFile) {
       previewFile(selectedFile);
+      setIsLoading(true);
       const data = new FormData();
       data.append('avatar', selectedFile);
 
@@ -26,6 +28,7 @@ const useEditAvatar = (onClose: () => void) => {
 
       if ((res.payload as IChangeAvatarRes).status === 'ok') {
         onClose();
+        setIsLoading(false);
       }
     }
   };
@@ -45,7 +48,13 @@ const useEditAvatar = (onClose: () => void) => {
     };
   };
 
-  return { changeAvatar, previewSource, handleFileInputChange, fileInputState };
+  return {
+    changeAvatar,
+    previewSource,
+    handleFileInputChange,
+    fileInputState,
+    isLoading,
+  };
 };
 
 export default useEditAvatar;

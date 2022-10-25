@@ -13,8 +13,7 @@ const useGetCurrentUser = () => {
     if (token) {
       dispatch(userOperations.getCurrentUser());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return { isRefreshing };
 };

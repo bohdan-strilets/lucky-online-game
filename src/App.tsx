@@ -31,7 +31,7 @@ const App: React.FC = () => {
   return (
     <Wrapper>
       <Suspense fallback={<Loader />}>
-        {!isRefreshing && (
+        {!isRefreshing ? (
           <Routes>
             <Route
               path="/"
@@ -184,7 +184,7 @@ const App: React.FC = () => {
               }
             />
           </Routes>
-        )}
+        ) : null}
       </Suspense>
     </Wrapper>
   );

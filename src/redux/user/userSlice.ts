@@ -157,4 +157,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const persisteUserReducer = persistReducer(userPersistConfig, userSlice.reducer);
+export const persisteUserReducer = persistReducer(
+  userPersistConfig,
+  userSlice.reducer,
+);

@@ -1,10 +1,18 @@
 import useEditAvatar from 'hooks/useEditAvatar';
+
 import Button from 'components/InterfaceElements/Button';
+import Loader from 'components/InterfaceElements/Loader';
+
 import { Text, Label, Input, Preview } from './EditAvatar.styled';
 
 const EditAvatar: React.FC<{ onClose(): void }> = ({ onClose }) => {
-  const { changeAvatar, previewSource, handleFileInputChange, fileInputState } =
-    useEditAvatar(onClose);
+  const {
+    changeAvatar,
+    previewSource,
+    handleFileInputChange,
+    fileInputState,
+    isLoading,
+  } = useEditAvatar(onClose);
 
   return (
     <form encType="multipart/from-data" onSubmit={changeAvatar}>
@@ -35,6 +43,8 @@ const EditAvatar: React.FC<{ onClose(): void }> = ({ onClose }) => {
       >
         change avatar
       </Button>
+
+      {isLoading && <Loader />}
     </form>
   );
 };

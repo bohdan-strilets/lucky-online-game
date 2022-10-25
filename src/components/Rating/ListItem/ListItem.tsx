@@ -1,5 +1,4 @@
 import { IListItemState } from 'types/IListItem';
-import { API_URL } from 'api';
 
 import {
   Wrapper,
