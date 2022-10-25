@@ -1,9 +1,10 @@
 import useEditAvatar from 'hooks/useEditAvatar';
 import Button from 'components/InterfaceElements/Button';
-import { Text, Label, Input } from './EditAvatar.styled';
+import { Text, Label, Input, Preview } from './EditAvatar.styled';
 
 const EditAvatar: React.FC<{ onClose(): void }> = ({ onClose }) => {
-  const { changeAvatar } = useEditAvatar(onClose);
+  const { changeAvatar, previewSource, handleFileInputChange, fileInputState } =
+    useEditAvatar(onClose);
 
   return (
     <form encType="multipart/from-data" onSubmit={changeAvatar}>
@@ -12,8 +13,18 @@ const EditAvatar: React.FC<{ onClose(): void }> = ({ onClose }) => {
         .svg". The file must not exceed 2MB. A square image is best.
       </Text>
       <Label>
-        <Input type="file" name="avatar" multiple accept=".jpg, .png, .svg" />
+        <Input
+          type="file"
+          name="avatar"
+          multiple
+          accept=".jpg, .png, .svg"
+          onChange={handleFileInputChange}
+          value={fileInputState}
+        />
       </Label>
+
+      {previewSource && <Preview src={previewSource as string} alt="chosen" />}
+
       <Button
         type="submit"
         background="green"

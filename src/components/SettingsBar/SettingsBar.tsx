@@ -4,7 +4,6 @@ import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 
-import { API_URL } from 'api';
 import { Wrapper, Avatar, Item } from './SettingsBar.styled';
 
 const SettingsBar: React.FC<{}> = () => {
@@ -35,12 +34,7 @@ const SettingsBar: React.FC<{}> = () => {
     >
       <Wrapper>
         <div>
-          {avatarURL && (
-            <Avatar
-              src={`${API_URL}${avatarURL}`}
-              alt={`${name} user avatar`}
-            />
-          )}
+          {avatarURL && <Avatar src={avatarURL} alt={`${name} user avatar`} />}
 
           <ul>
             <Item>

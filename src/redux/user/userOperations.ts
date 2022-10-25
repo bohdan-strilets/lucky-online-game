@@ -91,7 +91,7 @@ const changeAvatar = createAsyncThunk<IChangeAvatarRes, any>(
   'user/change-avatar',
   async avatar => {
     try {
-      const { data } = await api.patch('api/v1/user/change-avatar', avatar);
+      const { data } = await api.post('api/v1/user/change-avatar', avatar);
       return data;
     } catch (error: any) {
       const message = error.response.data.message;

@@ -30,8 +30,8 @@ const App: React.FC = () => {
 
   return (
     <Wrapper>
-      {!isRefreshing && (
-        <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader />}>
+        {!isRefreshing && (
           <Routes>
             <Route
               path="/"
@@ -184,8 +184,8 @@ const App: React.FC = () => {
               }
             />
           </Routes>
-        </Suspense>
-      )}
+        )}
+      </Suspense>
     </Wrapper>
   );
 };

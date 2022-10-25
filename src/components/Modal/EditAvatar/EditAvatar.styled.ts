@@ -26,3 +26,10 @@ export const Input = styled.input`
   color: var(--white-color);
   background-color: var(--brown-color);
 `;
+
+export const Preview = styled.img`
+  width: 150px;
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-bottom: 50px;
+`;

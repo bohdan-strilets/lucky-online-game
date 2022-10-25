@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import operations from 'redux/user/userOperations';
 import { IChangeAvatarRes } from 'types/IUserRessponse';
@@ -5,26 +6,46 @@ import { IChangeAvatarRes } from 'types/IUserRessponse';
 const useEditAvatar = (onClose: () => void) => {
   const dispatch = useAppDispatch();
 
+  const [fileInputState, setFileInputState] = useState('');
+  const [selectedFile, setSelectedFile] = useState<null | File | Blob>(null);
+  const [previewSource, setPreviewSource] = useState<
+    string | ArrayBuffer | null
+  >('');
+
   const changeAvatar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const target = e.currentTarget.elements[0] as HTMLInputElement;
-    const file = (target.files as FileList)[0];
 
-    const data = new FormData();
-    data.append('avatar', file);
+    if (selectedFile) {
+      previewFile(selectedFile);
+      const data = new FormData();
+      data.append('avatar', selectedFile);
 
-    if (!data) {
-      return;
-    }
+      if (!data) return;
 
-    const res = await dispatch(operations.changeAvatar(data));
+      const res = await dispatch(operations.changeAvatar(data));
 
-    if ((res.payload as IChangeAvatarRes).status === 'ok') {
-      onClose();
+      if ((res.payload as IChangeAvatarRes).status === 'ok') {
+        onClose();
+      }
     }
   };
 
-  return { changeAvatar };
+  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = (e.target.files as FileList)[0];
+    previewFile(file);
+    setSelectedFile(file);
+    setFileInputState(e.target.value);
+  };
+
+  const previewFile = (file: Blob) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+    };
+  };
+
+  return { changeAvatar, previewSource, handleFileInputChange, fileInputState };
 };
 
 export default useEditAvatar;

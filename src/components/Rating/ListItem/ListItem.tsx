@@ -30,7 +30,7 @@ const ListItem: React.FC<IListItemState> = ({
       </Position>
 
       <UserInfo>
-        <Avatar src={`${API_URL}/${avatar}`} alt={`Avatar by ${name}`} />
+        <Avatar src={avatar} alt={`Avatar by ${name}`} />
         <Name>{name}</Name>
       </UserInfo>
 

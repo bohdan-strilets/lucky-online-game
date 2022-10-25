@@ -1,5 +1,4 @@
 import useProfile from 'hooks/useProfile';
-import { API_URL } from 'api';
 import dateFormatting from 'helpers/dateFormatting';
 
 import Container from 'components/InterfaceElements/Container';
@@ -72,7 +71,7 @@ const Profile: React.FC<{}> = () => {
           </Header>
 
           <Avatar
-            src={`${API_URL}${user.avatarURL}`}
+            src={user.avatarURL as string}
             alt={`${user.name} user avatar`}
             onClick={() => switchEditAvatarModal(true)}
           />
