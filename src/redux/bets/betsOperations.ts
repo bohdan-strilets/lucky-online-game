@@ -14,7 +14,7 @@ const getAllBets = createAsyncThunk<IGetAllBetsRes, number>(
   'bets/get-all-bets',
   async page => {
     try {
-      const { data } = await api.get(`api/v1/bets/?page=${page}`);
+      const { data } = await api.get(`api/v1/bets/get-all?page=${page}`);
       return data;
     } catch (error: any) {
       const message = error.response.data.message;
@@ -29,7 +29,7 @@ const getOnebet = createAsyncThunk<IGetOneBetRes, string>(
   'bets/get-one-bet',
   async betId => {
     try {
-      const { data } = await api.get(`api/v1/bets/${betId}`);
+      const { data } = await api.get(`api/v1/bets/get-one/${betId}`);
       return data;
     } catch (error: any) {
       const message = error.response.data.message;
@@ -44,7 +44,7 @@ const createBet = createAsyncThunk<ICreateBetRes, ICreateBetData>(
   'bet/create-bet',
   async bet => {
     try {
-      const { data } = await api.post('api/v1/bets/', bet);
+      const { data } = await api.post('api/v1/bets/create-bet', bet);
       return data;
     } catch (error: any) {
       const message = error.response.data.message;
@@ -59,7 +59,7 @@ const changeBet = createAsyncThunk<IChangeBetRes, any>(
   'bet/change-bet',
   async bet => {
     try {
-      const { data } = await api.put(`api/v1/bets/${bet.betId}`, {
+      const { data } = await api.put(`api/v1/bets/change-bet/${bet.betId}`, {
         isWon: bet.isWon,
       });
       return data;
