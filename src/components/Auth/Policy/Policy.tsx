@@ -1,25 +1,28 @@
-import Title from 'components/InterfaceElements/Title';
-import Container from 'components/InterfaceElements/Container';
-import BackButton from 'components/InterfaceElements/BackButton';
-
+import Media from 'react-media';
+import screenWidth from 'helpers/screenWidth';
 import { IPolicyState } from 'types/IPolicy';
-import { Text } from './Policy.styled';
+
+import Mobile from './Responsiv/Mobile';
+import Tablet from './Responsiv/Tablet';
+import Desktop from './Responsiv/Desktop';
 
 const Policy: React.FC<IPolicyState> = ({ title, text }) => {
   return (
-    <>
-      <Title type="h1">{title}</Title>
-
-      <Container
-        type="transparent"
-        width="856px"
-        padding="50px"
-        margin="50px 0"
-      >
-        <BackButton margin="0 0 30px 0" />
-        <Text>{text}</Text>
-      </Container>
-    </>
+    <Media
+      queries={{
+        small: '(max-width: 767px)',
+        medium: `(min-width: ${screenWidth.tablet}) and (max-width: 1439px)`,
+        large: `(min-width: ${screenWidth.desktop})`,
+      }}
+    >
+      {matches => (
+        <>
+          {matches.small && <Mobile title={title} text={text} />}
+          {matches.medium && <Tablet title={title} text={text} />}
+          {matches.large && <Desktop title={title} text={text} />}
+        </>
+      )}
+    </Media>
   );
 };
 

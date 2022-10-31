@@ -6,7 +6,7 @@ export const Text = styled.span<ITextStyledd>`
 
   font-size: ${({ type }) => {
     if (type === 'h1') {
-      return '42px';
+      return '38px';
     }
 
     if (type === 'h2') {

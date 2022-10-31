@@ -1,12 +1,16 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
+
 import { Link } from 'react-router-dom';
 
 export const Tuple = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   margin-bottom: 30px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const Text = styled.p`

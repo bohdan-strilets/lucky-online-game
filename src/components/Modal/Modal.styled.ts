@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -17,14 +18,24 @@ export const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 780px;
+  width: 280px;
   height: auto;
-  padding: 60px;
+  padding: 10px;
 
   background-color: var(--white-color);
   color: var(--brown-color);
   border-radius: 30px;
   border: 5px solid var(--brown-transparent);
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    width: 580px;
+    padding: 40px;
+  }
+
+  @media screen and (min-width: ${screenWidth.desktop}) {
+    width: 780px;
+    padding: 60px;
+  }
 `;
 
 export const TitleWrapper = styled.div`
@@ -39,8 +50,12 @@ export const TitleWrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 900;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 38px;
+  }
 `;
 
 export const CloseButton = styled.button`
