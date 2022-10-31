@@ -1,28 +1,39 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
 
 export const Title = styled.h1`
-  font-size: 44px;
+  font-size: 30px;
   font-weight: 900;
   text-align: center;
 
   margin-bottom: 30px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 44px;
+  }
 `;
 
 export const Text = styled.p`
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
   line-height: 1.75;
 
   margin-bottom: 20px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 20px;
+  }
 `;
 
 export const List = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
   width: 100%;
   margin-bottom: 30px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 `;
 
 export const ShowRulesButton = styled.button`
@@ -31,7 +42,7 @@ export const ShowRulesButton = styled.button`
   justify-content: center;
 
   font-weight: 700;
-  font-size: 19px;
+  font-size: 16px;
 
   color: var(--green-color);
   background-color: transparent;
@@ -44,9 +55,17 @@ export const ShowRulesButton = styled.button`
   :focus {
     opacity: 0.6;
   }
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 19px;
+  }
 `;
 
 export const Warning = styled.p`
   color: var(--red-color);
   margin-top: 20px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
