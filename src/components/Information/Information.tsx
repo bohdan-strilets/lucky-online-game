@@ -1,18 +1,27 @@
-import Container from 'components/InterfaceElements/Container';
-import Rules from 'components/Greetings/Rules';
+import Media from 'react-media';
+import screenWidth from 'helpers/screenWidth';
+
+import Mobile from './Responsiv/Mobile';
+import Tablet from './Responsiv/Tablet';
+import Desktop from './Responsiv/Desktop';
 
 const Information: React.FC<{}> = () => {
   return (
-    <Container
-      type="transparent"
-      width="1050px"
-      padding="70px 50px"
-      margin="50px"
+    <Media
+      queries={{
+        small: '(max-width: 767px)',
+        medium: `(min-width: ${screenWidth.tablet}) and (max-width: 1439px)`,
+        large: `(min-width: ${screenWidth.desktop})`,
+      }}
     >
-      <h1>Rules of the game</h1>
-
-      <Rules />
-    </Container>
+      {matches => (
+        <>
+          {matches.small && <Mobile />}
+          {matches.medium && <Tablet />}
+          {matches.large && <Desktop />}
+        </>
+      )}
+    </Media>
   );
 };
 
