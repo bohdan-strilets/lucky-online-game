@@ -2,7 +2,6 @@ import useProfile from 'hooks/useProfile';
 import dateFormatting from 'helpers/dateFormatting';
 
 import Container from 'components/InterfaceElements/Container';
-import Controllers from '../Controllers';
 import Modal from 'components/Modal';
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import EditAvatar from 'components/Modal/EditAvatar';
@@ -51,8 +50,6 @@ const Tablet: React.FC<{}> = () => {
       padding="20px 10px"
       margin="50px 10px"
     >
-      <Controllers />
-
       {user.name && (
         <Wrapper>
           <Header>

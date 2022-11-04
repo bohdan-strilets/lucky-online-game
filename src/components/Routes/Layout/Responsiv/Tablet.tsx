@@ -1,6 +1,5 @@
 import Logo from 'components/InterfaceElements/Logo';
-import StatusBar from 'components/StatusBar';
-import SettingsBar from 'components/SettingsBar';
+import Controllers from 'components/Profile/Controllers';
 
 import { ILayoutState } from 'types/ILayout';
 import { Wrapper, Body } from '../Layout.styled';
@@ -15,9 +14,8 @@ const Tablet: React.FC<ILayoutState> = ({ children, showSidebars }) => {
       )}
 
       <Body showSidebars={showSidebars}>
-        {showSidebars && <StatusBar />}
         <div>{children}</div>
-        {showSidebars && <SettingsBar />}
+        {showSidebars && <Controllers />}
       </Body>
     </Wrapper>
   );

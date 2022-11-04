@@ -2,7 +2,6 @@ import useProfile from 'hooks/useProfile';
 import dateFormatting from 'helpers/dateFormatting';
 
 import Container from 'components/InterfaceElements/Container';
-import Controllers from '../Controllers';
 import Modal from 'components/Modal';
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import EditAvatar from 'components/Modal/EditAvatar';
@@ -45,9 +44,12 @@ const Mobile: React.FC<{}> = () => {
   } = useProfile();
 
   return (
-    <Container type="transparent" width="280px" padding="10px">
-      <Controllers />
-
+    <Container
+      type="transparent"
+      width="280px"
+      padding="10px"
+      margin="0 0 80px 0"
+    >
       {user.name && (
         <Wrapper>
           <Header>

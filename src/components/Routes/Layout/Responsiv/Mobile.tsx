@@ -1,7 +1,5 @@
 import Logo from 'components/InterfaceElements/Logo';
-import StatusBar from 'components/StatusBar';
-import SettingsBar from 'components/SettingsBar';
-import MobileVersion from 'components/SettingsBar/MobileVersion';
+import Controllers from 'components/Profile/Controllers';
 
 import { ILayoutState } from 'types/ILayout';
 import { Wrapper, Body } from '../Layout.styled';
@@ -17,6 +15,7 @@ const Mobile: React.FC<ILayoutState> = ({ children, showSidebars }) => {
 
       <Body showSidebars={showSidebars}>
         <div>{children}</div>
+        {showSidebars && <Controllers />}
       </Body>
     </Wrapper>
   );
