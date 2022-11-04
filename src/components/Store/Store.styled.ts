@@ -1,16 +1,38 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
 
 export const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  margin: -15px;
-  padding: 30px;
+  padding: 10px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: -15px;
+    padding: 30px;
+  }
 `;
 
 export const Item = styled.li`
-  width: calc((100% - 6 * 15px) / 3);
-  margin: 15px;
   cursor: pointer;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 15px;
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    width: calc((100% - 4 * 15px) / 2);
+    margin: 15px;
+  }
+
+  @media screen and (min-width: ${screenWidth.desktop}) {
+    width: calc((100% - 6 * 15px) / 3);
+    margin: 15px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -49,4 +71,7 @@ export const Price = styled.p`
 
 export const Navigation = styled.div`
   display: flex;
+  justify-content: center;
+
+  width: 100%;
 `;
