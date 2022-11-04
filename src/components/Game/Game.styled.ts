@@ -1,8 +1,20 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
+
 import { IWrapperStyled, IItemStyled, ILabel } from 'types/IGame';
 
 export const Form = styled.form`
-  width: 600px;
+  width: 270px;
+  margin-bottom: 15px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    width: 650px;
+    margin-bottom: 30px;
+  }
+
+  @media screen and (min-width: ${screenWidth.desktop}) {
+    width: 600px;
+  }
 `;
 
 export const Wrapper = styled.div<IWrapperStyled>`

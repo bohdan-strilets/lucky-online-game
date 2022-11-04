@@ -30,7 +30,7 @@ const Counter: React.FC<ICounterState> = ({ margin, getValue }) => {
           type="button"
           onClick={resetValue}
           width="50px"
-          margin="0 25px 0 0"
+          margin="0 15px 0 0"
         >
           0
         </Button>
@@ -38,23 +38,7 @@ const Counter: React.FC<ICounterState> = ({ margin, getValue }) => {
           type="button"
           onClick={addedValue}
           width="50px"
-          margin="0 25px 0 0"
-        >
-          +10
-        </Button>
-        <Button
-          type="button"
-          onClick={addedValue}
-          width="50px"
-          margin="0 25px 0 0"
-        >
-          +50
-        </Button>
-        <Button
-          type="button"
-          onClick={addedValue}
-          width="50px"
-          margin="0 25px 0 0"
+          margin="0 15px 0 0"
         >
           +100
         </Button>
@@ -62,7 +46,7 @@ const Counter: React.FC<ICounterState> = ({ margin, getValue }) => {
           type="button"
           onClick={addedValue}
           width="50px"
-          margin="0 25px 0 0"
+          margin="0 15px 0 0"
         >
           +500
         </Button>

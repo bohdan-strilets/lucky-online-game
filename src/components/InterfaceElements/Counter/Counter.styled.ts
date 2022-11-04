@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
+
 import { IWrapperStyled } from 'types/ICounter';
 
 export const Wrapper = styled.div<IWrapperStyled>`
@@ -8,11 +10,15 @@ export const Wrapper = styled.div<IWrapperStyled>`
 
   margin: ${({ margin }) => (margin ? margin : '')};
   padding: 10px;
-  width: 100%;
+  width: 270px;
 
   background: var(--brown-transparent);
   border: 2px solid var(--brown-color);
   border-radius: 8px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    width: 100%;
+  }
 `;
 
 export const MainField = styled.div`
@@ -46,11 +52,14 @@ export const Button = styled.button<{ width: string; margin?: string }>`
   :focus {
     opacity: 0.7;
   }
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+  }
 `;
 
 export const Value = styled.span`
   font-size: 19px;
-  margin: 0 90px 0 90px;
+  margin: 0 70px 0 70px;
 `;
 
 export const Option = styled.div`

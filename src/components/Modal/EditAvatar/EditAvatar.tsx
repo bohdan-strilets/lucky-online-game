@@ -18,7 +18,7 @@ const EditAvatar: React.FC<{ onClose(): void }> = ({ onClose }) => {
     <form encType="multipart/from-data" onSubmit={changeAvatar}>
       <Text>
         The selected file must be in one of the following formats ".jpg, .png,
-        .svg". The file must not exceed 2MB. A square image is best.
+        .svg". The file must not exceed 6MB. A square image is best.
       </Text>
       <Label>
         <Input

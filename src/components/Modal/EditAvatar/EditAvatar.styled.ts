@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
 
 export const Text = styled.p`
   text-align: center;
@@ -19,12 +20,15 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  font-size: 26px;
   font-weight: 900;
   font-family: inherit;
 
   color: var(--white-color);
   background-color: var(--brown-color);
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 26px;
+  }
 `;
 
 export const Preview = styled.img`
