@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -27,6 +28,10 @@ export const Item = styled.li`
 `;
 
 export const Text = styled.p`
-  font-size: 20px;
+  font-size: 14px;
   margin-bottom: 15px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 20px;
+  }
 `;
