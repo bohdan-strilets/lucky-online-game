@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
 
 export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   width: 100%;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const Title = styled.h1`
@@ -13,13 +16,19 @@ export const Title = styled.h1`
   font-size: 30px;
   font-weight: 900;
 
-  margin-bottom: 40px;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const CategoriesList = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const CategoriesItem = styled.li`

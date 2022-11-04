@@ -34,12 +34,12 @@ const ListItem: React.FC<IListItemState> = ({
       </UserInfo>
 
       <UserMetrics>
-        <Value>{`${experience} XP`}</Value>
-        <Value>{level}</Value>
-        <Value>{`${bank} $`}</Value>
-        <Value>{totalBets}</Value>
-        <Value>{wonBets}</Value>
-        <Value>{lostBets}</Value>
+        {experience && <Value>{`${experience} XP`}</Value>}
+        {level && <Value>{level}</Value>}
+        {bank && <Value>{`${bank} $`}</Value>}
+        {totalBets && <Value>{totalBets}</Value>}
+        {wonBets && <Value>{wonBets}</Value>}
+        {lostBets && <Value>{lostBets}</Value>}
       </UserMetrics>
     </Wrapper>
   );

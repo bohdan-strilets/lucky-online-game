@@ -19,7 +19,12 @@ const Mobile: React.FC<{}> = () => {
   const { bets, disabledbutton, showMore } = useBetList();
 
   return (
-    <Container type="transparent" width="300px" padding="10px">
+    <Container
+      type="transparent"
+      width="300px"
+      padding="10px"
+      margin="0 0 80px 0"
+    >
       <Wrapper>
         <Title>List of bets</Title>
         <CategoriesList>

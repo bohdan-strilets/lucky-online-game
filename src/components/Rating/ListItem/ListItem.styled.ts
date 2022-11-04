@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
+
 import greenPositionBg from 'images/rating/greenPositionBg.png';
 import bluePositionBg from 'images/rating/bluePositionBg.png';
 
@@ -17,16 +19,24 @@ export const Wrapper = styled.div`
 export const Position = styled.div<IListItemStyled>`
   position: absolute;
   top: 5px;
-  left: -60px;
+  left: -18px;
 
-  width: 90px;
-  height: 56px;
+  width: 60px;
+  height: 36px;
 
   background: ${({ position }) =>
     position > 3 ? `url(${bluePositionBg})` : `url(${greenPositionBg})`};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media screen and (min-width: ${screenWidth.desktop}) {
+    top: 5px;
+    left: -60px;
+
+    width: 90px;
+    height: 56px;
+  }
 `;
 
 export const Number = styled.span`
@@ -65,6 +75,10 @@ export const UserMetrics = styled.div`
 `;
 
 export const Value = styled.p`
-  width: 90px;
+  width: 70px;
   text-align: center;
+
+  @media screen and (min-width: ${screenWidth.desktop}) {
+    width: 90px;
+  }
 `;
