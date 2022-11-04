@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -6,16 +7,17 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   margin-bottom: 50px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const Item = styled.li`
   display: flex;
-  align-items: center;
   justify-content: space-between;
 
   margin-bottom: 30px;
@@ -28,15 +30,9 @@ export const Item = styled.li`
 `;
 
 export const Avatar = styled.img`
-  position: absolute;
-  top: -50px;
-  left: 50px;
+  width: 100%;
+  height: auto;
 
-  width: 93px;
-  height: 93px;
-
-  border-radius: 50%;
-  border: 3px solid var(--white-color);
   opacity: 1;
 
   cursor: pointer;
@@ -47,27 +43,75 @@ export const Avatar = styled.img`
     border-color: var(--brown-color);
     opacity: 0.7;
   }
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 30px;
+  }
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    position: absolute;
+    top: -50px;
+    left: 50px;
+
+    width: 93px;
+    height: 93px;
+
+    border-radius: 50%;
+    border: 3px solid var(--white-color);
+  }
 `;
 
 export const Name = styled.p`
-  font-size: 44px;
+  font-size: 30px;
   font-weight: 900;
   margin-bottom: 50px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 34px;
+  }
+
+  @media screen and (min-width: ${screenWidth.desktop}) {
+    font-size: 44px;
+  }
 `;
 
 export const Nickname = styled.span`
-  font-size: 24px;
+  font-size: 18px;
   color: var(--green-color);
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: ${screenWidth.desktop}) {
+    font-size: 24px;
+  }
 `;
 
 export const Text = styled.p`
-  font-size: 20px;
+  font-size: 12px;
   margin-bottom: 15px;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: ${screenWidth.desktop}) {
+    font-size: 20px;
+  }
 `;
 
 export const Value = styled.span`
-  text-transform: uppercase;
-  margin-right: 10px;
+  margin-right: 5px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  @media screen and (min-width: ${screenWidth.desktop}) {
+    text-transform: uppercase;
+  }
 `;
 
 export const EditBtn = styled.button`

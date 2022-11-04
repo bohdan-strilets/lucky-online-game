@@ -14,6 +14,7 @@ import sprite from 'sounds/sprite';
 
 const useSettingsBar = () => {
   const [fullScreen, setFullScreen] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -88,6 +89,11 @@ const useSettingsBar = () => {
     soundOff ? dispatch(switchSound(false)) : dispatch(switchSound(true));
   };
 
+  const switcherMobileMenu = () => {
+    play({ id: 'counter_click' });
+    return setShowMobileMenu(prevState => !prevState);
+  };
+
   return {
     logout,
     createNewGame,
@@ -103,6 +109,8 @@ const useSettingsBar = () => {
     openInformation,
     soundSwitch,
     soundOff,
+    showMobileMenu,
+    switcherMobileMenu,
   };
 };
 

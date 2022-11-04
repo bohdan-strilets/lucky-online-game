@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import screenWidth from 'helpers/screenWidth';
+
 import { IBodyStyled } from 'types/ILayout';
 
 export const Wrapper = styled.div`
@@ -9,6 +11,10 @@ export const Wrapper = styled.div`
 
 export const Body = styled.div<IBodyStyled>`
   display: flex;
-  justify-content: ${({ showSidebars }) =>
-    showSidebars ? 'space-between' : 'center'};
+  justify-content: center;
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    justify-content: ${({ showSidebars }) =>
+      showSidebars ? 'space-between' : 'center'};
+  }
 `;

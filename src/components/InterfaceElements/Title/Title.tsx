@@ -8,7 +8,7 @@ const Title: React.FC<ITitleState> = ({ children, type }) => {
       type="color"
       width="100%"
       height="auto"
-      padding="15px"
+      padding="10px 0"
       alignItems="center"
     >
       {type === 'h1' && (
