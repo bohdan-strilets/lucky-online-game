@@ -1,5 +1,5 @@
-import useSettingsBar from 'hooks/useSettingsBar';
 import { createPortal } from 'react-dom';
+import useSettingsBar from 'hooks/useSettingsBar';
 
 import Button from 'components/InterfaceElements/Button';
 import IconSwitcher from 'components/InterfaceElements/IconSwitcher';

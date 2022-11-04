@@ -16,6 +16,11 @@ export const Header = styled.div`
   }
 `;
 
+export const Controllers = styled.ul`
+  display: flex;
+  margin-bottom: 15px;
+`;
+
 export const Item = styled.li`
   display: flex;
   justify-content: space-between;

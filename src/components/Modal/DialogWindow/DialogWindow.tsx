@@ -1,7 +1,10 @@
-import Button from 'components/InterfaceElements/Button';
+import Media from 'react-media';
+import screenWidth from 'helpers/screenWidth';
+
 import { IDialogWindowState } from 'types/IDialogWindow';
 
-import { Text, List, Item } from './DialogWindow.styled';
+import Mobile from './Responsiv/Mobile';
+import Desktop from './Responsiv/Desktop';
 
 const DialogWindow: React.FC<IDialogWindowState> = ({
   onFailure,
@@ -11,38 +14,35 @@ const DialogWindow: React.FC<IDialogWindowState> = ({
   failureBtnText,
 }) => {
   return (
-    <div>
-      <Text>{text && text}</Text>
-
-      <List>
-        <Item>
-          <Button
-            type="button"
-            background="blue"
-            height="50px"
-            width="300px"
-            borderRadius="50px"
-            shadow
-            onClick={onFailure}
-          >
-            {failureBtnText}
-          </Button>
-        </Item>
-        <Item>
-          <Button
-            type="button"
-            background="green"
-            height="50px"
-            width="300px"
-            borderRadius="50px"
-            shadow
-            onClick={onSuccess}
-          >
-            {successBtnText}
-          </Button>
-        </Item>
-      </List>
-    </div>
+    <Media
+      queries={{
+        small: '(max-width: 1439px)',
+        large: `(min-width: ${screenWidth.desktop})`,
+      }}
+    >
+      {matches => (
+        <>
+          {matches.small && (
+            <Mobile
+              onFailure={onFailure}
+              onSuccess={onSuccess}
+              text={text}
+              successBtnText={successBtnText}
+              failureBtnText={failureBtnText}
+            />
+          )}
+          {matches.large && (
+            <Desktop
+              onFailure={onFailure}
+              onSuccess={onSuccess}
+              text={text}
+              successBtnText={successBtnText}
+              failureBtnText={failureBtnText}
+            />
+          )}
+        </>
+      )}
+    </Media>
   );
 };
 
