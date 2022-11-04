@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/lucky-online-game/static/css/main.a1c6c2ca.css",
-    "main.js": "/lucky-online-game/static/js/main.04333aea.js",
+    "main.js": "/lucky-online-game/static/js/main.57a02382.js",
     "static/js/778.f692c680.chunk.js": "/lucky-online-game/static/js/778.f692c680.chunk.js",
     "static/js/868.932ebc5f.chunk.js": "/lucky-online-game/static/js/868.932ebc5f.chunk.js",
     "static/js/284.6fcaa00d.chunk.js": "/lucky-online-game/static/js/284.6fcaa00d.chunk.js",
@@ -9,9 +9,9 @@
     "static/js/869.ca86588b.chunk.js": "/lucky-online-game/static/js/869.ca86588b.chunk.js",
     "static/js/400.5da389cd.chunk.js": "/lucky-online-game/static/js/400.5da389cd.chunk.js",
     "static/js/572.31b717ad.chunk.js": "/lucky-online-game/static/js/572.31b717ad.chunk.js",
-    "static/js/747.2c2a1dbd.chunk.js": "/lucky-online-game/static/js/747.2c2a1dbd.chunk.js",
+    "static/js/747.52d589a1.chunk.js": "/lucky-online-game/static/js/747.52d589a1.chunk.js",
     "static/js/966.fdcc87b1.chunk.js": "/lucky-online-game/static/js/966.fdcc87b1.chunk.js",
-    "static/js/812.1ef1922d.chunk.js": "/lucky-online-game/static/js/812.1ef1922d.chunk.js",
+    "static/js/279.81dcb9b3.chunk.js": "/lucky-online-game/static/js/279.81dcb9b3.chunk.js",
     "static/js/707.05365425.chunk.js": "/lucky-online-game/static/js/707.05365425.chunk.js",
     "static/js/484.0289430a.chunk.js": "/lucky-online-game/static/js/484.0289430a.chunk.js",
     "static/js/316.afe4a03d.chunk.js": "/lucky-online-game/static/js/316.afe4a03d.chunk.js",
@@ -27,7 +27,7 @@
     "static/media/logo-icon.png": "/lucky-online-game/static/media/logo-icon.b2142ed00b8d94625175.png",
     "index.html": "/lucky-online-game/index.html",
     "main.a1c6c2ca.css.map": "/lucky-online-game/static/css/main.a1c6c2ca.css.map",
-    "main.04333aea.js.map": "/lucky-online-game/static/js/main.04333aea.js.map",
+    "main.57a02382.js.map": "/lucky-online-game/static/js/main.57a02382.js.map",
     "778.f692c680.chunk.js.map": "/lucky-online-game/static/js/778.f692c680.chunk.js.map",
     "868.932ebc5f.chunk.js.map": "/lucky-online-game/static/js/868.932ebc5f.chunk.js.map",
     "284.6fcaa00d.chunk.js.map": "/lucky-online-game/static/js/284.6fcaa00d.chunk.js.map",
@@ -35,9 +35,9 @@
     "869.ca86588b.chunk.js.map": "/lucky-online-game/static/js/869.ca86588b.chunk.js.map",
     "400.5da389cd.chunk.js.map": "/lucky-online-game/static/js/400.5da389cd.chunk.js.map",
     "572.31b717ad.chunk.js.map": "/lucky-online-game/static/js/572.31b717ad.chunk.js.map",
-    "747.2c2a1dbd.chunk.js.map": "/lucky-online-game/static/js/747.2c2a1dbd.chunk.js.map",
+    "747.52d589a1.chunk.js.map": "/lucky-online-game/static/js/747.52d589a1.chunk.js.map",
     "966.fdcc87b1.chunk.js.map": "/lucky-online-game/static/js/966.fdcc87b1.chunk.js.map",
-    "812.1ef1922d.chunk.js.map": "/lucky-online-game/static/js/812.1ef1922d.chunk.js.map",
+    "279.81dcb9b3.chunk.js.map": "/lucky-online-game/static/js/279.81dcb9b3.chunk.js.map",
     "707.05365425.chunk.js.map": "/lucky-online-game/static/js/707.05365425.chunk.js.map",
     "484.0289430a.chunk.js.map": "/lucky-online-game/static/js/484.0289430a.chunk.js.map",
     "316.afe4a03d.chunk.js.map": "/lucky-online-game/static/js/316.afe4a03d.chunk.js.map",
@@ -48,6 +48,6 @@
   },
   "entrypoints": [
     "static/css/main.a1c6c2ca.css",
-    "static/js/main.04333aea.js"
+    "static/js/main.57a02382.js"
   ]
 }
