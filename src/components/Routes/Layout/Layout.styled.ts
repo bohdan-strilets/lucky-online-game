@@ -13,7 +13,7 @@ export const Body = styled.div<IBodyStyled>`
   display: flex;
   justify-content: center;
 
-  @media screen and (min-width: ${screenWidth.tablet}) {
+  @media screen and (min-width: ${screenWidth.desktop}) {
     justify-content: ${({ showSidebars }) =>
       showSidebars ? 'space-between' : 'center'};
   }

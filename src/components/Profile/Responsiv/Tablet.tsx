@@ -46,9 +46,9 @@ const Tablet: React.FC<{}> = () => {
   return (
     <Container
       type="transparent"
-      width="500px"
-      padding="20px 10px"
-      margin="50px 10px"
+      width="680px"
+      padding="40px 10px 10px 10px"
+      margin="50px 0 80px 0"
     >
       {user.name && (
         <Wrapper>

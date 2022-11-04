@@ -21,9 +21,9 @@ const Tablet: React.FC<{}> = () => {
   return (
     <Container
       type="transparent"
-      width="1050px"
-      padding="70px 50px"
-      margin="50px"
+      width="680px"
+      padding="40px 10px 10px 10px"
+      margin="50px 0 80px 0"
     >
       <Wrapper>
         <Title>List of bets</Title>
