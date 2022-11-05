@@ -13,8 +13,8 @@ const Mobile: React.FC<IPolicyState> = ({ title, text }) => {
       <Container
         type="transparent"
         width="300px"
-        padding="50px"
-        margin="50px 0"
+        margin="10px 0"
+        padding="10px"
       >
         <BackButton margin="0 0 30px 0" />
         <Text>{text}</Text>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import useSettingsBar from 'hooks/useSettingsBar';
 
@@ -22,6 +23,10 @@ const MobileVersion: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     soundSwitch,
     soundOff,
   } = useSettingsBar();
+
+  useEffect(() => {
+    onClose();
+  }, [onClose]);
 
   return createPortal(
     <Wrapper>
