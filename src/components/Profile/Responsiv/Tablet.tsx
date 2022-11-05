@@ -1,4 +1,5 @@
 import useProfile from 'hooks/useProfile';
+import useProfileControllers from 'hooks/useProfileControllers';
 import dateFormatting from 'helpers/dateFormatting';
 
 import Container from 'components/InterfaceElements/Container';
@@ -11,10 +12,12 @@ import EditComplexity from 'components/Modal/EditComplexity';
 import DialogWindow from 'components/Modal/DialogWindow';
 import MyItems from '../MyItems';
 import EmptyList from '../EmptyList';
+import Button from 'components/InterfaceElements/Button';
 
 import {
   Wrapper,
   Header,
+  Controllers,
   Item,
   Avatar,
   Nickname,
@@ -43,6 +46,14 @@ const Tablet: React.FC<{}> = () => {
     products,
   } = useProfile();
 
+  const {
+    switchEditProfileModal,
+    switchDialogModal,
+    showDialogModal,
+    showEditProfileModal,
+    deleteAccount,
+  } = useProfileControllers();
+
   return (
     <Container
       type="transparent"
@@ -66,6 +77,42 @@ const Tablet: React.FC<{}> = () => {
               </p>
             </div>
           </Header>
+
+          <Controllers>
+            <li>
+              <Button
+                type="button"
+                background="blue"
+                borderRadius="10px"
+                height="40px"
+                width="40px"
+                margin="0 10px 0 0 "
+                onClick={() => switchEditProfileModal(true)}
+              >
+                <IconSwitcher
+                  name="adjust"
+                  size="18px"
+                  fill="var(--white-color)"
+                />
+              </Button>
+            </li>
+            <li>
+              <Button
+                type="button"
+                background="blue"
+                borderRadius="10px"
+                height="40px"
+                width="40px"
+                onClick={() => switchDialogModal(true)}
+              >
+                <IconSwitcher
+                  name="delete"
+                  size="18px"
+                  fill="var(--white-color)"
+                />
+              </Button>
+            </li>
+          </Controllers>
 
           <Avatar
             src={user.avatarURL as string}

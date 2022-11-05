@@ -44,7 +44,7 @@ const EditEmail: React.FC<{ onClose(): void }> = ({ onClose }) => {
               borderRadius="50px"
               shadow
             >
-              Sign up
+              change email
             </Button>
           </Form>
         )}

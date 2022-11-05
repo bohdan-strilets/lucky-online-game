@@ -63,7 +63,7 @@ const EditComplexity: React.FC<IEditComplexityState> = ({
               borderRadius="50px"
               shadow
             >
-              change
+              change complexity
             </Button>
           </Form>
         )}

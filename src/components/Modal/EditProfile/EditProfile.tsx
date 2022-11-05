@@ -85,7 +85,7 @@ const EditProfile: React.FC<{ onClose(): void }> = ({ onClose }) => {
               borderRadius="50px"
               shadow
             >
-              Sign up
+              change profile
             </Button>
           </Form>
         )}
