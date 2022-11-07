@@ -46,13 +46,7 @@ const Tablet: React.FC<{}> = () => {
     products,
   } = useProfile();
 
-  const {
-    switchEditProfileModal,
-    switchDialogModal,
-    showDialogModal,
-    showEditProfileModal,
-    deleteAccount,
-  } = useProfileControllers();
+  const { switchEditProfileModal, switchDialogModal } = useProfileControllers();
 
   return (
     <Container
