@@ -96,11 +96,11 @@ const App: React.FC = () => {
             <Route
               path="/welcome"
               element={
-                <PrivateRoute>
+                <PublicRoute>
                   <Layout>
                     <WelcomePage />
                   </Layout>
-                </PrivateRoute>
+                </PublicRoute>
               }
             />
             <Route
