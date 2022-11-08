@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useGetAllItemsQuery } from 'redux/store/storeApi';
 import { useAppDispatch } from './useAppDispatch';
 import operations from 'redux/user/userOperations';
@@ -9,7 +9,6 @@ import { getSoundOff } from 'redux/options/optionsSelectors';
 
 import sounds from 'sounds/sounds.mp3';
 import sprite from 'sounds/sprite';
-import { IItem } from 'types/IStore';
 import { toast } from 'react-toastify';
 
 const useStore = () => {
