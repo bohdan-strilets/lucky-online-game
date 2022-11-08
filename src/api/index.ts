@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const API_URL = 'http://localhost:5000/';
-// export const API_URL = 'https://lucky-online-game-api.herokuapp.com/';
+// export const API_URL = 'http://localhost:5000/';
+export const API_URL = 'https://lucky-online-game-api.herokuapp.com/';
 
 const api = axios.create({
   withCredentials: true,
