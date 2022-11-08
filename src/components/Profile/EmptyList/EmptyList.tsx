@@ -1,26 +1,27 @@
-import { useNavigate } from 'react-router-dom';
-import Button from 'components/InterfaceElements/Button';
-import { Wrapper, Text } from './EmptyList.styled';
+import Media from 'react-media';
+import screenWidth from 'helpers/screenWidth';
+
+import Mobile from './Responsiv/Mobile';
+import Tablet from './Responsiv/Tablet';
+import Desktop from './Responsiv/Desktop';
 
 const EmptyList: React.FC<{}> = () => {
-  const navigate = useNavigate();
-
   return (
-    <Wrapper>
-      <Text>You haven't bought anything yet.... :(</Text>
-
-      <Button
-        type="button"
-        background="green"
-        height="60px"
-        width="650px"
-        borderRadius="50px"
-        shadow
-        onClick={() => navigate('/store')}
-      >
-        go to the store
-      </Button>
-    </Wrapper>
+    <Media
+      queries={{
+        small: '(max-width: 767px)',
+        medium: `(min-width: ${screenWidth.tablet}) and (max-width: 1439px)`,
+        large: `(min-width: ${screenWidth.desktop})`,
+      }}
+    >
+      {matches => (
+        <>
+          {matches.small && <Mobile />}
+          {matches.medium && <Tablet />}
+          {matches.large && <Desktop />}
+        </>
+      )}
+    </Media>
   );
 };
 
