@@ -68,10 +68,3 @@ export const Price = styled.p`
 
   color: var(--green-color);
 `;
-
-export const Navigation = styled.div`
-  display: flex;
-  justify-content: center;
-
-  width: 100%;
-`;

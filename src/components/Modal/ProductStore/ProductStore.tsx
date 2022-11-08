@@ -12,46 +12,48 @@ import { PhotoWrapper, Photo, Text, Price } from './ProductStore.styled';
 
 const ProductStore: React.FC<IProductStore> = ({ id }) => {
   const { data, isFetching } = useGetOneItemQuery(id);
+  console.log(data);
+
   const {
     buy,
     closeModalDialogWindow,
     openModalDialogWindow,
     showModalBuyItem,
-    currentId,
-    currentAmount,
   } = useStore();
 
   return (
     <>
       {isFetching && <Loader />}
 
-      <div>
-        <PhotoWrapper>
-          <Photo src={data?.item.imageURL} alt={data?.item.title} />
-        </PhotoWrapper>
-        <Text>{data?.item.description}</Text>
-        <Price>{bankFormatting(Number(data?.item.price).toFixed(2))} $</Price>
-        <Button
-          type="button"
-          background="green"
-          height="60px"
-          width="100%"
-          borderRadius="50px"
-          shadow
-          onClick={openModalDialogWindow}
-        >
-          Buy
-        </Button>
-      </div>
+      {data && (
+        <div>
+          <PhotoWrapper>
+            <Photo src={data?.item.imageURL} alt={data?.item.title} />
+          </PhotoWrapper>
+          <Text>{data?.item.description}</Text>
+          <Price>{bankFormatting(Number(data?.item.price).toFixed(2))} $</Price>
+          <Button
+            type="button"
+            background="green"
+            height="60px"
+            width="100%"
+            borderRadius="50px"
+            shadow
+            onClick={openModalDialogWindow}
+          >
+            Buy
+          </Button>
+        </div>
+      )}
 
-      {showModalBuyItem && (
+      {showModalBuyItem && data && (
         <Modal
           onClose={closeModalDialogWindow}
           title="Do you want to buy this item?"
         >
           <DialogWindow
             onFailure={closeModalDialogWindow}
-            onSuccess={() => buy(currentId as string, currentAmount as number)}
+            onSuccess={() => buy(data.item._id, data.item.price)}
             failureBtnText="Cancel"
             successBtnText="Buy"
           />

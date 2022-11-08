@@ -1,13 +1,14 @@
 import bankFormatting from 'helpers/bankFormatting';
 import useStore from 'hooks/useStore';
+import usePagination from 'hooks/usePagination';
 
 import Container from 'components/InterfaceElements/Container';
 import Button from 'components/InterfaceElements/Button';
-import IconSwitcher from 'components/InterfaceElements/IconSwitcher';
 import Modal from 'components/Modal';
 import ProductStore from 'components/Modal/ProductStore';
 import Loader from 'components/InterfaceElements/Loader';
 import DialogWindow from 'components/Modal/DialogWindow';
+import Pagination from 'components/InterfaceElements/Pagination';
 
 import {
   List,
@@ -17,22 +18,16 @@ import {
   Photo,
   Description,
   Price,
-  Navigation,
 } from '../Store.styled';
 
 const Mobile: React.FC<{}> = () => {
   const {
-    allImages,
-    comeBack,
     currentId,
     currentTitle,
     isFetching,
     items,
     openModalMoreInfo,
-    page,
-    showMore,
     showMoreDetails,
-    total,
     closeModalMoreInfo,
     buy,
     showModalBuyItem,
@@ -41,89 +36,75 @@ const Mobile: React.FC<{}> = () => {
     currentAmount,
   } = useStore();
 
+  const {
+    firstContentIndex,
+    gaps,
+    lastContentIndex,
+    nextPage,
+    page,
+    prevPage,
+    setPage,
+    totalPages,
+  } = usePagination({ contentPerPage: 6, count: items ? items?.length : 0 });
+
   return (
     <>
       {isFetching && <Loader />}
 
       <List>
         {items &&
-          items.map(({ _id, imageURL, title, description, price }) => {
-            return (
-              <Item key={_id} data-id={_id}>
-                <Container
-                  type="color"
-                  width="100%"
-                  padding="20px"
-                  height="600px"
-                >
-                  <Wrapper data-id={_id} onClick={openModalMoreInfo}>
-                    <Title>{title}</Title>
-                    <Photo src={imageURL} alt={title} />
-                    <Description>{description}</Description>
-                    <Price>{bankFormatting(Number(price).toFixed(2))} $</Price>
-                  </Wrapper>
-
-                  <Button
-                    type="button"
-                    background="green"
-                    height="60px"
+          items
+            .slice(firstContentIndex, lastContentIndex)
+            .map(({ _id, imageURL, title, description, price }) => {
+              return (
+                <Item key={_id} data-id={_id}>
+                  <Container
+                    type="color"
                     width="100%"
-                    borderRadius="50px"
-                    shadow
-                    onClick={openModalDialogWindow}
-                    data-price={price}
-                    data-id={_id}
+                    padding="20px"
+                    height="600px"
                   >
-                    Buy
-                  </Button>
-                </Container>
-              </Item>
-            );
-          })}
+                    <Wrapper data-id={_id} onClick={openModalMoreInfo}>
+                      <Title>{title}</Title>
+                      <Photo src={imageURL} alt={title} />
+                      <Description>{description}</Description>
+                      <Price>
+                        {bankFormatting(Number(price).toFixed(2))} $
+                      </Price>
+                    </Wrapper>
+
+                    <Button
+                      type="button"
+                      background="green"
+                      height="60px"
+                      width="100%"
+                      borderRadius="50px"
+                      shadow
+                      onClick={openModalDialogWindow}
+                      data-price={price}
+                      data-id={_id}
+                    >
+                      Buy
+                    </Button>
+                  </Container>
+                </Item>
+              );
+            })}
       </List>
 
-      <Container
-        type="transparent"
-        width="300px"
-        padding="10px"
-        margin="0 0 80px 0"
-      >
-        <Navigation>
-          {page > 1 && (
-            <Button
-              type="button"
-              background="blue"
-              borderRadius="10px"
-              height="40px"
-              width="100px"
-              margin="0 50px 0 0"
-              onClick={comeBack}
-            >
-              <IconSwitcher
-                name="arrowLeft"
-                size="22px"
-                fill="var(--white-color)"
-              />
-            </Button>
-          )}
-          {allImages !== total && (
-            <Button
-              type="button"
-              background="blue"
-              borderRadius="10px"
-              height="40px"
-              width="100px"
-              onClick={showMore}
-            >
-              <IconSwitcher
-                name="arrowRight"
-                size="22px"
-                fill="var(--white-color)"
-              />
-            </Button>
-          )}
-        </Navigation>
-      </Container>
+      {items && (
+        <Pagination
+          contentPerPage={3}
+          arr={items}
+          gaps={gaps}
+          nextPage={nextPage}
+          page={page}
+          prevPage={prevPage}
+          setPage={setPage}
+          totalPages={totalPages}
+          margin="0 0 80px 0"
+        />
+      )}
 
       {showMoreDetails && (
         <Modal

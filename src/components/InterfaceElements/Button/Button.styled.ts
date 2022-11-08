@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { IButtonWrapperStyled } from 'types/IButton';
+import screenWidth from 'helpers/screenWidth';
 
 export const ButtonWrapper = styled.button<IButtonWrapperStyled>`
   display: flex;
@@ -12,7 +13,7 @@ export const ButtonWrapper = styled.button<IButtonWrapperStyled>`
 
   font-family: inherit;
   font-weight: 900;
-  font-size: 20px;
+  font-size: 16px;
   text-transform: uppercase;
   text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
 
@@ -46,5 +47,9 @@ export const ButtonWrapper = styled.button<IButtonWrapperStyled>`
   :disabled {
     opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  @media screen and (min-width: ${screenWidth.tablet}) {
+    font-size: 20px;
   }
 `;

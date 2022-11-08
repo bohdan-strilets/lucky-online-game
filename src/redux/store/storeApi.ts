@@ -21,11 +21,8 @@ export const storeApi = createApi({
   }),
 
   endpoints: builder => ({
-    getAllItems: builder.query<
-      IGetAllItemsRes,
-      { page: number; limit: number }
-    >({
-      query: ({ page, limit }) => ({ url: `/?page=${page}&limit=${limit}` }),
+    getAllItems: builder.query<IGetAllItemsRes, void>({
+      query: () => ({ url: '/' }),
     }),
 
     getOneItem: builder.query<IGetOneItemRes, string>({

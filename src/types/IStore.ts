@@ -12,9 +12,6 @@ export interface IGetAllItemsRes {
   status: string;
   code: number;
   items: IItem[];
-  page: number;
-  limit: number;
-  total: number;
 }
 
 export interface IGetOneItemRes {
