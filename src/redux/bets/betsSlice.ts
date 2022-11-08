@@ -31,9 +31,6 @@ export const betsSlice = createSlice({
       .addCase(operations.getAllBets.fulfilled, (state, action) => {
         try {
           state.bets = action.payload.bets;
-          state.page = action.payload.page;
-          state.limit = action.payload.limit;
-          state.total = action.payload.total;
         } catch (error) {}
       })
 

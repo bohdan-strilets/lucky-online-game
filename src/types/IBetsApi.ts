@@ -16,9 +16,6 @@ export interface IGetAllBetsRes {
   status: string;
   code: number;
   bets: IBets[];
-  page: number;
-  limit: number;
-  total: number;
 }
 
 export interface IGetOneBetRes {

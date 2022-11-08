@@ -1,9 +1,10 @@
 import useBetList from 'hooks/useBetList';
+import usePagination from 'hooks/usePagination';
+import dateFormatting from 'helpers/dateFormatting';
 
 import Container from 'components/InterfaceElements/Container';
-import Button from 'components/InterfaceElements/Button';
+import Pagination from 'components/InterfaceElements/Pagination';
 
-import dateFormatting from 'helpers/dateFormatting';
 import {
   Wrapper,
   Title,
@@ -16,7 +17,18 @@ import {
 } from '../BetLlist.styled';
 
 const Desktop: React.FC<{}> = () => {
-  const { bets, disabledbutton, showMore } = useBetList();
+  const { bets } = useBetList();
+
+  const {
+    firstContentIndex,
+    gaps,
+    lastContentIndex,
+    nextPage,
+    page,
+    prevPage,
+    setPage,
+    totalPages,
+  } = usePagination({ contentPerPage: 10, count: bets ? bets?.length : 0 });
 
   return (
     <Container
@@ -38,55 +50,57 @@ const Desktop: React.FC<{}> = () => {
       </Wrapper>
 
       <List>
-        {bets?.map(
-          ({
-            _id,
-            createdAt,
-            type,
-            betAmount,
-            coefficient,
-            isWon,
-            winningAmount,
-          }) => {
-            return (
-              <Item key={_id}>
-                <Column>
-                  <p>{dateFormatting(createdAt)}</p>
-                </Column>
-                <Column>
-                  <p>{type}</p>
-                </Column>
-                <Column>
-                  <p>{`${betAmount} $`}</p>
-                </Column>
-                <Column>
-                  <p>{coefficient}</p>
-                </Column>
-                <Column>
-                  <IsWon isWon={isWon} />
-                </Column>
-                <Column>
-                  <p>{`${winningAmount} $`}</p>
-                </Column>
-              </Item>
-            );
-          },
-        )}
+        {bets &&
+          bets
+            .slice(firstContentIndex, lastContentIndex)
+            .map(
+              ({
+                _id,
+                createdAt,
+                type,
+                betAmount,
+                coefficient,
+                isWon,
+                winningAmount,
+              }) => {
+                return (
+                  <Item key={_id}>
+                    <Column>
+                      <p>{dateFormatting(createdAt)}</p>
+                    </Column>
+                    <Column>
+                      <p>{type}</p>
+                    </Column>
+                    <Column>
+                      <p>{`${betAmount} $`}</p>
+                    </Column>
+                    <Column>
+                      <p>{coefficient}</p>
+                    </Column>
+                    <Column>
+                      <IsWon isWon={isWon} />
+                    </Column>
+                    <Column>
+                      <p>{`${winningAmount} $`}</p>
+                    </Column>
+                  </Item>
+                );
+              },
+            )}
       </List>
 
-      <Button
-        type="button"
-        background="green"
-        borderRadius="50px"
-        height="60px"
-        width="500px"
-        shadow
-        margin="50px auto 0 auto"
-        onClick={showMore}
-        disabled={disabledbutton()}
-      >
-        Show more
-      </Button>
+      {bets && bets.length > 0 && (
+        <Pagination
+          contentPerPage={3}
+          arr={bets}
+          gaps={gaps}
+          nextPage={nextPage}
+          page={page}
+          prevPage={prevPage}
+          setPage={setPage}
+          totalPages={totalPages}
+        />
+      )}
     </Container>
   );
 };

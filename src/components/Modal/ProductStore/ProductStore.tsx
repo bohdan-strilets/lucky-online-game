@@ -12,7 +12,6 @@ import { PhotoWrapper, Photo, Text, Price } from './ProductStore.styled';
 
 const ProductStore: React.FC<IProductStore> = ({ id }) => {
   const { data, isFetching } = useGetOneItemQuery(id);
-  console.log(data);
 
   const {
     buy,

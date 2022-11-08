@@ -38,6 +38,7 @@ export const CategoriesItem = styled.li`
 
 export const List = styled.ul`
   width: 100%;
+  margin-bottom: 30px;
 `;
 
 export const Item = styled.li`

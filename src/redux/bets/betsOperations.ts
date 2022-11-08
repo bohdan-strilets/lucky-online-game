@@ -10,11 +10,11 @@ import {
   IChangeBetRes,
 } from 'types/IBetsApi';
 
-const getAllBets = createAsyncThunk<IGetAllBetsRes, number>(
+const getAllBets = createAsyncThunk<IGetAllBetsRes, void>(
   'bets/get-all-bets',
-  async page => {
+  async () => {
     try {
-      const { data } = await api.get(`api/v1/bets/get-all?page=${page}`);
+      const { data } = await api.get('api/v1/bets/get-all');
       return data;
     } catch (error: any) {
       const message = error.response.data.message;
