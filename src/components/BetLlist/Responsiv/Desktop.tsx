@@ -89,7 +89,7 @@ const Desktop: React.FC<{}> = () => {
             )}
       </List>
 
-      {bets && bets.length > 0 && (
+      {bets && bets.length > 9 && (
         <Pagination
           contentPerPage={3}
           arr={bets}

@@ -92,7 +92,7 @@ const Desktop: React.FC<{}> = () => {
             })}
       </List>
 
-      {items && (
+      {items && items.length > 6 && (
         <Pagination
           contentPerPage={3}
           arr={items}
