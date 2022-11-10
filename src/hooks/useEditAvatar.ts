@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import operations from 'redux/user/userOperations';
 import { IChangeAvatarRes } from 'types/IUserRessponse';
 
 const useEditAvatar = (onClose: () => void) => {
   const dispatch = useAppDispatch();
+  const hiddenFileInput = useRef<HTMLInputElement>(null);
 
   const [isLoading, setIsLoading] = useState(false);
   const [fileInputState, setFileInputState] = useState('');
@@ -33,6 +34,10 @@ const useEditAvatar = (onClose: () => void) => {
     }
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    hiddenFileInput?.current?.click();
+  };
+
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = (e.target.files as FileList)[0];
     previewFile(file);
@@ -54,6 +59,8 @@ const useEditAvatar = (onClose: () => void) => {
     handleFileInputChange,
     fileInputState,
     isLoading,
+    hiddenFileInput,
+    handleClick,
   };
 };
 

@@ -3,7 +3,14 @@ import useEditAvatar from 'hooks/useEditAvatar';
 import Button from 'components/InterfaceElements/Button';
 import Loader from 'components/InterfaceElements/Loader';
 
-import { Text, Label, Input, Preview } from './EditAvatar.styled';
+import {
+  Text,
+  Label,
+  Input,
+  DownloadButton,
+  Icon,
+  Preview,
+} from './EditAvatar.styled';
 
 const EditAvatar: React.FC<{ onClose(): void }> = ({ onClose }) => {
   const {
@@ -12,6 +19,8 @@ const EditAvatar: React.FC<{ onClose(): void }> = ({ onClose }) => {
     handleFileInputChange,
     fileInputState,
     isLoading,
+    handleClick,
+    hiddenFileInput,
   } = useEditAvatar(onClose);
 
   return (
@@ -24,11 +33,17 @@ const EditAvatar: React.FC<{ onClose(): void }> = ({ onClose }) => {
         <Input
           type="file"
           name="avatar"
+          ref={hiddenFileInput}
           multiple
           accept=".jpg, .png, .svg"
           onChange={handleFileInputChange}
           value={fileInputState}
         />
+
+        <DownloadButton type="button" onClick={handleClick}>
+          <Icon />
+          Choose a file...
+        </DownloadButton>
       </Label>
 
       {previewSource && <Preview src={previewSource as string} alt="chosen" />}
