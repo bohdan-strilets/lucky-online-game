@@ -45,17 +45,21 @@ const Desktop: React.FC<{}> = () => {
             <Item>
               <Text>Total money earned:</Text>
               <Text>
-                {`${bankFormatting(
-                  Number(statistics.statistics.moneyEarned).toFixed(2),
-                )} $`}
+                {statistics.statistics.moneyEarned
+                  ? `${bankFormatting(
+                      Number(statistics.statistics.moneyEarned).toFixed(2),
+                    )} $`
+                  : 0}
               </Text>
             </Item>
             <Item>
               <Text>Total money spent:</Text>
               <Text>
-                {`${bankFormatting(
-                  Number(statistics.statistics.moneySpent).toFixed(2),
-                )} $`}
+                {statistics.statistics.moneySpent
+                  ? `${bankFormatting(
+                      Number(statistics.statistics.moneySpent).toFixed(2),
+                    )} $`
+                  : 0}
               </Text>
             </Item>
             <Item>
