@@ -25,7 +25,7 @@ const Desktop: React.FC<{}> = () => {
     >
       {isFetching && <Loader />}
 
-      {statistics?.statistics ? (
+      {statistics?.statistics && statistics?.statistics !== null ? (
         <Wrapper>
           <Title>Statistics</Title>
 
