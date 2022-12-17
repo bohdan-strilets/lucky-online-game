@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL = 'https://lucky-online-game-api-ux53.onrender.com';
+export const API_URL = 'https://lucky-online-game-api-ux53.onrender.com/';
 
 const api = axios.create({
   withCredentials: true,
