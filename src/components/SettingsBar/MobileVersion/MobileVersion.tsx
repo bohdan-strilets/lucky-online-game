@@ -24,10 +24,6 @@ const MobileVersion: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     soundOff,
   } = useSettingsBar();
 
-  useEffect(() => {
-    onClose();
-  }, [onClose]);
-
   return createPortal(
     <Wrapper>
       <CloseMenu type="button" onClick={() => onClose()}>
